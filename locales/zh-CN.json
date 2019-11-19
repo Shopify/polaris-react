@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "保存",
-      "discard": "取消"
+      "discard": "取消",
+      "message": "未保存的更改"
     },
     "DataTable": {
       "sortAccessibilityLabel": "向 {direction} 排序",

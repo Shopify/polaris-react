@@ -60,6 +60,10 @@ export function ContextualSaveBar({
       />
     );
 
+  const messageMarkup = message
+    ? message
+    : i18n.translate('Polaris.ContextualSaveBar.message');
+
   const discardActionMarkup = discardAction && (
     <Button
       url={discardAction.url}
@@ -107,7 +111,7 @@ export function ContextualSaveBar({
       <div className={styles.ContextualSaveBar}>
         {logoMarkup}
         <div className={styles.Contents}>
-          <h2 className={styles.Message}>{message}</h2>
+          <h2 className={styles.Message}>{messageMarkup}</h2>
           <div className={styles.ActionContainer}>
             <Stack spacing="tight" wrap={false}>
               {discardActionMarkup}

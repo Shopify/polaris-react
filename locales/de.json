@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "Speichern",
-      "discard": "Verwerfen"
+      "discard": "Verwerfen",
+      "message": "Nicht gespeicherte Änderungen"
     },
     "DataTable": {
       "sortAccessibilityLabel": "von {direction} sortieren nach",

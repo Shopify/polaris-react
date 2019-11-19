@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "Opslaan",
-      "discard": "Verwerpen"
+      "discard": "Verwerpen",
+      "message": "Niet-opgeslagen wijzigingen"
     },
     "DataTable": {
       "sortAccessibilityLabel": "sorteer {direction} op",

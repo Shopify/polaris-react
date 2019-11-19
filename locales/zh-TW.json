@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "儲存",
-      "discard": "捨棄"
+      "discard": "捨棄",
+      "message": "尚未儲存的變更內容"
     },
     "DataTable": {
       "sortAccessibilityLabel": "向 {direction} 排序，依據",

@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "Guardar",
-      "discard": "Descartar"
+      "discard": "Descartar",
+      "message": "Cambios no guardados"
     },
     "DataTable": {
       "sortAccessibilityLabel": "ordenar {direction} por",

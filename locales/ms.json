@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "Simpan",
-      "discard": "Buang"
+      "discard": "Buang",
+      "message": "Perubahan yang tidak disimpan"
     },
     "DataTable": {
       "sortAccessibilityLabel": "isih {direction} mengikut",

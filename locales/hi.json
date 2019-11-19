@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "सहेजें",
-      "discard": "छोड़ें"
+      "discard": "छोड़ें",
+      "message": "ना सहेजे गए परिवर्तन"
     },
     "DataTable": {
       "sortAccessibilityLabel": "{direction} के अनुसार क्रमबद्ध करें",

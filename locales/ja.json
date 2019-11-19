@@ -36,7 +36,8 @@
     },
     "ContextualSaveBar": {
       "save": "保存する",
-      "discard": "破棄する"
+      "discard": "破棄する",
+      "message": "保存されていない変更"
     },
     "DataTable": {
       "sortAccessibilityLabel": "で{direction}を並び替える",
