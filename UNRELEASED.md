@@ -16,6 +16,7 @@
 - Fixed side-effects from being create during `Modal`s render ([#2644](https://github.com/Shopify/polaris-react/pull/2644))
 - Work around a build crash when using create-react-app due to a bug in css parsing in `postcss-custom-properties` ([#2643](https://github.com/Shopify/polaris-react/pull/2643))
 - Removed the `visited` CSS styling for tabs using the `url` prop ([#2639](https://github.com/Shopify/polaris-react/pull/2639))
+- Fixed the `onClick` set `Navigation.Item.subNavigationItems` not being passed through ([#2640](https://github.com/Shopify/polaris-react/pull/2640))
 
 ### Documentation
 

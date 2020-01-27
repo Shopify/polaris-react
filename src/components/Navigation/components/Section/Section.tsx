@@ -53,9 +53,9 @@ export function Section({
     onClick: ItemProps['onClick'],
     hasSubNavItems: boolean,
   ) => {
-    return () => {
+    return (event: React.MouseEvent<HTMLElement>) => {
       if (onClick) {
-        onClick();
+        onClick(event);
       }
 
       if (animationFrame.current) {

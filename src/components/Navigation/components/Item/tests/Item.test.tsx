@@ -326,6 +326,7 @@ describe('<Nav.Item />', () => {
         />,
         {...context},
       );
+
       item
         .find(UnstyledLink)
         .last()

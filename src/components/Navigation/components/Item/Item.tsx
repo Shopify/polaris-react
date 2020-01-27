@@ -55,7 +55,7 @@ export interface ItemProps extends ItemURLDetails {
   new?: boolean;
   subNavigationItems?: SubNavigationItem[];
   secondaryAction?: SecondaryAction;
-  onClick?(): void;
+  onClick?(event: MouseEvent<HTMLElement>): void;
 }
 
 enum MatchState {
@@ -145,6 +145,37 @@ export function Item({
     </Fragment>
   );
 
+  function getClickHandler(onClick: ItemProps['onClick']) {
+    return (event: MouseEvent<HTMLElement>) => {
+      const {currentTarget} = event;
+
+      if (currentTarget.getAttribute('href') === location) {
+        event.preventDefault();
+      }
+
+      if (
+        subNavigationItems &&
+        subNavigationItems.length > 0 &&
+        !isNavigationCollapsed
+      ) {
+        event.preventDefault();
+        setExpanded(!expanded);
+      } else if (onNavigationDismiss) {
+        onNavigationDismiss();
+
+        if (onClick && onClick !== onNavigationDismiss) {
+          onClick(event);
+        }
+
+        return;
+      }
+
+      if (onClick) {
+        onClick(event);
+      }
+    };
+  }
+
   if (url == null) {
     const className = classNames(
       styles.Item,
@@ -223,14 +254,14 @@ export function Item({
       <div className={styles.SecondaryNavigation}>
         <Secondary expanded={showExpanded}>
           {subNavigationItems.map((item) => {
-            const {label, ...rest} = item;
+            const {label, onClick, ...rest} = item;
             return (
               <Item
                 {...rest}
                 key={label}
                 label={label}
                 matches={item === longestMatch}
-                onClick={onNavigationDismiss}
+                onClick={getClickHandler(onClick)}
               />
             );
           })}
@@ -262,35 +293,6 @@ export function Item({
       {secondaryNavigationMarkup}
     </li>
   );
-
-  function getClickHandler(onClick: ItemProps['onClick']) {
-    return (event: MouseEvent<HTMLElement>) => {
-      const {currentTarget} = event;
-
-      if (currentTarget.getAttribute('href') === location) {
-        event.preventDefault();
-      }
-
-      if (
-        subNavigationItems &&
-        subNavigationItems.length > 0 &&
-        isNavigationCollapsed
-      ) {
-        event.preventDefault();
-        setExpanded(!expanded);
-      } else if (onNavigationDismiss) {
-        onNavigationDismiss();
-        if (onClick && onClick !== onNavigationDismiss) {
-          onClick();
-        }
-        return;
-      }
-
-      if (onClick) {
-        onClick();
-      }
-    };
-  }
 }
 
 export function isNavigationItemActive(
