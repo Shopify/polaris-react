@@ -95,15 +95,16 @@ A navigation section groups together related navigation items. Navigation sectio
 
 ### Section properties
 
-| Prop      | Type                     | Description                                                                                   |
-| --------- | ------------------------ | --------------------------------------------------------------------------------------------- |
-| items     | [Item[]](#type-item)     | A collection of navigation items to be rendered inside the section                            |
-| icon      | IconProps['source']      | An icon to be displayed next to the section title                                             |
-| title     | string                   | A string property providing a title for the navigation section                                |
-| fill      | boolean                  | A boolean property indicating whether the section should take up all vertical space available |
-| rollup    | [Rollup[]](#type-rollup) | An object determining the collapsing behavior of the navigation section                       |
-| action    | [Action[]](#type-action) | Renders an icon-only action as a supplementary action next to the section title               |
-| separator | boolean                  | A boolean property indicating whether the section should have a visual separator              |
+| Prop        | Type                     | Description                                                                                   |
+| ----------- | ------------------------ | --------------------------------------------------------------------------------------------- |
+| items       | [Item[]](#type-item)     | A collection of navigation items to be rendered inside the section                            |
+| icon        | IconProps['source']      | An icon to be displayed next to the section title                                             |
+| title       | string                   | A string property providing a title for the navigation section                                |
+| fill        | boolean                  | A boolean property indicating whether the section should take up all vertical space available |
+| rollup      | [Rollup[]](#type-rollup) | An object determining the collapsing behavior of the navigation section                       |
+| action      | [Action[]](#type-action) | Renders an icon-only action as a supplementary action next to the section title               |
+| itemsPrefix | ReactNode                | A generic React Node that will be rendered between the Header and the items provided          |
+| separator   | boolean                  | A boolean property indicating whether the section should have a visual separator              |
 
 <a name="type-item"></a>
 
@@ -336,6 +337,62 @@ Use to add a horizontal line below the section.
         icon: OnlineStoreMajorTwotone,
       },
     ]}
+    separator
+  />
+</Navigation>
+```
+
+### Navigation with section and itemsPrefix
+
+Use to add custom markup before the items listed in the section.
+
+```jsx
+<Navigation location="/">
+  <Navigation.Section
+    items={[
+      {
+        url: '/path/to/place',
+        label: 'Home',
+        icon: HomeMajorMonotone,
+      },
+      {
+        url: '/path/to/place',
+        label: 'Orders',
+        icon: OrdersMajorTwotone,
+      },
+      {
+        url: '/path/to/place',
+        label: 'Products',
+        icon: ProductsMajorTwotone,
+      },
+    ]}
+  />
+  <Navigation.Section
+    title="Stores"
+    items={[
+      {
+        url: '/path/to/place',
+        label: 'Online Store',
+        icon: OnlineStoreMajorTwotone,
+      },
+    ]}
+    itemsPrefix={
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          maxWidth: '16rem',
+          padding: '0 0 1.4rem 1.4rem',
+        }}
+      >
+        <TextField
+          name="store-search"
+          label="Store Search"
+          value=""
+          placeholder="search"
+        />
+      </div>
+    }
     separator
   />
 </Navigation>

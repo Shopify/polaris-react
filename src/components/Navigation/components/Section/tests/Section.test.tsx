@@ -253,6 +253,35 @@ describe('<Navigation.Section />', () => {
     });
   });
 
+  it('displays the itemsPrefix when passed', () => {
+    const section = mountWithNavigationProvider(
+      <Section
+        title="test"
+        items={[
+          {
+            label: 'some label',
+            url: '/admin',
+            disabled: false,
+          },
+        ]}
+        action={{
+          icon: 'placeholder',
+          accessibilityLabel: 'This is a test section',
+          onClick: noop,
+        }}
+        itemsPrefix={
+          <div className="ItemsPrefixComponent">
+            <p>itemsPrefix goodness</p>
+          </div>
+        }
+        separator
+      />,
+      {...context},
+    );
+
+    expect(section.find('.ItemsPrefixComponent').exists()).toBe(true);
+  });
+
   it('calls onClick callback when onClick on Item is triggered', () => {
     const onClickSpy = jest.fn();
     const section = mountWithNavigationProvider(

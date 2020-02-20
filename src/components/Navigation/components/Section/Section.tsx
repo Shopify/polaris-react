@@ -29,6 +29,7 @@ export interface SectionProps {
     accessibilityLabel: string;
     onClick(): void;
   };
+  itemsPrefix?: React.ReactNode;
   separator?: boolean;
 }
 
@@ -38,6 +39,7 @@ export function Section({
   action,
   items,
   rollup,
+  itemsPrefix,
   separator,
 }: SectionProps) {
   const {
@@ -170,9 +172,12 @@ export function Section({
     </li>
   );
 
+  const itemsPrefixMarkup = itemsPrefix ? <li>{itemsPrefix}</li> : null;
+
   return (
     <ul className={className}>
       {sectionHeadingMarkup}
+      {itemsPrefixMarkup}
       {sectionItems}
       {activeItemsMarkup}
     </ul>
