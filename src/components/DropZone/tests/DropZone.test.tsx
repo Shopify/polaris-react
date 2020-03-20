@@ -571,7 +571,7 @@ function fireEvent({
 
     element
       .find('div')
-      .at(3)
+      .at(4)
       .getDOMNode()
       .dispatchEvent(event);
 

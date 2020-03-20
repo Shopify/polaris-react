@@ -378,31 +378,33 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
 
   return (
     <DropZoneContext.Provider value={context}>
-      <Labelled
-        id={id}
-        label={labelValue}
-        action={labelAction}
-        labelHidden={labelHiddenValue}
-      >
-        <div
-          ref={node}
-          className={classes}
-          aria-disabled={disabled}
-          onClick={handleClick}
-          onDragStart={stopEvent}
+      <div className={styles.DropZoneWrapper}>
+        <Labelled
+          id={id}
+          label={labelValue}
+          action={labelAction}
+          labelHidden={labelHiddenValue}
         >
-          {dragOverlay}
-          {dragErrorOverlay}
-          <div className={styles.Container}>{children}</div>
-          <VisuallyHidden>
-            <DropZoneInput
-              {...inputAttributes}
-              openFileDialog={openFileDialog}
-              onFileDialogClose={onFileDialogClose}
-            />
-          </VisuallyHidden>
-        </div>
-      </Labelled>
+          <div
+            ref={node}
+            className={classes}
+            aria-disabled={disabled}
+            onClick={handleClick}
+            onDragStart={stopEvent}
+          >
+            {dragOverlay}
+            {dragErrorOverlay}
+            <div className={styles.Container}>{children}</div>
+            <VisuallyHidden>
+              <DropZoneInput
+                {...inputAttributes}
+                openFileDialog={openFileDialog}
+                onFileDialogClose={onFileDialogClose}
+              />
+            </VisuallyHidden>
+          </div>
+        </Labelled>
+      </div>
     </DropZoneContext.Provider>
   );
 
