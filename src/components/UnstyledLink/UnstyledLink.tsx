@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef, useImperativeHandle} from 'react';
 import {unstyled} from '../shared';
 import {useLink, LinkLikeComponentProps} from '../../utilities/link';
 
@@ -16,6 +16,16 @@ export const UnstyledLink = React.memo(
     props,
     _ref,
   ) {
+    const linkRef = useRef<HTMLAnchorElement>(null);
+
+    useImperativeHandle(_ref, () => ({
+      focus: () => {
+        if (linkRef && linkRef.current) {
+          linkRef.current.focus();
+        }
+      },
+    }));
+
     const LinkComponent = useLink();
     if (LinkComponent) {
       return <LinkComponent {...unstyled.props} {...props} />;
@@ -25,7 +35,14 @@ export const UnstyledLink = React.memo(
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
     return (
-      <a target={target} {...rest} href={url} rel={rel} {...unstyled.props} />
+      <a
+        target={target}
+        {...rest}
+        href={url}
+        rel={rel}
+        {...unstyled.props}
+        ref={linkRef}
+      />
     );
   }),
 );
