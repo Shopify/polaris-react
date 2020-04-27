@@ -38,6 +38,15 @@ $stacking-order: (
   }
 }
 
+.loading {
+  min-height: control-height();
+  align-items: center;
+
+  &.plain {
+    min-height: control-slim-height();
+  }
+}
+
 .plain {
   .Button {
     position: relative;

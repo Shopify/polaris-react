@@ -6,13 +6,15 @@ import {
   ReactWrapper,
 } from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
-import {Tooltip, TextField} from 'components';
 
 import {Key} from '../../../types';
 import {Pagination} from '../Pagination';
-import {UnstyledLink} from '../../UnstyledLink';
 import {Button} from '../../Button';
 import {ButtonGroup} from '../../ButtonGroup';
+import {TextField} from '../../TextField';
+import {Tooltip} from '../../Tooltip';
+import {Spinner} from '../../Spinner';
+import {UnstyledLink} from '../../UnstyledLink';
 
 interface HandlerMap {
   [eventName: string]: (event: any) => void;
@@ -114,6 +116,13 @@ describe('<Pagination />', () => {
       expect(
         pagination.find('.Label').children().prop('variation'),
       ).toStrictEqual('subdued');
+    });
+  });
+
+  describe('loading', () => {
+    it('renders a spinner', () => {
+      const pagination = mountWithApp(<Pagination loading />);
+      expect(pagination).toContainReactComponent(Spinner);
     });
   });
 

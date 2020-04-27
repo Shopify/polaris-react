@@ -72,6 +72,26 @@ Use for pagination at the bottom of lists.
 />
 ```
 
+### Pagination when loading
+
+<!-- example-for: web -->
+
+Set loading while the previous or next page request is in flight.
+
+```jsx
+<Pagination
+  hasPrevious
+  onPrevious={() => {
+    console.log('Previous');
+  }}
+  hasNext
+  onNext={() => {
+    console.log('Next');
+  }}
+  loading
+/>
+```
+
 ### Pagination with keyboard navigation
 
 <!-- example-for: web -->
