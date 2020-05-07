@@ -26,6 +26,12 @@
       "spinnerAccessibilityLabel": "Loading",
       "connectedDisclosureAccessibilityLabel": "Related actions"
     },
+
+    "ColorPicker": {
+      "textPickerAccessibilityLabel": "HEX color",
+      "alphaFieldAccessibilityLabel": "Alpha"
+    },
+
     "Common": {
       "checkbox": "checkbox",
       "undo": "Undo",

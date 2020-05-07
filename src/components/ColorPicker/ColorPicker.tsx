@@ -1,14 +1,29 @@
 import React from 'react';
+import debounce from 'lodash/debounce';
 import {clamp} from '@shopify/javascript-utilities/math';
 
-import {hsbToRgb} from '../../utilities/color-transformers';
+import {classNames} from '../../utilities/css';
+import {hsbToRgb, hexToHsb} from '../../utilities/color-transformers';
 import type {HSBColor, HSBAColor} from '../../utilities/color-types';
+import {EventListener} from '../EventListener';
 
-import {AlphaPicker, HuePicker, Slidable, SlidableProps} from './components';
+import {
+  AlphaField,
+  AlphaPicker,
+  HuePicker,
+  Slidable,
+  TextPicker,
+} from './components';
 import styles from './ColorPicker.scss';
 
 interface State {
-  pickerSize: number;
+  pickerWidth: number;
+  pickerHeight: number;
+}
+
+interface Position {
+  x: number;
+  y: number;
 }
 
 interface Color extends HSBColor {
@@ -29,10 +44,23 @@ export interface ColorPickerProps {
 
 export class ColorPicker extends React.PureComponent<ColorPickerProps, State> {
   state: State = {
-    pickerSize: 0,
+    pickerWidth: 0,
+    pickerHeight: 0,
   };
 
   private colorNode: HTMLElement | null = null;
+
+  private handleResize = debounce(
+    () => {
+      if (this.colorNode == null) return;
+      this.setState({
+        pickerWidth: this.colorNode.clientWidth,
+        pickerHeight: this.colorNode.clientHeight,
+      });
+    },
+    50,
+    {trailing: true},
+  );
 
   componentDidMount() {
     const {colorNode} = this;
@@ -40,11 +68,17 @@ export class ColorPicker extends React.PureComponent<ColorPickerProps, State> {
       return;
     }
 
-    this.setState({pickerSize: colorNode.clientWidth});
+    this.setState({
+      pickerWidth: colorNode.clientWidth,
+      pickerHeight: colorNode.clientHeight,
+    });
 
     if (process.env.NODE_ENV === 'development') {
       setTimeout(() => {
-        this.setState({pickerSize: colorNode.clientWidth});
+        this.setState({
+          pickerWidth: colorNode.clientWidth,
+          pickerHeight: colorNode.clientHeight,
+        });
       }, 0);
     }
   }
@@ -52,13 +86,22 @@ export class ColorPicker extends React.PureComponent<ColorPickerProps, State> {
   render() {
     const {id, color, allowAlpha} = this.props;
     const {hue, saturation, brightness, alpha: providedAlpha} = color;
-    const {pickerSize} = this.state;
+    const {pickerWidth, pickerHeight} = this.state;
 
     const alpha = providedAlpha != null && allowAlpha ? providedAlpha : 1;
     const {red, green, blue} = hsbToRgb({hue, saturation: 1, brightness: 1});
     const colorString = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
-    const draggerX = clamp(saturation * pickerSize, 0, pickerSize);
-    const draggerY = clamp(pickerSize - brightness * pickerSize, 0, pickerSize);
+    const draggerX = clamp(saturation * pickerWidth, 0, pickerWidth);
+    const draggerY = clamp(
+      pickerHeight - brightness * pickerHeight,
+      0,
+      pickerHeight,
+    );
+
+    const className = classNames(
+      styles.MainColor,
+      allowAlpha && styles.AlphaAllowed,
+    );
 
     const alphaSliderMarkup = allowAlpha ? (
       <AlphaPicker
@@ -68,25 +111,44 @@ export class ColorPicker extends React.PureComponent<ColorPickerProps, State> {
       />
     ) : null;
 
+    const hexPickerMarkup = (
+      <TextPicker
+        color={color}
+        allowAlpha={allowAlpha}
+        onChange={this.handleHexChange}
+      />
+    );
+
+    const alphaFieldMarkup = allowAlpha ? (
+      <AlphaField alpha={alpha} onChange={this.handleAlphaChange} />
+    ) : null;
+
     return (
-      <div
-        className={styles.ColorPicker}
-        id={id}
-        onMouseDown={this.handlePickerDrag}
-      >
-        <div ref={this.setColorNode} className={styles.MainColor}>
-          <div
-            className={styles.ColorLayer}
-            style={{backgroundColor: colorString}}
-          />
-          <Slidable
-            onChange={this.handleDraggerMove}
-            draggerX={draggerX}
-            draggerY={draggerY}
-          />
+      <div>
+        <div
+          className={styles.ColorPicker}
+          id={id}
+          onMouseDown={this.handlePickerDrag}
+        >
+          <div ref={this.setColorNode} className={className}>
+            <div
+              className={styles.ColorLayer}
+              style={{backgroundColor: colorString}}
+            />
+            <Slidable
+              onChange={this.handleDraggerMove}
+              draggerX={draggerX}
+              draggerY={draggerY}
+            />
+          </div>
+          <HuePicker hue={hue} onChange={this.handleHueChange} />
+          {alphaSliderMarkup}
         </div>
-        <HuePicker hue={hue} onChange={this.handleHueChange} />
-        {alphaSliderMarkup}
+        <div className={styles.TextFields}>
+          {hexPickerMarkup}
+          {alphaFieldMarkup}
+        </div>
+        <EventListener event="resize" handler={this.handleResize} />
       </div>
     );
   }
@@ -111,15 +173,24 @@ export class ColorPicker extends React.PureComponent<ColorPickerProps, State> {
     onChange({hue, brightness, saturation, alpha});
   };
 
-  private handleDraggerMove: SlidableProps['onChange'] = ({x, y}) => {
-    const {pickerSize} = this.state;
+  private handleHexChange = (hex: string) => {
+    const {
+      color: {alpha = 1},
+      onChange,
+    } = this.props;
+    const newColor = hexToHsb(hex);
+    onChange({...newColor, alpha});
+  };
+
+  private handleDraggerMove = ({x, y}: Position) => {
+    const {pickerWidth, pickerHeight} = this.state;
     const {
       color: {hue, alpha = 1},
       onChange,
     } = this.props;
 
-    const saturation = clamp(x / pickerSize, 0, 1);
-    const brightness = clamp(1 - y / pickerSize, 0, 1);
+    const saturation = clamp(x / pickerWidth, 0, 1);
+    const brightness = clamp(1 - y / pickerHeight, 0, 1);
 
     onChange({hue, saturation, brightness, alpha});
   };

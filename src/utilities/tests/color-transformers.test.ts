@@ -1,4 +1,5 @@
 import {
+  hsbToString,
   hsbToRgb,
   rgbToHex,
   rgbToHsb,
@@ -19,6 +20,19 @@ describe('colorUtilities', () => {
       expect(rgbString({red: 132, green: 11, blue: 2, alpha: 0.2})).toMatch(
         'rgba(132, 11, 2, 0.2)',
       );
+    });
+  });
+
+  describe('hsbToString', () => {
+    it('returns rgba string with corresponding value for hsb', () => {
+      expect(hsbToString({hue: 300, saturation: 0.7, brightness: 1})).toMatch(
+        'rgba(255, 77, 255, 1)',
+      );
+    });
+
+    it('returns same string when hsb string used', () => {
+      const hsbString = 'hsb(300, 0.7, 1)';
+      expect(hsbString).toMatch(hsbString);
     });
   });
 

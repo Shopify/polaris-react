@@ -1,7 +1,12 @@
 @import '../../styles/common';
 
-$picker-size: rem(160px);
+$picker-width: rem(160px);
+$picker-with-alpha-width: rem(194px);
+$picker-height: $picker-width;
 $dragger-size: rem(18px);
+$text-picker-width: rem(192px);
+$text-picker-with-alpha-width: $picker-width;
+$alpha-size: rem(90px);
 $inner-shadow: inset 0 0 2px 0 rgba(0, 0, 0, 0.5);
 
 $stacking-order: (
@@ -9,6 +14,10 @@ $stacking-order: (
   adjustments: 20,
   dragger: 30,
 );
+
+$swatch-size: rem(20px);
+$swatch-shadow: inset rgba(0, 0, 0, 0.07) 0 0 0 1px,
+  inset rgba(0, 0, 0, 0.15) 0 1px 3px 0;
 
 @mixin checkers {
   background-image: linear-gradient(
@@ -36,8 +45,12 @@ $stacking-order: (
   @include checkers;
   position: relative;
   overflow: hidden;
-  height: $picker-size;
-  width: $picker-size;
+  height: $picker-height;
+  width: $picker-width;
+
+  &.AlphaAllowed {
+    width: $picker-with-alpha-width;
+  }
 
   // Need an extra pixel to avoid a small color bleed from happening
   border-radius: var(--p-border-radius-base, border-radius() + 1px);
@@ -98,17 +111,17 @@ $stacking-order: (
 $green: rgb(0, 255, 0);
 $purple: rgb(255, 0, 255);
 $huepicker-padding: $dragger-size;
-$huepicker-bottom-padding-start: $picker-size - $dragger-size;
+$huepicker-bottom-padding-start: $picker-width - $dragger-size;
 
 .HuePicker,
 .AlphaPicker {
   position: relative;
   overflow: hidden;
-  height: $picker-size;
+  height: $picker-height;
   width: rem(24px);
   margin-left: spacing(tight);
   border-width: var(--p-border-radius-base, border-radius());
-  border-radius: $picker-size * 0.5;
+  border-radius: $picker-height * 0.5;
 }
 
 .HuePicker {
@@ -129,7 +142,7 @@ $huepicker-bottom-padding-start: $picker-size - $dragger-size;
   @include checkers;
 
   .ColorLayer {
-    border-radius: var(--p-override-none, $picker-size * 0.5);
+    border-radius: var(--p-override-none, $picker-height * 0.5);
   }
 }
 
@@ -148,4 +161,41 @@ $huepicker-bottom-padding-start: $picker-size - $dragger-size;
   height: 100%;
   width: 100%;
   cursor: pointer;
+}
+
+.TextFields {
+  display: flex;
+}
+
+.TextPicker {
+  width: $text-picker-width;
+  margin-top: spacing(tight);
+
+  &.AlphaAllowed {
+    width: $text-picker-with-alpha-width;
+  }
+}
+
+.TextFieldSwatch {
+  width: $swatch-size;
+  height: $swatch-size;
+  margin-left: -(spacing(extra-tight));
+  border-radius: 50%;
+  box-shadow: $swatch-shadow;
+
+  &.AlphaAllowed {
+    @include checkers;
+  }
+}
+
+.SwatchBackground {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  box-shadow: inherit;
+}
+
+.AlphaField {
+  width: $alpha-size;
+  margin: spacing(tight) 0 0 spacing(tight);
 }
