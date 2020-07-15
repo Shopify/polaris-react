@@ -4,6 +4,7 @@ import {useAppBridge} from '../../utilities/app-bridge';
 import {classNames} from '../../utilities/css';
 import {useI18n} from '../../utilities/i18n';
 import {DisplayText} from '../DisplayText';
+import {Loading} from '../Loading';
 import {SkeletonDisplayText} from '../SkeletonDisplayText';
 import {SkeletonBodyText} from '../SkeletonBodyText';
 
@@ -22,6 +23,8 @@ export interface SkeletonPageProps {
   secondaryActions?: number;
   /** Shows a skeleton over the breadcrumb */
   breadcrumbs?: boolean;
+  /** Shows the frame loading bar */
+  loading?: boolean;
   /** The child elements to render in the skeleton page. */
   children?: React.ReactNode;
   /** Decreases the maximum layout width. Intended for single-column layouts
@@ -39,6 +42,7 @@ export function SkeletonPage({
   secondaryActions,
   title = '',
   breadcrumbs,
+  loading,
 }: SkeletonPageProps) {
   if (singleColumn) {
     // eslint-disable-next-line no-console
@@ -80,6 +84,8 @@ export function SkeletonPage({
     </div>
   ) : null;
 
+  const loadingMarkup = loading ? <Loading /> : null;
+
   const headerMarkup = !appBridge ? (
     <div className={headerClassName}>
       {breadcrumbMarkup}
@@ -99,6 +105,7 @@ export function SkeletonPage({
     >
       {headerMarkup}
       <div className={styles.Content}>{children}</div>
+      {loadingMarkup}
     </div>
   );
 }

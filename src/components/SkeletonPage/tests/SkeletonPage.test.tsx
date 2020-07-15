@@ -3,6 +3,7 @@ import React from 'react';
 import {mountWithAppProvider} from 'test-utilities/legacy';
 import {
   Layout,
+  Loading,
   Card,
   SkeletonBodyText,
   DisplayText,
@@ -86,6 +87,18 @@ describe('<SkeletonPage />', () => {
   it('renders breadcrumbs', () => {
     const skeletonPage = mountWithAppProvider(<SkeletonPage breadcrumbs />);
     expect(skeletonPage.find(SkeletonBodyText)).toHaveLength(1);
+  });
+
+  describe('loading', () => {
+    it('does not render a <Loading /> by default', () => {
+      const skeletonPage = mountWithAppProvider(<SkeletonPage />);
+      expect(skeletonPage.find(Loading)).toHaveLength(0);
+    });
+
+    it('renders a <Loading /> when loading is set', () => {
+      const skeletonPage = mountWithAppProvider(<SkeletonPage loading />);
+      expect(skeletonPage.find(Loading)).toHaveLength(1);
+    });
   });
 
   describe('primaryAction', () => {
