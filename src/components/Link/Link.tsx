@@ -23,6 +23,8 @@ export interface LinkProps {
   monochrome?: boolean;
   /** Callback when a link is clicked */
   onClick?(): void;
+  /** The relation of the link */
+  rel?: void;
 }
 
 export function Link({
@@ -30,6 +32,7 @@ export function Link({
   children,
   onClick,
   external,
+  rel,
   id,
   monochrome,
 }: LinkProps) {
@@ -72,6 +75,7 @@ export function Link({
             url={url}
             external={external}
             id={id}
+            rel={rel}
           >
             {childrenMarkup}
           </UnstyledLink>

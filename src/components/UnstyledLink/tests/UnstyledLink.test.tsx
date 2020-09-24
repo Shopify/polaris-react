@@ -34,6 +34,13 @@ describe('<UnstyledLink />', () => {
       expect(anchorElement.prop('target')).toBe('_blank');
       expect(anchorElement.prop('rel')).toBe('noopener noreferrer');
     });
+
+    it('adds custom rel attributes when provided', () => {
+      const anchorElement = mountWithAppProvider(
+        <UnstyledLink external rel="nofollow" />,
+      ).find('a');
+      expect(anchorElement.prop('rel')).toBe('nofollow');
+    });
   });
 
   describe('download', () => {
