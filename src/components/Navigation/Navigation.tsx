@@ -41,7 +41,7 @@ export const Navigation: React.FunctionComponent<NavigationProps> & {
         style={{width}}
       >
         <Image
-          source={logo.topBarSource || ''}
+          source={logo.navigationSource || logo.topBarSource || ''}
           alt={logo.accessibilityLabel || ''}
           className={styles.Logo}
           style={{width}}
