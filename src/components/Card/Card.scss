@@ -31,6 +31,10 @@
   @include page-content-when-not-fully-condensed {
     padding: spacing(loose) spacing(loose) 0;
   }
+
+  button {
+    @include hidden-when-printing;
+  }
 }
 
 .Section {

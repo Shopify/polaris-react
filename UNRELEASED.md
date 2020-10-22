@@ -8,7 +8,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 
 ### Enhancements
 
-Updated `Textfield` with a `type` of `number` to not render a spinner if step is set to `0` ([#3477](https://github.com/Shopify/polaris-react/pull/3477))
+- Updated `Textfield` with a `type` of `number` to not render a spinner if step is set to `0` ([#3477](https://github.com/Shopify/polaris-react/pull/3477))
+- Updated `Card` to hide Button actions when printing ([#3537](https://github.com/Shopify/polaris-react/pull/3537))
 
 ### Bug fixes
 
