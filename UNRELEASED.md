@@ -20,6 +20,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Removed `tabIndex=-1` from `Popover` when `preventAutoFocus` is true ([#3595](https://github.com/Shopify/polaris-react/pull/3595))
 - Fixed `Modal` header border color ([#3616](https://github.com/Shopify/polaris-react/pull/3616))
 - Fixed `TopBar` search clear button alignment on iOS ([#3618](https://github.com/Shopify/polaris-react/pull/3618))
+- Fixed `Tooltip` rendering when `active` prop is false
 
 ### Documentation
 

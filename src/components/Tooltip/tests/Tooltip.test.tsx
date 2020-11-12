@@ -64,4 +64,15 @@ describe('<Tooltip />', () => {
     wrapperComponent.simulate('mouseLeave');
     expect(findByTestID(tooltip, 'TooltipOverlayLabel').exists()).toBe(false);
   });
+
+  it('does not render when active is false', () => {
+    const tooltipActive = mountWithAppProvider(
+      <Tooltip content="Inner content" active={false}>
+        <Link>link content</Link>
+      </Tooltip>,
+    );
+    expect(findByTestID(tooltipActive, 'TooltipOverlayLabel').exists()).toBe(
+      false,
+    );
+  });
 });

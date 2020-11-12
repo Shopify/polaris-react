@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 
 import {Portal} from '../Portal';
 import {findFirstFocusableNode} from '../../utilities/focus';
@@ -41,14 +41,22 @@ export function Tooltip({
   activatorWrapper = 'span',
 }: TooltipProps) {
   const WrapperComponent: any = activatorWrapper;
-  const {value: active, setTrue: handleFocus, setFalse: handleBlur} = useToggle(
-    Boolean(originalActive),
-  );
+  const {
+    value: active,
+    setTrue: setActiveTrue,
+    setFalse: handleBlur,
+  } = useToggle(Boolean(originalActive));
   const [activatorNode, setActivatorNode] = useState<HTMLElement | null>(null);
 
   const id = useUniqueId('TooltipContent');
   const activatorContainer = useRef<HTMLElement>(null);
   const mouseEntered = useRef(false);
+
+  const handleFocus = useCallback(() => {
+    if (originalActive !== false) {
+      setActiveTrue();
+    }
+  }, [setActiveTrue, originalActive]);
 
   useEffect(() => {
     const firstFocusable = activatorContainer.current
