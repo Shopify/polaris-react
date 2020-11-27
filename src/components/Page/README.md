@@ -430,6 +430,33 @@ Use action groups for sets of actions that relate to one another, particularly w
 </Page>
 ```
 
+### Page with split primary action
+
+<!-- example-for: web -->
+
+Use when there is only one primary action but other related actions can be taken. The primary action should be the same as the save action set on the contextual save bar component.
+
+```jsx
+<Page
+  title="#1085"
+  primaryAction={{
+    content: 'Save',
+    connectedDisclosure: {
+      actions: [{content: 'Save as draft'}],
+    },
+  }}
+>
+  <Card sectioned title="Fulfill order">
+    <Stack alignment="center">
+      <Stack.Item fill>
+        <p>Buy postage and ship remaining 2 items</p>
+      </Stack.Item>
+      <Button primary>Continue</Button>
+    </Stack>
+  </Card>
+</Page>
+```
+
 ### Page with separator
 
 <!-- example-for: web -->

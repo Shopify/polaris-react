@@ -16,6 +16,7 @@ import type {
   DisableableAction,
   LoadableAction,
   IconableAction,
+  ConnectedDisclosure,
 } from '../../../../types';
 import {Breadcrumbs, BreadcrumbsProps} from '../../../Breadcrumbs';
 import {Pagination, PaginationDescriptor} from '../../../Pagination';
@@ -34,6 +35,8 @@ interface PrimaryAction
     IconableAction {
   /** Provides extra visual weight and identifies the primary action in a set of buttons */
   primary?: boolean;
+  /** Disclosure button connected right of the button. Toggles a popover action list. */
+  connectedDisclosure?: ConnectedDisclosure;
 }
 
 export interface HeaderProps extends TitleProps {

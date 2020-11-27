@@ -110,6 +110,28 @@ describe('<Header />', () => {
     });
   });
 
+  describe('connectedDisclosure', () => {
+    it('gets set on the primary action Button when provided', () => {
+      const primaryAction = {
+        content: 'Save',
+        connectedDisclosure: {
+          actions: [{content: 'Save as draft', onAction: jest.fn()}],
+        },
+        onAction: jest.fn(),
+      };
+
+      const header = mountWithAppProvider(
+        <Header primaryAction={primaryAction} />,
+      );
+
+      const button = header.find(Button);
+
+      expect(button.prop('connectedDisclosure')).toMatchObject(
+        primaryAction.connectedDisclosure,
+      );
+    });
+  });
+
   describe('pagination', () => {
     it('gets passed into Pagination', () => {
       const pagination = {

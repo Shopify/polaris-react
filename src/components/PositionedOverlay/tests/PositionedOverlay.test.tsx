@@ -2,8 +2,12 @@ import React from 'react';
 // eslint-disable-next-line no-restricted-imports
 import {mountWithAppProvider} from 'test-utilities/legacy';
 
+import {ContextualSaveBarContext} from '../../../utilities/contextualsavebar-context';
 import {EventListener} from '../../EventListener';
-import {PositionedOverlay} from '../PositionedOverlay';
+import {
+  PositionedOverlay,
+  CONTEXTUAL_SAVE_BAR_ZINDEX,
+} from '../PositionedOverlay';
 import * as mathModule from '../utilities/math';
 import * as geometry from '../../../utilities/geometry';
 import styles from '../PositionedOverlay.scss';
@@ -117,6 +121,20 @@ describe('<PositionedOverlay />', () => {
       );
       expect(positionedOverlay.find('div').prop('className')).not.toContain(
         styles.preventInteraction,
+      );
+    });
+  });
+
+  describe('context', () => {
+    it('sets the z-index to the contextual save bar z-index when within a contextual save bar', () => {
+      const positionedOverlay = mountWithAppProvider(
+        <ContextualSaveBarContext.Provider value>
+          <PositionedOverlay {...mockProps} />
+        </ContextualSaveBarContext.Provider>,
+      );
+
+      expect((positionedOverlay.find('div').prop('style') as any).zIndex).toBe(
+        CONTEXTUAL_SAVE_BAR_ZINDEX,
       );
     });
   });

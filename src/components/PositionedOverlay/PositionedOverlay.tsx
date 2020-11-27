@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 
 import {classNames} from '../../utilities/css';
 import {getRectForNode, Rect} from '../../utilities/geometry';
+import {ContextualSaveBarContext} from '../../utilities/contextualsavebar-context';
 import {EventListener} from '../EventListener';
 import {Scrollable} from '../Scrollable';
 import {layer} from '../shared';
@@ -18,6 +19,8 @@ import {
 import styles from './PositionedOverlay.scss';
 
 type Positioning = 'above' | 'below';
+
+export const CONTEXTUAL_SAVE_BAR_ZINDEX = 513;
 
 interface OverlayDetails {
   left?: number;
@@ -145,10 +148,20 @@ export class PositionedOverlay extends PureComponent<
     );
 
     return (
-      <div className={className} style={style} ref={this.setOverlay}>
-        <EventListener event="resize" handler={this.handleMeasurement} />
-        {render(this.overlayDetails())}
-      </div>
+      <ContextualSaveBarContext.Consumer>
+        {(isWithinContextualSaveBar) => {
+          if (isWithinContextualSaveBar) {
+            style.zIndex = CONTEXTUAL_SAVE_BAR_ZINDEX;
+          }
+
+          return (
+            <div className={className} style={style} ref={this.setOverlay}>
+              <EventListener event="resize" handler={this.handleMeasurement} />
+              {render(this.overlayDetails())}
+            </div>
+          );
+        }}
+      </ContextualSaveBarContext.Consumer>
     );
   }
 

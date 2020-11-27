@@ -239,8 +239,61 @@ Use the fullWidth flag when you want to remove the default max-width set on the 
         message="Unsaved changes"
         saveAction={{
           onAction: () => console.log('add form submit logic'),
+        }}
+        discardAction={{
+          onAction: () => console.log('add clear form logic'),
+        }}
+      />
+    </Frame>
+  </AppProvider>
+</div>
+```
+
+### Contextual save bar with split primary action
+
+Use when there is only one primary action but other related actions can be taken. The save action should be the same as the primary action set on the page component.
+
+```jsx
+<div style={{height: '250px'}}>
+  <AppProvider
+    theme={{
+      logo: {
+        width: 124,
+        contextualSaveBarSource:
+          'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-gray.svg?6215648040070010999',
+      },
+    }}
+    i18n={{
+      Polaris: {
+        Frame: {
+          skipToContent: 'Skip to content',
+        },
+        ContextualSaveBar: {
+          save: 'Save',
+          discard: 'Discard',
+        },
+        Button: {
+          connectedDisclosureAccessibilityLabel: 'Other save actions',
+        },
+      },
+    }}
+  >
+    <Frame>
+      <ContextualSaveBar
+        message="Unsaved product"
+        saveAction={{
+          content: 'Save',
+          connectedDisclosure: {
+            actions: [
+              {
+                content: 'Save as draft',
+                onAction: () => {},
+              },
+            ],
+          },
           loading: false,
           disabled: false,
+          onAction: () => console.log('add form submit logic'),
         }}
         discardAction={{
           onAction: () => console.log('add clear form logic'),

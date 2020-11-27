@@ -1,4 +1,4 @@
-import type {Action} from '../../types';
+import type {Action, ConnectedDisclosure} from '../../types';
 
 interface ContextualSaveBarAction {
   /** A destination to link to */
@@ -13,13 +13,15 @@ interface ContextualSaveBarAction {
   onAction?(): void;
 }
 
-interface ContextualSaveBarDiscardActionProps {
+interface ContextualSaveBarSaveAction extends ContextualSaveBarAction {
+  /** Disclosure button connected right of the button. Toggles a popover action list. */
+  connectedDisclosure?: ConnectedDisclosure;
+}
+
+interface ContextualSaveBarDiscardAction extends ContextualSaveBarAction {
   /** Whether to show a modal confirming the discard action */
   discardConfirmationModal?: boolean;
 }
-
-type ContextualSaveBarCombinedActionProps = ContextualSaveBarDiscardActionProps &
-  ContextualSaveBarAction;
 
 export interface ContextualSaveBarProps {
   /** Extend the contents section to be flush with the left edge  */
@@ -27,9 +29,9 @@ export interface ContextualSaveBarProps {
   /** Accepts a string of content that will be rendered to the left of the actions */
   message?: string;
   /** Save or commit contextual save bar action with text defaulting to 'Save' */
-  saveAction?: ContextualSaveBarAction;
+  saveAction?: ContextualSaveBarSaveAction;
   /** Discard or cancel contextual save bar action with text defaulting to 'Discard' */
-  discardAction?: ContextualSaveBarCombinedActionProps;
+  discardAction?: ContextualSaveBarDiscardAction;
   /** Remove the normal max-width on the contextual save bar */
   fullWidth?: boolean;
   /** Accepts a component that is used to help users switch between different contexts */

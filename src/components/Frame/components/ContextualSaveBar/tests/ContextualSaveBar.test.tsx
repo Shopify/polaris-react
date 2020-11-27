@@ -182,6 +182,28 @@ describe('<ContextualSaveBar />', () => {
       expect(button.prop('onClick')).toBe(saveAction.onAction);
       expect(button.prop('children')).toBe(saveAction.content);
     });
+
+    describe('connectedDisclosure', () => {
+      it('gets set on the save action Button when provided', () => {
+        const saveAction = {
+          content: 'Save',
+          connectedDisclosure: {
+            actions: [{content: 'Save as draft', onAction: jest.fn()}],
+          },
+          onAction: jest.fn(),
+        };
+
+        const contextualSaveBar = mountWithAppProvider(
+          <ContextualSaveBar saveAction={saveAction} />,
+        );
+
+        const button = contextualSaveBar.find(Button);
+
+        expect(button.prop('connectedDisclosure')).toMatchObject(
+          saveAction.connectedDisclosure,
+        );
+      });
+    });
   });
 
   describe('default content', () => {
