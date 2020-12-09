@@ -12,8 +12,8 @@ import styles from './Title.scss';
 export interface TitleProps {
   /** Page title, in large type */
   title?: string;
-  /** Page subtitle, in regular type*/
-  subtitle?: string;
+  /** Page subtitle, in regular type */
+  subtitle?: React.ReactNode;
   /** Important and non-interactive status information shown immediately after the title. */
   titleMetadata?: React.ReactNode;
   /** thumbnail that precedes the title */
@@ -56,7 +56,7 @@ export function Title({title, subtitle, titleMetadata, thumbnail}: TitleProps) {
 
   const subtitleMarkup = subtitle ? (
     <div className={styles.SubTitle}>
-      <p>{subtitle}</p>
+      {typeof subtitle === 'string' ? <p>{subtitle}</p> : <div>{subtitle}</div>}
     </div>
   ) : null;
 

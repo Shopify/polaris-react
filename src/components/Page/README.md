@@ -137,7 +137,11 @@ Use for detail pages, which should have pagination and breadcrumbs, and also oft
   breadcrumbs={[{content: 'Products', url: '/products'}]}
   title="3/4 inch Leather pet collar"
   titleMetadata={<Badge status="success">Paid</Badge>}
-  subtitle="Perfect for any pet"
+  subtitle={
+    <React.Fragment>
+      Perfect for <strong>any</strong> pet
+    </React.Fragment>
+  }
   thumbnail={
     <Thumbnail
       source="https://burst.shopifycdn.com/photos/black-leather-choker-necklace_373x@2x.jpg"
