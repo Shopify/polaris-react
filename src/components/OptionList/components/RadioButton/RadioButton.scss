@@ -1,0 +1,5 @@
+@import '../../../../styles/common';
+
+.Input {
+  @include visually-hidden;
+}

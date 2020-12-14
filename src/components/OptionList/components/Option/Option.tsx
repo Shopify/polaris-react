@@ -1,6 +1,5 @@
 import React, {useCallback} from 'react';
 
-import {useToggle} from '../../../../utilities/use-toggle';
 import {classNames} from '../../../../utilities/css';
 import {useFeatures} from '../../../../utilities/features';
 import type {IconProps} from '../../../../types';
@@ -8,6 +7,7 @@ import type {ThumbnailProps} from '../../../Thumbnail';
 import type {AvatarProps} from '../../../Avatar';
 import {Scrollable} from '../../../Scrollable';
 import {Checkbox} from '../Checkbox';
+import {RadioButton} from '../RadioButton';
 
 import styles from './Option.scss';
 
@@ -40,7 +40,6 @@ export function Option({
   section,
   index,
 }: OptionProps) {
-  const {value: focused, toggle: toggleFocused} = useToggle(false);
   const {newDesignLanguage} = useFeatures();
 
   const handleClick = useCallback(() => {
@@ -55,22 +54,24 @@ export function Option({
     <div className={styles.Media}>{media}</div>
   ) : null;
 
-  const singleSelectClassName = classNames(
-    styles.SingleSelectOption,
-    focused && styles.focused,
+  const labelClassName = classNames(
+    styles.Label,
     disabled && styles.disabled,
-    select && styles.select,
     active && styles.active,
   );
 
   const multiSelectClassName = classNames(
-    styles.Label,
-    disabled && styles.disabled,
-    active && styles.active,
+    labelClassName,
     newDesignLanguage && select && styles.select,
   );
 
-  const checkBoxRole = role === 'option' ? 'presentation' : undefined;
+  const singleSelectClassName = classNames(
+    labelClassName,
+    styles.SingleSelectOption,
+    select && styles.select,
+  );
+
+  const optionRole = role === 'option' ? 'presentation' : undefined;
 
   const optionMarkup = allowMultiple ? (
     <label htmlFor={id} className={multiSelectClassName}>
@@ -82,25 +83,26 @@ export function Option({
           active={active}
           disabled={disabled}
           onChange={handleClick}
-          role={checkBoxRole}
+          role={optionRole}
         />
       </div>
       {mediaMarkup}
       {label}
     </label>
   ) : (
-    <button
-      id={id}
-      type="button"
-      className={singleSelectClassName}
-      onClick={handleClick}
-      disabled={disabled}
-      onFocus={toggleFocused}
-      onBlur={toggleFocused}
-    >
+    <label htmlFor={id} className={singleSelectClassName}>
+      <RadioButton
+        id={id}
+        value={value}
+        checked={select}
+        active={active}
+        disabled={disabled}
+        onChange={handleClick}
+        role={optionRole}
+      />
       {mediaMarkup}
       {label}
-    </button>
+    </label>
   );
 
   const scrollMarkup = active ? <Scrollable.ScrollTo /> : null;

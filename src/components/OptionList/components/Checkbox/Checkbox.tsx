@@ -62,7 +62,6 @@ export function Checkbox({
         checked={checked}
         disabled={disabled}
         className={inputClassName}
-        aria-checked={checked}
         onChange={onChange}
         onBlur={handleBlur}
         onKeyUp={handleKeyUp}

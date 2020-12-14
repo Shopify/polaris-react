@@ -25,8 +25,7 @@ $control-vertical-adjustment: rem(2px);
   }
 }
 
-.Label,
-.SingleSelectOption {
+.Label {
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -92,29 +91,11 @@ $control-vertical-adjustment: rem(2px);
   }
 
   .select {
+    box-shadow: inset 0.2rem 0 0 color('indigo');
     background-image: linear-gradient(
       rgba(179, 188, 245, 0.15),
       rgba(179, 188, 245, 0.15)
     );
-
-    &.focused {
-      box-shadow: inset 0.2rem 0 0 color('indigo');
-      background-image: linear-gradient(
-          rgba(179, 188, 245, 0.15),
-          rgba(179, 188, 245, 0.15)
-        ),
-        linear-gradient(rgba(223, 227, 232, 0.3), rgba(223, 227, 232, 0.3));
-
-      &:hover {
-        box-shadow: inset 0.2rem 0 0 color('indigo');
-        background-image: linear-gradient(
-            rgba(179, 188, 245, 0.15),
-            rgba(179, 188, 245, 0.15)
-          ),
-          linear-gradient(rgba(223, 227, 232, 0.3), rgba(223, 227, 232, 0.3)),
-          linear-gradient(rgba(223, 227, 232, 0.3), rgba(223, 227, 232, 0.3));
-      }
-    }
   }
 
   .active {
@@ -129,11 +110,9 @@ $control-vertical-adjustment: rem(2px);
   border-radius: var(--p-border-radius-base);
   margin-top: spacing(tight) / 2;
 
-  .Label,
-  .SingleSelectOption {
+  .Label {
     cursor: pointer;
     border-radius: var(--p-border-radius-base);
-    padding: spacing(tight);
 
     &:hover:not(.disabled) {
       background: var(--p-surface-hovered);
@@ -155,13 +134,13 @@ $control-vertical-adjustment: rem(2px);
   }
 
   .SingleSelectOption {
+    position: relative;
     @include focus-ring;
 
-    &.active,
-    &.focused:not(:active) {
+    &:focus-within {
       @include focus-ring($style: 'focused');
     }
-
+    // stylelint-disable-next-line selector-max-combinators, selector-max-compound-selectors
     &.select::before {
       @include list-selected-indicator;
     }
