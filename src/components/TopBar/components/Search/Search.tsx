@@ -1,6 +1,5 @@
 import React from 'react';
 
-import {ThemeProvider} from '../../../ThemeProvider';
 import {classNames} from '../../../../utilities/css';
 import {SearchDismissOverlay} from '../SearchDismissOverlay';
 import {useFeatures} from '../../../../utilities/features';
@@ -44,16 +43,14 @@ export function Search({
           newDesignLanguage && styles.newDesignLanguage,
         )}
       >
-        <ThemeProvider theme={{colorScheme: 'dark'}}>
-          <div
-            className={classNames(
-              styles.SearchContent,
-              newDesignLanguage && styles.newDesignLanguage,
-            )}
-          >
-            <div className={styles.Results}>{children}</div>
-          </div>
-        </ThemeProvider>
+        <div
+          className={classNames(
+            styles.SearchContent,
+            newDesignLanguage && styles.newDesignLanguage,
+          )}
+        >
+          <div className={styles.Results}>{children}</div>
+        </div>
       </div>
     </>
   );

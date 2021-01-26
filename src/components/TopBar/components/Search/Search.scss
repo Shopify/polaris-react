@@ -20,17 +20,37 @@
     border-radius: var(--p-border-radius-wide, border-radius());
 
     &.newDesignLanguage {
-      max-width: $new-search-max-width;
+      top: 0;
+      max-width: calc(#{$new-search-max-width} + 8px);
+      margin: 0 spacing(loose);
+      transform: translate3d(-4px, -4px, 0);
     }
   }
 
   @include page-content-when-not-partially-condensed {
     margin: spacing(extra-tight) spacing(extra-loose) 0;
+
+    &.newDesignLanguage {
+      margin: 0 spacing(extra-loose) 0;
+    }
   }
 }
 
 .SearchContent {
   background-color: var(--p-surface, color('white'));
+
+  &.newDesignLanguage {
+    padding-top: calc(36px + 14px);
+    &::before {
+      content: '';
+      position: absolute;
+      top: calc(36px + 14px);
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--p-surface-neutral);
+    }
+  }
 }
 
 .visible {

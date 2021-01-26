@@ -28,7 +28,7 @@ $stacking-order: (
   max-width: $new-search-max-width;
 
   .Backdrop {
-    @include focus-ring;
+    // @include focus-ring;
     position: absolute;
   }
 
@@ -172,6 +172,15 @@ $stacking-order: (
   transition: background-color duration() easing();
   border-radius: var(--p-border-radius-base, border-radius());
   animation: toLightBackground 0.01ms;
+
+  &.newDesignLanguage {
+    // stylelint-disable-next-line selector-max-class
+    &.searchResultsVisible {
+      background: transparent;
+      animation: none;
+      transition: none;
+    }
+  }
 }
 
 @keyframes toLightBackground {

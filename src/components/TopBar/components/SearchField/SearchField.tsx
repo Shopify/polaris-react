@@ -29,6 +29,8 @@ export interface SearchFieldProps {
   onCancel?(): void;
   /** Show a border when the search field is focused */
   showFocusBorder?: boolean;
+  /** Whether or not the search results are visible */
+  searchResultsVisible?: boolean;
 }
 
 export function SearchField({
@@ -41,6 +43,7 @@ export function SearchField({
   onBlur,
   onCancel,
   showFocusBorder,
+  searchResultsVisible,
 }: SearchFieldProps) {
   const i18n = useI18n();
   const [forceActive, setForceActive] = useState(false);
@@ -118,7 +121,7 @@ export function SearchField({
       </VisuallyHidden>
       <input
         id={searchId}
-        className={styles.Input}
+        className={classNames(styles.Input)}
         placeholder={placeholder}
         type="search"
         autoCapitalize="off"
@@ -137,6 +140,8 @@ export function SearchField({
       <div
         className={classNames(
           styles.Backdrop,
+          newDesignLanguage && styles.newDesignLanguage,
+          searchResultsVisible && styles.searchResultsVisible,
           showFocusBorder && styles.BackdropShowFocusBorder,
         )}
       />

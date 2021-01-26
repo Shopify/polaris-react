@@ -1,6 +1,7 @@
 import React from 'react';
 import {MobileHamburgerMajor} from '@shopify/polaris-icons';
 
+import {ThemeProvider} from '../ThemeProvider';
 import {classNames} from '../../utilities/css';
 import {getWidth} from '../../utilities/get-width';
 import {useI18n} from '../../utilities/i18n';
@@ -125,7 +126,9 @@ export const TopBar: React.FunctionComponent<TopBarProps> & {
   }
 
   const searchMarkup = searchField ? (
-    <>
+    <ThemeProvider
+      theme={{colorScheme: searchResultsVisible ? 'dark' : 'light'}}
+    >
       {searchField}
       <Search
         visible={searchResultsVisible}
@@ -134,7 +137,7 @@ export const TopBar: React.FunctionComponent<TopBarProps> & {
       >
         {searchResults}
       </Search>
-    </>
+    </ThemeProvider>
   ) : null;
 
   const className = classNames(
