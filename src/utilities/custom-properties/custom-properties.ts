@@ -14,6 +14,7 @@ export const nonDesignLangaugeCustomProperties = [
   '--top-bar-background-darker',
   '--top-bar-border',
   '--p-frame-offset',
+  '--p-nav-width',
 ];
 
 export const designLangaugeCustomProperties = ([] as string[]).concat(

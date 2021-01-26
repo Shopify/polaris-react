@@ -1,6 +1,6 @@
 $page-max-width: layout-width(primary, max) + layout-width(secondary, max) +
   layout-width(inner-spacing);
-$frame-with-nav-max-width: layout-width(nav) + $page-max-width;
+$frame-with-nav-max-width: calc(var(--p-nav-width) + $page-max-width);
 
 $stacked-content: em(
   layout-width(primary, min) + layout-width(secondary, min) +
@@ -18,7 +18,7 @@ $not-condensed-min-page: $not-condensed-content + $not-condensed-outer-spacing;
 $partially-condensed-min-page: $partially-condensed-content +
   $partially-condensed-outer-spacing;
 
-$nav-size: em(layout-width(nav));
+$nav-size: calc(var(--p-nav-width) / 16 * 1em);
 $nav-min-window: em(layout-width(page-with-nav));
 
 @function breakpoint($value, $adjustment: 0) {

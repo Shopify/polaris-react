@@ -1,4 +1,4 @@
-$navigation-width: 240px !default;
+$navigation-width: calc(var(--p-nav-width) / 10 * 1rem) !default;
 
 ////
 /// Layout
@@ -21,7 +21,7 @@ $layout-width-data: (
     base: rem(240px),
   ),
   nav: (
-    base: rem($navigation-width),
+    base: $navigation-width,
   ),
   page-with-nav: (
     base: rem(769px),

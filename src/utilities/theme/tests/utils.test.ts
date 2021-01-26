@@ -79,6 +79,7 @@ describe('needsVariant', () => {
 describe('buildCustomProperties', () => {
   const legacyCustomProperties = {
     '--p-frame-offset': '0px',
+    '--p-nav-width': '240',
     '--top-bar-background': '#eeeeee',
     '--top-bar-background-lighter': 'hsla(0, 10%, 100%, 1)',
     '--top-bar-border': 'rgb(99, 115, 129)',
@@ -162,6 +163,48 @@ describe('buildCustomProperties', () => {
 
     const colors = buildCustomProperties(theme, true);
     expect(colors).toMatchObject({'--p-frame-offset': '80px'});
+  });
+
+  it('creates default custom property of 240 for navWidth when navWidth is undefined and newDesignLanguage is false', () => {
+    const theme = {
+      colors: {topBar: {background: '#eeeeee'}, surface: '#ffffff'},
+      colorScheme: DefaultColorScheme,
+    };
+
+    const colors = buildCustomProperties(theme, false);
+    expect(colors).toMatchObject({'--p-nav-width': '240'});
+  });
+
+  it('creates default custom property of 240 for navWidth when navWidth is undefined and newDesignLanguage is true', () => {
+    const theme = {
+      colors: {topBar: {background: '#eeeeee'}, surface: '#ffffff'},
+      colorScheme: DefaultColorScheme,
+    };
+
+    const colors = buildCustomProperties(theme, true);
+    expect(colors).toMatchObject({'--p-nav-width': '240'});
+  });
+
+  it('creates custom property with value for navWidth when navWidth is provided and newDesignLanguage is false', () => {
+    const theme = {
+      navWidth: 90,
+      colors: {topBar: {background: '#eeeeee'}, surface: '#ffffff'},
+      colorScheme: DefaultColorScheme,
+    };
+
+    const colors = buildCustomProperties(theme, false);
+    expect(colors).toMatchObject({'--p-nav-width': '90'});
+  });
+
+  it('creates custom property with value for navWidth when navWidth is provided and newDesignLanguage is true', () => {
+    const theme = {
+      navWidth: 150,
+      colors: {topBar: {background: '#eeeeee'}, surface: '#ffffff'},
+      colorScheme: DefaultColorScheme,
+    };
+
+    const colors = buildCustomProperties(theme, true);
+    expect(colors).toMatchObject({'--p-nav-width': '150'});
   });
 
   it('uses light adjustments by default', () => {

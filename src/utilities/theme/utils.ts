@@ -26,7 +26,13 @@ export function buildCustomPropertiesNoMemo(
   newDesignLanguage: boolean,
   tokens?: Record<string, string>,
 ): CustomPropertiesLike {
-  const {colors = {}, colorScheme, config, frameOffset = 0} = themeConfig;
+  const {
+    colors = {},
+    colorScheme,
+    config,
+    frameOffset = 0,
+    navWidth = 240,
+  } = themeConfig;
   const mergedConfig = mergeConfigs(base, config || {});
 
   return newDesignLanguage
@@ -34,10 +40,14 @@ export function buildCustomPropertiesNoMemo(
         ...colorFactory(colors, colorScheme, mergedConfig),
         ...tokens,
         frameOffset: `${frameOffset}px`,
+        navWidth: `${navWidth}`,
       })
     : {
         ...buildLegacyColors(themeConfig),
-        ...customPropertyTransformer({frameOffset: `${frameOffset}px`}),
+        ...customPropertyTransformer({
+          frameOffset: `${frameOffset}px`,
+          navWidth: `${navWidth}`,
+        }),
       };
 }
 

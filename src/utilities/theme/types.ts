@@ -53,6 +53,7 @@ export interface ThemeConfig {
   colorScheme?: ColorScheme;
   config?: Config;
   frameOffset?: number;
+  navWidth?: number;
 }
 
 export type CustomPropertiesLike = Record<string, string>;
