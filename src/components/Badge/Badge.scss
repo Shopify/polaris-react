@@ -2,9 +2,8 @@
 
 $height: rem(20px);
 $small-height: rem(18px);
-$extra-small-height: rem(16px);
 $horizontal-padding: spacing(tight);
-$vertical-padding: rem(3px);
+$vertical-padding: rem(2px);
 
 $pip-size: rem(10px);
 $pip-spacing: ($height - $pip-size) / 2;
@@ -19,12 +18,14 @@ $pip-spacing: ($height - $pip-size) / 2;
   @include pip-color(var(--p-icon, color('ink', 'lightest')));
   display: inline-flex;
   align-items: center;
+  min-width: $height;
+  min-height: $height;
   padding: $vertical-padding $horizontal-padding;
   background-color: var(--p-surface-neutral, color('sky'));
   border: var(--p-override-zero, border-width(thick)) solid color('white');
   border-radius: $height;
   font-size: rem(13px);
-  line-height: $extra-small-height;
+  line-height: 1;
   color: var(--p-text, color('ink', 'light'));
   font-weight: var(--p-badge-font-weight, 400);
 
@@ -36,7 +37,8 @@ $pip-spacing: ($height - $pip-size) / 2;
 
 .sizeSmall {
   font-size: font-size(caption, large-screen);
-  line-height: $small-height;
+  min-width: $small-height;
+  min-height: $small-height;
 }
 
 .statusSuccess {
