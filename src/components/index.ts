@@ -50,6 +50,8 @@ export type {CaptionProps} from './Caption';
 export {Card} from './Card';
 export type {CardProps} from './Card';
 
+export {ClickTrackerProvider} from './ClickTrackerProvider';
+
 export {Checkbox} from './Checkbox';
 export type {CheckboxProps} from './Checkbox';
 

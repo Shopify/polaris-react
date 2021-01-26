@@ -46,6 +46,11 @@ export function findFirstFocusableNode(
   return element.querySelector(FOCUSABLE_SELECTOR);
 }
 
+export function findFirstFocusableParent(
+  element: HTMLElement,
+): HTMLElement | null {
+  return element.closest(KEYBOARD_FOCUSABLE_SELECTORS);
+}
 // Popover needs to be able to find its activator even if it is disabled, which FOCUSABLE_SELECTOR doesn't support.
 export function findFirstFocusableNodeIncludingDisabled(
   element: HTMLElement,

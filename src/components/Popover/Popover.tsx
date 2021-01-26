@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 
 import type {InversableColorScheme} from '../ThemeProvider';
+import {useClickTracker} from '../../utilities/click-tracker/hooks';
 import {
   findFirstFocusableNodeIncludingDisabled,
   focusNextFocusableNode,
@@ -107,6 +108,12 @@ export const Popover: React.FunctionComponent<PopoverProps> & {
   const activatorContainer = useRef<HTMLElement>(null);
   const WrapperComponent: any = activatorWrapper;
   const id = useUniqueId('popover');
+  const {trackClicks} = useClickTracker();
+
+  useEffect(() => {
+    if (active) requestAnimationFrame(() => trackClicks(false));
+    return () => trackClicks(true);
+  }, [active, trackClicks]);
 
   const setAccessibilityAttributes = useCallback(() => {
     if (activatorContainer.current == null) {
