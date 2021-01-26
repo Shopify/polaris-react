@@ -21,6 +21,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-contexts',
     '@storybook/addon-knobs',
+    'storybook-addon-designs',
   ],
   webpackFinal: (config) => {
     const isProduction = config.mode === 'production';

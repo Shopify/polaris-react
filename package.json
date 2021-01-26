@@ -161,6 +161,7 @@
     "serve": "^11.1.0",
     "shelljs": "^0.8.3",
     "shx": "^0.3.2",
+    "storybook-addon-designs": "^5.4.2",
     "svgo": "^1.3.0",
     "typescript": "~4.0.3"
   },

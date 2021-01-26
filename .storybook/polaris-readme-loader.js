@@ -250,7 +250,28 @@ import {
   ViewMinor,
 } from '@shopify/polaris-icons';
 
-export default { title: ${JSON.stringify(`All Components/${readme.name}`)} };
+export default {
+  title: ${JSON.stringify(`All Components/${readme.name}`)},
+  parameters: {
+    design: [
+      {
+        name: 'Page',
+        type: 'figma',
+        url: 'https://www.figma.com/file/3r3abLx7TDbac8mRpOmIpC/Example-of-UI-kit-(for-storybook)?node-id=0%3A1'
+      },
+      {
+        name: 'Small Screen (Frame)',
+        type: 'figma',
+        url: 'https://www.figma.com/file/3r3abLx7TDbac8mRpOmIpC/Example-of-UI-kit-(for-storybook)?node-id=1%3A192'
+      },
+      {
+        name: 'Large Screen (Frame)',
+        type: 'figma',
+        url: 'https://www.figma.com/file/3r3abLx7TDbac8mRpOmIpC/Example-of-UI-kit-(for-storybook)?node-id=1%3A181'
+      },
+    ],
+  }
+};
 
 ${csfExports.join('\n\n')}
 `;
