@@ -119,7 +119,9 @@ describe('<Banner />', () => {
       const bannerSecondaryAction = bannerWithActions.find(UnstyledLink);
 
       expect(bannerSecondaryAction.exists()).toBeTruthy();
-      expect(bannerSecondaryAction.text()).toBe('Secondary external link');
+      expect(bannerSecondaryAction.text()).toBe(
+        'Secondary external link (opens a new window)',
+      );
     });
 
     it('renders when a primary action is not provided', () => {
@@ -139,7 +141,9 @@ describe('<Banner />', () => {
       const bannerSecondaryAction = bannerWithActions.find(UnstyledLink);
 
       expect(bannerSecondaryAction.exists()).toBeTruthy();
-      expect(bannerSecondaryAction.text()).toBe('Secondary external link');
+      expect(bannerSecondaryAction.text()).toBe(
+        'Secondary external link (opens a new window)',
+      );
     });
   });
 

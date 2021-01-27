@@ -2,6 +2,8 @@ import React, {memo, forwardRef} from 'react';
 
 import {unstyled} from '../shared';
 import {useLink, LinkLikeComponentProps} from '../../utilities/link';
+import {useI18n} from '../../utilities/i18n';
+import {VisuallyHidden} from '../VisuallyHidden';
 
 // The script in the styleguide that generates the Props Explorer data expects
 // that the interface defining the props is defined in this file, not imported
@@ -15,16 +17,25 @@ export interface UnstyledLinkProps extends LinkLikeComponentProps {}
 // eslint-disable-next-line react/display-name
 export const UnstyledLink = memo(
   forwardRef<unknown, UnstyledLinkProps>(function UnstyledLink(props, _ref) {
+    const i18n = useI18n();
     const LinkComponent = useLink();
     if (LinkComponent) {
       return <LinkComponent {...unstyled.props} {...props} />;
     }
 
-    const {external, url, ...rest} = props;
+    const {children, external, url, ...rest} = props;
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
     return (
-      <a target={target} {...rest} href={url} rel={rel} {...unstyled.props} />
+      <a target={target} {...rest} href={url} rel={rel} {...unstyled.props}>
+        {children}
+        {external && (
+          <VisuallyHidden>
+            {' '}
+            {i18n.translate('Polaris.Common.newWindowAccessibilityHint')}
+          </VisuallyHidden>
+        )}
+      </a>
     );
   }),
 );

@@ -3,7 +3,6 @@ import {ExternalSmallMinor} from '@shopify/polaris-icons';
 
 import {BannerContext} from '../../utilities/banner-context';
 import {classNames} from '../../utilities/css';
-import {useI18n} from '../../utilities/i18n';
 import {UnstyledLink} from '../UnstyledLink';
 import {Icon} from '../Icon';
 
@@ -38,20 +37,15 @@ export function Link({
   removeUnderline,
   accessibilityLabel,
 }: LinkProps) {
-  const i18n = useI18n();
   let childrenMarkup = children;
 
   if (external && typeof children === 'string') {
-    const iconLabel = i18n.translate(
-      'Polaris.Common.newWindowAccessibilityHint',
-    );
-
     childrenMarkup = (
       <>
         {children}
         <span className={styles.IconLockup}>
           <span className={styles.IconLayout}>
-            <Icon accessibilityLabel={iconLabel} source={ExternalSmallMinor} />
+            <Icon source={ExternalSmallMinor} />
           </span>
         </span>
       </>

@@ -4,7 +4,6 @@ import {mountWithAppProvider} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
 import {Banner, UnstyledLink, Icon} from 'components';
 
-import en from '../../../../locales/en.json';
 import {Link} from '../Link';
 
 describe('<Link />', () => {
@@ -51,18 +50,6 @@ describe('<Link />', () => {
         </Link>,
       );
       expect(link.children().last().find(Icon).exists()).toBe(true);
-    });
-
-    it('informs screen readers that it opens in a new window', () => {
-      const link = mountWithAppProvider(
-        <Link url="https://help.shopify.com/" external>
-          Shopify Help Center
-        </Link>,
-      );
-      const hintText = en.Polaris.Common.newWindowAccessibilityHint;
-      expect(link.children().last().find(Icon).prop('accessibilityLabel')).toBe(
-        hintText,
-      );
     });
 
     it('doesn’t have a trailing icon for non-string children', () => {

@@ -1,7 +1,9 @@
 import React from 'react';
 // eslint-disable-next-line no-restricted-imports
 import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 import {UnstyledLink} from 'components/UnstyledLink';
+import {VisuallyHidden} from 'components/VisuallyHidden';
 
 describe('<UnstyledLink />', () => {
   describe('custom link component', () => {
@@ -33,6 +35,14 @@ describe('<UnstyledLink />', () => {
       ).find('a');
       expect(anchorElement.prop('target')).toBe('_blank');
       expect(anchorElement.prop('rel')).toBe('noopener noreferrer');
+    });
+
+    it('adds a visually hidden new window warning', () => {
+      const hiddenText = mountWithApp(
+        <UnstyledLink external url="https://shopify.com" />,
+      ).find(VisuallyHidden);
+
+      expect(hiddenText).toContainReactText(' (opens a new window)');
     });
   });
 
