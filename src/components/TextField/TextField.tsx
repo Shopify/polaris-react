@@ -470,7 +470,11 @@ export function TextField({
   );
 
   function handleClearButtonPress() {
-    onClearButtonClick && onClearButtonClick(id);
+    if (onClearButtonClick) {
+      onClearButtonClick(id);
+    } else if (onChange) {
+      onChange('', id);
+    }
   }
 
   function handleKeyPress(event: React.KeyboardEvent) {

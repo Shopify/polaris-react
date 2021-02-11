@@ -785,7 +785,38 @@ function TextFieldWithClearButtonExample() {
     [],
   );
 
-  const handleClearButtonClick = useCallback(() => setTextFieldValue(''), []);
+  return (
+    <TextField
+      label="Store name"
+      value={textFieldValue}
+      onChange={handleTextFieldChange}
+      clearButton
+    />
+  );
+}
+```
+
+### Text field with clear button and custom clearing behaviour
+
+<!-- example-for: web -->
+
+Customize the behaviour of hitting the clear button.
+
+```jsx
+function TextFieldWithCustomClearButtonExample() {
+  const [textFieldValue, setTextFieldValue] = useState('Jaded Pixel');
+
+  const handleTextFieldChange = useCallback(
+    (value) => setTextFieldValue(value),
+    [],
+  );
+
+  const handleClearButtonClick = useCallback(
+    () =>
+      window.confirm('Are you sure you want to clear this field?') &&
+      setTextFieldValue(''),
+    [],
+  );
 
   return (
     <TextField
