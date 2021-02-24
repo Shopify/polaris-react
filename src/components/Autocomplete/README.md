@@ -233,7 +233,7 @@ function AutocompleteExample() {
           return;
         }
         const filterRegex = new RegExp(value, 'i');
-        const resultOptions = options.filter((option) =>
+        const resultOptions = deselectedOptions.filter((option) =>
           option.label.match(filterRegex),
         );
         setOptions(resultOptions);
@@ -324,7 +324,7 @@ function AutoCompleteLazyLoadExample() {
       }
 
       const filterRegex = new RegExp(value, 'i');
-      const resultOptions = options.filter((option) =>
+      const resultOptions = deselectedOptions.filter((option) =>
         option.label.match(filterRegex),
       );
 
@@ -425,7 +425,7 @@ function AutocompleteExample() {
           return;
         }
         const filterRegex = new RegExp(value, 'i');
-        const resultOptions = options.filter((option) =>
+        const resultOptions = deselectedOptions.filter((option) =>
           option.label.match(filterRegex),
         );
         setOptions(resultOptions);
