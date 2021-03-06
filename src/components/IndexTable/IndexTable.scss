@@ -401,3 +401,11 @@ $scroll-bar-border-radius: rem(4px);
   height: 1px;
   width: var(--p-scroll-bar-content-width);
 }
+
+.THead {
+  transform: translateY(var(--p-test-3, 0));
+  // transition: transform ease-in 5ms;
+  z-index: 9000;
+  background-color: var(--p-surface, color('white'));
+  box-shadow: shadow();
+}

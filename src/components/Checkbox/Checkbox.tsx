@@ -71,6 +71,7 @@ export const Checkbox = forwardRef<CheckboxHandles, CheckboxProps>(
     useImperativeHandle(ref, () => ({
       focus: () => {
         if (inputNode.current) {
+          setKeyFocused(true);
           inputNode.current.focus();
         }
       },

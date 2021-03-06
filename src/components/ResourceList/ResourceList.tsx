@@ -24,6 +24,7 @@ import {
   ResourceListSelectedItems,
   SELECT_ALL_ITEMS,
 } from '../../utilities/resource-list';
+import {CheckableButtonContext} from '../../utilities/checkable-button';
 import {Select, SelectOption} from '../Select';
 import {EmptySearchResult} from '../EmptySearchResult';
 import {useI18n} from '../../utilities/i18n';
@@ -718,20 +719,21 @@ export const ResourceList: ResourceListType = function ResourceList<ItemType>({
     resourceName,
     loading,
     onSelectionChange: handleSelectionChange,
-    registerCheckableButtons: handleCheckableButtonRegistration,
   };
 
   return (
-    <ResourceListContext.Provider value={context}>
-      <div className={styles.ResourceListWrapper}>
-        {filterControlMarkup}
-        {headerMarkup}
-        {listMarkup}
-        {emptySearchStateMarkup}
-        {emptyStateMarkup}
-        {loadingWithoutItemsMarkup}
-      </div>
-    </ResourceListContext.Provider>
+    <CheckableButtonContext.Provider value={handleCheckableButtonRegistration}>
+      <ResourceListContext.Provider value={context}>
+        <div className={styles.ResourceListWrapper}>
+          {filterControlMarkup}
+          {headerMarkup}
+          {listMarkup}
+          {emptySearchStateMarkup}
+          {emptyStateMarkup}
+          {loadingWithoutItemsMarkup}
+        </div>
+      </ResourceListContext.Provider>
+    </CheckableButtonContext.Provider>
   );
 };
 

@@ -1,12 +1,10 @@
-import React, {useContext, useRef, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 
+import {useCheckableButton} from '../../utilities/checkable-button';
 import type {CheckboxHandles} from '../../types';
 import {classNames} from '../../utilities/css';
 import {Checkbox} from '../Checkbox';
-import {
-  ResourceListContext,
-  CheckableButtonKey,
-} from '../../utilities/resource-list';
+import type {CheckableButtonKey} from '../../utilities/resource-list';
 
 import styles from './CheckableButton.scss';
 
@@ -35,7 +33,7 @@ export function CheckableButton({
 }: CheckableButtonProps) {
   const checkBoxRef = useRef<CheckboxHandles>(null);
 
-  const {registerCheckableButtons} = useContext(ResourceListContext);
+  const registerCheckableButtons = useCheckableButton();
 
   let currentKey: CheckableButtonKey = 'bulkLg';
 
