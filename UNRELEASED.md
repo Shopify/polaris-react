@@ -18,6 +18,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Fix `IndexTable` sticky header alignment and jank ([#4033](https://github.com/Shopify/polaris-react/pull/4033)
 - Remove focus ring on click for ActionList ([#4034](https://github.com/Shopify/polaris-react/pull/4034))
 - Updated `<TextField>` to use `autocomplete=nope` instead of `autocomplete=off` ([#4053](https://github.com/Shopify/polaris-react/pull/4053))
+- `Link` now shows the external icon for links containing a numerical child ([#4058](https://github.com/Shopify/polaris-react/pull/4058))
 
 ### Documentation
 

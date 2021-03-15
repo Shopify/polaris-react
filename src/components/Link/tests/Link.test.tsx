@@ -44,10 +44,19 @@ describe('<Link />', () => {
   });
 
   describe('external link', () => {
-    it('has a trailing icon', () => {
+    it('has a trailing icon when the content is a string', () => {
       const link = mountWithAppProvider(
         <Link url="https://help.shopify.com/" external>
           Shopify Help Center
+        </Link>,
+      );
+      expect(link.children().last().find(Icon).exists()).toBe(true);
+    });
+
+    it('has a trailing icon when the content is a number', () => {
+      const link = mountWithAppProvider(
+        <Link url="https://help.shopify.com/" external>
+          {3}
         </Link>,
       );
       expect(link.children().last().find(Icon).exists()).toBe(true);
@@ -65,7 +74,7 @@ describe('<Link />', () => {
       );
     });
 
-    it('doesn’t have a trailing icon for non-string children', () => {
+    it('doesn’t have a trailing icon for non-string, non-numeric children', () => {
       const link = mountWithAppProvider(
         <Link url="https://help.shopify.com/" external>
           <span>Shopify Help Center</span>
