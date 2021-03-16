@@ -77,16 +77,15 @@ $stacking-order: (
 }
 
 .Icon {
-  // This compensates for the typical icon used in buttons being
-  // inset within its bounding box.
-  margin-left: -(spacing(extra-tight));
+  margin-left: spacing(extra-tight);
+
+  &:first-child {
+    margin-left: -(spacing(extra-tight));
+    margin-right: 0;
+  }
 
   &:last-child {
-    // This compensates for the disclosure icon, which is substantially
-    // inset within the viewbox (and makes it look like there is too much
-    // spacing on the right of the button)
     margin-right: -(spacing(tight));
-    margin-left: spacing(extra-tight);
   }
 
   // stylelint-disable-next-line selector-max-class, selector-max-specificity

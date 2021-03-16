@@ -3,6 +3,7 @@ import {
   CaretDownMinor,
   CaretUpMinor,
   PlusMinor,
+  AddImageMajor,
   SelectMinor,
 } from '@shopify/polaris-icons';
 // eslint-disable-next-line no-restricted-imports
@@ -104,8 +105,19 @@ describe('<Button />', () => {
       expect(button.find(Spinner).exists()).toBeTruthy();
     });
 
-    it.todo('renders a placeholder disclosure icon');
-    it.todo('renders a placeholder inner icon');
+    it('renders a placeholder disclosure icon', () => {
+      const button = mountWithAppProvider(<Button loading disclosure />);
+      expect(button.find(UnstyledButton).find(Icon).prop('source')).toBe(
+        'placeholder',
+      );
+    });
+
+    it('renders a placeholder inner icon', () => {
+      const button = mountWithAppProvider(<Button loading icon={PlusMinor} />);
+      expect(button.find(UnstyledButton).find(Icon).prop('source')).toBe(
+        'placeholder',
+      );
+    });
   });
 
   describe('submit', () => {
@@ -130,6 +142,46 @@ describe('<Button />', () => {
     it('does not render the markup for the icon if none is provided', () => {
       const button = mountWithAppProvider(<Button />);
       expect(button.find(Icon).exists()).toBe(false);
+    });
+  });
+
+  describe('iconPlacement', () => {
+    it('renders the icon before content by default', () => {
+      const button = mountWithAppProvider(
+        <Button icon={AddImageMajor}>content</Button>,
+      );
+
+      const container = button.find(UnstyledButton).find('span');
+      const kids: React.ReactElement[] = Array.from(
+        container.children().getElements(),
+      );
+
+      const contentIndex = kids.findIndex(
+        (el) => el.props.className === 'Text',
+      );
+      const iconIndex = kids.findIndex((el) => el.props.className === 'Icon');
+
+      expect(contentIndex > iconIndex).toBe(true);
+    });
+
+    it('renders the icon after content if iconPlacement set to after', () => {
+      const button = mountWithAppProvider(
+        <Button icon={AddImageMajor} iconPlacement="after">
+          content
+        </Button>,
+      );
+
+      const container = button.find(UnstyledButton).find('span');
+      const kids: React.ReactElement[] = Array.from(
+        container.children().getElements(),
+      );
+
+      const contentIndex = kids.findIndex(
+        (el) => el.props.className === 'Text',
+      );
+      const iconIndex = kids.findIndex((el) => el.props.className === 'Icon');
+
+      expect(contentIndex < iconIndex).toBe(true);
     });
   });
 
@@ -246,16 +298,15 @@ describe('<Button />', () => {
 
     it('disables the disclosure button when disabled is true', () => {
       const disclosure = {
-        disabled: true,
         actions: [
           {
-            content: 'Save and mark as ordered',
+            content: 'Save',
           },
         ],
       };
 
       const button = mountWithAppProvider(
-        <Button connectedDisclosure={disclosure} />,
+        <Button connectedDisclosure={disclosure} disabled />,
       );
 
       const disclosureButton = button.find('button').at(1);
@@ -284,6 +335,23 @@ describe('<Button />', () => {
       expect(actionList.prop('items')).toStrictEqual(
         expect.arrayContaining(actions),
       );
+    });
+
+    it('takes precedence over the disclosure arrow', () => {
+      const actions = [
+        {
+          content: 'Save and mark as ordered',
+        },
+      ];
+
+      const disclosure = {actions};
+
+      const button = mountWithAppProvider(
+        <Button disclosure="up" connectedDisclosure={disclosure} />,
+      );
+
+      expect(button.find('.DisclosureIcon').exists()).toBe(false);
+      expect(button.find('button')).toHaveLength(2);
     });
   });
 
