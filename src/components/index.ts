@@ -196,6 +196,9 @@ export type {PageActionsProps} from './PageActions';
 export {Pagination} from './Pagination';
 export type {PaginationProps} from './Pagination';
 
+export {PhoneField} from './PhoneField';
+export type {PhoneFieldProps} from './PhoneField';
+
 export {PolarisTestProvider} from './PolarisTestProvider';
 export type {WithPolarisTestProviderOptions} from './PolarisTestProvider';
 

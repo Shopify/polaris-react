@@ -86,7 +86,8 @@
     "@types/react-transition-group": "^4.4.0",
     "focus-visible": "^5.2.0",
     "lodash": "^4.17.4",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "testashwin": "^3.0.0"
   },
   "peerDependencies": {
     "react": "^16.9.0",
