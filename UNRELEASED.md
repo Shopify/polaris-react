@@ -7,6 +7,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 ### Enhancements
 
 - Add `variableHeight` prop to `DropZone` so children control its height ([#4136](https://github.com/Shopify/polaris-react/pull/4136))
+- Added `IndexTable.Link` component for allowing rows to link to a resource. ([#4139](https://github.com/Shopify/polaris-react/pull/4139))
 
 ### Bug fixes
 

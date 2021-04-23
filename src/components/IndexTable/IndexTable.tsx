@@ -29,7 +29,7 @@ import {IndexProvider} from '../IndexProvider';
 import type {NonEmptyArray} from '../../types';
 
 import {getTableHeadingsBySelector} from './utilities';
-import {ScrollContainer, Cell, Row} from './components';
+import {ScrollContainer, Cell, Row, Link} from './components';
 import styles from './IndexTable.scss';
 
 export interface IndexTableHeading {
@@ -738,3 +738,4 @@ export function IndexTable({
 
 IndexTable.Cell = Cell;
 IndexTable.Row = Row;
+IndexTable.Link = Link;

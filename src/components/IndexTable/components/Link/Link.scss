@@ -1,0 +1,31 @@
+@import '../../../../styles/common';
+
+.Link {
+  @include text-emphasis-strong;
+  @include focus-ring;
+  height: 100%;
+  padding: spacing('tight') spacing();
+  color: var(--p-text, color('blue'));
+  display: block;
+  text-decoration: none;
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+
+  &:focus:not(:active) {
+    @include focus-ring($style: 'focused');
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+.subdued {
+  @include text-emphasis-normal;
+  @include text-emphasis-subdued;
+}
+
+.condensed {
+  padding: 0;
+}
