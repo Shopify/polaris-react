@@ -45,9 +45,7 @@ module.exports = function loader(source) {
     return `
 const ${example.storyName}Component = (${example.code})();
 export function ${example.storyName}() {
-  return <div data-omit-app-provider="${readme.omitAppProvider}"><${
-      example.storyName
-    }Component /></div>;
+  return <${example.storyName}Component />;
 }
 
 ${example.storyName}.storyName = ${JSON.stringify(example.name)};
@@ -79,6 +77,12 @@ ${example.storyName}.parameters = {
 `.trim();
     });
 
+    if (readme.sbComponent) {
+      csfExports.unshift(
+        `export const WithArgs = (args) => <${readme.sbComponent} {...args} />;`,
+      );
+    }
+
     csfExports.unshift(`export function AllExamples() {
   return (
     <React.Fragment>
@@ -99,6 +103,14 @@ AllExamples.parameters = {
 
   return `
 import React, {${hooks}} from 'react';
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Props,
+  Stories,
+  Meta, AddContext } from "@storybook/addon-docs/blocks";
 import {
   AccountConnection,
   ActionList,
@@ -256,6 +268,24 @@ import {
 export default {
   title: ${JSON.stringify(`All Components/${readme.name}`)},
   component: ${readme.component},
+  parameters: {
+    docs: {
+      page: () => {
+        return (<>
+          <Title />
+          <Subtitle />
+          <Description />
+          <Primary />
+          <Props />
+          <Stories />
+
+          <div dangerouslySetInnerHTML={{__html: ${JSON.stringify(
+            readme.docHtml,
+          )}}} />
+        </>);
+      },
+    }
+  }
 };
 
 ${csfExports.join('\n\n')}
@@ -296,6 +326,7 @@ function parseCodeExamples(data) {
     category: matter.data.category,
     component: examples.length ? toPascalCase(matter.data.name) : undefined,
     examples,
+    docHtml: new MdParser().parse(matter.content),
     omitAppProvider: matter.data.omitAppProvider || false,
   };
 }

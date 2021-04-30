@@ -1,83 +1,77 @@
 import React from 'react';
 import {addParameters, addDecorator} from '@storybook/react';
-import {withContexts} from '@storybook/addon-contexts/react';
-import {color, withKnobs} from '@storybook/addon-knobs';
 import DefaultThemeColors from '@shopify/polaris-tokens/dist-modern/theme/base.json';
 
 import {AppProvider} from '../src';
 import enTranslations from '../locales/en.json';
 
 export const parameters = {
+  actions: {argTypesRegex: '^on.*'},
   percy: {
     skip: true,
     widths: [375, 1280],
   },
 };
 
-function StrictModeToggle({isStrict = false, children}) {
-  const Wrapper = isStrict ? React.StrictMode : React.Fragment;
-  return <Wrapper>{children}</Wrapper>;
+function StrictModeDecorator(Story, context) {
+  const Wrapper =
+    context.globals.strictMode === 'true' ? React.StrictMode : React.Fragment;
+
+  return (
+    <Wrapper>
+      <Story {...context} />
+    </Wrapper>
+  );
 }
 
-function AppProviderWithKnobs({colorScheme, children}, context) {
-  const omitAppProvider = (() => {
-    try {
-      return children.props['data-omit-app-provider'];
-    } catch (e) {
-      return null;
-    }
-  })();
+function AppProviderDecorator(Story, context) {
+  if (context.args.omitAppProvider) return <Story {...context} />;
 
-  if (omitAppProvider === 'true') return children;
-
-  const colors = Object.entries(DefaultThemeColors).reduce(
-    (accumulator, [key, value]) => ({
-      ...accumulator,
-      [key]: strToHex(color(key, value, 'Theme')),
-    }),
-    {},
-  );
+  // const colors = Object.entries(DefaultThemeColors).reduce(
+  //   (accumulator, [key, value]) => ({
+  //     ...accumulator,
+  //     [key]: strToHex(color(key, value, 'Theme')),
+  //   }),
+  //   {},
+  // );
 
   return (
     <AppProvider
       i18n={enTranslations}
       theme={{
-        colors,
-        colorScheme,
+        //   colors,
+        colorScheme: context.globals.colorScheme,
       }}
     >
-      {children}
+      <Story {...context} />
     </AppProvider>
   );
 }
 
-const withContextsDecorator = withContexts([
-  {
-    title: 'Strict Mode',
-    components: [StrictModeToggle],
-    params: [
-      {name: 'Disabled', props: {isStrict: false}},
-      {name: 'Enabled', default: true, props: {isStrict: true}},
-    ],
+export const globalTypes = {
+  strictMode: {
+    name: 'Strict mode',
+    defaultValue: 'false',
+    toolbar: {
+      items: [
+        {title: 'Disabled', value: 'false'},
+        {title: 'Enabled', value: 'true'},
+      ],
+    },
   },
-  {
-    title: 'Color scheme',
-    components: [AppProviderWithKnobs],
-    params: [
-      {
-        default: true,
-        name: 'Light Mode',
-        props: {colorScheme: 'light'},
-      },
-      {
-        name: 'Dark Mode',
-        props: {colorScheme: 'dark'},
-      },
-    ],
+  colorScheme: {
+    name: 'Color scheme',
+    defaultValue: 'light',
+    toolbar: {
+      items: [
+        {title: 'Light Mode', value: 'light'},
+        {title: 'Dark Mode', value: 'dark'},
+      ],
+    },
   },
-]);
+};
 
-export const decorators = [withContextsDecorator];
+export const decorators = [StrictModeDecorator, AppProviderDecorator];
 
 function strToHex(str) {
   if (str.charAt(0) === '#') return str;

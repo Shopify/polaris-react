@@ -1,0 +1,30 @@
+import {Meta, Story, Preview, Props} from '@storybook/addon-docs/blocks';
+import {Button} from '../src';
+
+<Meta title="Docs Playing/0-Button - MDX" component="Button" />
+
+# Button
+
+With `MDX` we can define a story for `Button` right in the middle of our
+markdown documentation.
+
+We can write sume bulleted lists:
+
+- Item one
+- Item two
+
+## Subheadings
+
+They're a thing.
+
+## Examples
+
+<Preview>
+  <Story name="basic">
+    <Button>Label</Button>
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Button} />

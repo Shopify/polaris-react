@@ -15,7 +15,11 @@ const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 const enableDocs = !parseInt(process.env.STORYBOOK_DISABLE_DOCS || '0', 10);
 
 module.exports = {
-  stories: ['../playground/stories.tsx', '../src/components/**/*/README.md'],
+  stories: [
+    '../playground/stories.tsx',
+    '../playground/**/*.stories.{tsx,mdx}',
+    '../src/components/**/*/README.md',
+  ],
   addons: [
     {name: '@storybook/addon-essentials', options: {docs: enableDocs}},
     '@storybook/addon-a11y',
