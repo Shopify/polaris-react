@@ -131,6 +131,8 @@ yarn run build:development
 
 Also, when running `yarn install`, copied builds will be overwritten and will require running `yarn run build-consumer PROJECT_DIRECTORY` again.
 
+If you encounter compilation errors in your consuming project, ensure the dependencies in the consuming project match the versions in `polaris-react`.
+
 ### Visual regression testing
 
 [Percy](https://percy.io/) runs for every pull request. Percy is a tool that compares screenshots for every single component we have in the library.
