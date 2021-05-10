@@ -1,24 +1,27 @@
 import React, {
-  useContext,
   memo,
+  ReactNode,
+  useCallback,
+  useContext,
   useEffect,
   useRef,
-  useCallback,
-  Fragment,
-  ReactNode,
 } from 'react';
 
-import {useI18n} from '../../../../utilities/i18n';
 import {classNames} from '../../../../utilities/css';
-import {RowContext} from '../../../../utilities/index-table';
+import {useI18n} from '../../../../utilities/i18n';
 import {useIndexValue} from '../../../../utilities/index-provider';
-import {Checkbox as PolarisCheckbox} from '../../../Checkbox';
+import {RowContext} from '../../../../utilities/index-table';
 import {setRootProperty} from '../../../../utilities/set-root-property';
+import {Checkbox as PolarisCheckbox} from '../../../Checkbox';
 import sharedStyles from '../../IndexTable.scss';
 
 import styles from './Checkbox.scss';
 
-export const Checkbox = memo(function Checkbox() {
+interface CheckboxProps {
+  rowSpan?: number;
+}
+
+export const Checkbox = memo(function Checkbox({rowSpan}: CheckboxProps) {
   const i18n = useI18n();
   const {resourceName, condensed} = useIndexValue();
   const {itemId, selected, onInteraction} = useContext(RowContext);
@@ -28,36 +31,39 @@ export const Checkbox = memo(function Checkbox() {
     condensed ? styles.condensed : styles.expanded,
   );
 
-  const Wrapper = condensed ? Fragment : CheckboxWrapper;
-
-  return (
-    <Wrapper>
-      <div className={styles.TableCellContentContainer}>
-        <div
-          className={wrapperClassName}
-          onClick={onInteraction}
-          onKeyUp={onInteraction}
-          onChange={stopPropagation}
-        >
-          <PolarisCheckbox
-            id={itemId}
-            label={i18n.translate('Polaris.IndexTable.selectItem', {
-              resourceName: resourceName.singular,
-            })}
-            labelHidden
-            checked={selected}
-          />
-        </div>
+  const children = (
+    <div className={styles.TableCellContentContainer}>
+      <div
+        className={wrapperClassName}
+        onClick={onInteraction}
+        onKeyUp={onInteraction}
+        onChange={stopPropagation}
+      >
+        <PolarisCheckbox
+          id={itemId}
+          label={i18n.translate('Polaris.IndexTable.selectItem', {
+            resourceName: resourceName.singular,
+          })}
+          labelHidden
+          checked={selected}
+        />
       </div>
-    </Wrapper>
+    </div>
+  );
+
+  return condensed ? (
+    children
+  ) : (
+    <CheckboxWrapper rowSpan={rowSpan}>{children}</CheckboxWrapper>
   );
 });
 
 interface CheckboxWrapperProps {
   children: ReactNode;
+  rowSpan?: number;
 }
 
-export function CheckboxWrapper({children}: CheckboxWrapperProps) {
+export function CheckboxWrapper({children, rowSpan}: CheckboxWrapperProps) {
   const checkboxNode = useRef<HTMLTableDataCellElement>(null);
 
   const handleResize = useCallback(() => {
@@ -86,7 +92,7 @@ export function CheckboxWrapper({children}: CheckboxWrapperProps) {
   );
 
   return (
-    <td className={checkboxClassName} ref={checkboxNode}>
+    <td className={checkboxClassName} ref={checkboxNode} rowSpan={rowSpan}>
       {children}
     </td>
   );

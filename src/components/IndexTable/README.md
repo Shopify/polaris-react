@@ -119,6 +119,94 @@ function SimpleIndexTableExample() {
 }
 ```
 
+### Index table with subrows
+
+A index table with two-lined rows.
+
+```jsx
+function IndexTableWithSubrowsExample() {
+  const customers = [
+    {
+      id: '3411',
+      url: 'customers/341',
+      name: 'Mae Jemison',
+      description: 'This is example longer text.',
+      location: 'Decatur, USA',
+      orders: 20,
+      amountSpent: '$2,400',
+    },
+    {
+      id: '2561',
+      url: 'customers/256',
+      name: 'Ellen Ochoa',
+      description: 'This is example longer text.',
+      location: 'Los Angeles, USA',
+      orders: 30,
+      amountSpent: '$140',
+    },
+  ];
+  const resourceName = {
+    singular: 'customer',
+    plural: 'customers',
+  };
+
+  const {
+    selectedResources,
+    allResourcesSelected,
+    handleSelectionChange,
+  } = useIndexResourceState(customers);
+
+  const rowMarkup = customers.map(
+    ({id, name, location, orders, amountSpent, description}, index) => (
+      <IndexTable.Row
+        id={id}
+        key={id}
+        selected={selectedResources.includes(id)}
+        position={index}
+        subrows={[
+          <React.Fragment key={1}>
+            <IndexTable.Cell>
+              <TextStyle variation="strong">{name}</TextStyle>
+            </IndexTable.Cell>
+            <IndexTable.Cell>{location}</IndexTable.Cell>
+            <IndexTable.Cell>{orders}</IndexTable.Cell>
+            <IndexTable.Cell>{amountSpent}</IndexTable.Cell>
+          </React.Fragment>,
+          <React.Fragment key={2}>
+            <IndexTable.Cell colSpan={4}>{description}</IndexTable.Cell>
+          </React.Fragment>,
+          <React.Fragment key={3}>
+            <IndexTable.Cell colSpan={3}>{description}</IndexTable.Cell>
+            <IndexTable.Cell>{amountSpent}</IndexTable.Cell>
+          </React.Fragment>,
+        ]}
+      />
+    ),
+  );
+
+  return (
+    <Card>
+      <IndexTable
+        resourceName={resourceName}
+        itemCount={customers.length}
+        selectedItemsCount={
+          allResourcesSelected ? 'All' : selectedResources.length
+        }
+        onSelectionChange={handleSelectionChange}
+        headings={[
+          {title: 'Name'},
+          {title: 'Location'},
+          {title: 'Order count'},
+          {title: 'Amount spent'},
+        ]}
+      >
+        {rowMarkup}
+      </IndexTable>
+    </Card>
+  );
+}
+```
+
 ### Simple small screen index table
 
 A small screen index table with simple items and no bulk actions, sorting, or filtering.

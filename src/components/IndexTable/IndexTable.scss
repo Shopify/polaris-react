@@ -122,6 +122,18 @@ $loading-panel-height: rem(53px);
   }
 }
 
+.TableRow-subrow-start:not(:first-child) {
+  --p-divider: #{color('sky', 'dark')};
+}
+
+.TableRow-subrow:not(.TableRow-subrow-start) {
+  //
+}
+
+.TableRow-subrow-end {
+  //
+}
+
 .SubTableRow {
   // stylelint-disable-next-line selector-max-class, selector-max-combinators
   &,
@@ -202,14 +214,15 @@ $loading-panel-height: rem(53px);
   padding: 0;
 }
 
-.TableCell-first + .TableCell {
+.TableCell-first + .TableCell,
+.TableCell:not(.TableCell-first):first-child {
   left: var(--p-checkbox-offset);
   padding-left: 0;
 
   @include breakpoint-after($breakpoint-small) {
     position: sticky;
     z-index: z-index(sticky-cell, $index-table-stacking-order);
-    padding: 0;
+    padding-left: 0;
   }
 }
 
