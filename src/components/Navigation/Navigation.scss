@@ -61,7 +61,7 @@ $nav-max-width: rem(360px);
 
 .LogoContainer {
   display: none;
-  @include breakpoint-before(nav-min-window-corrected()) {
+  @include breakpoint-before(nav-min-window-corrected(), false) {
     display: flex;
     flex: 0 0 top-bar-height();
     align-items: center;
