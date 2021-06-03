@@ -102,6 +102,8 @@ interface NonMutuallyExclusiveProps {
   min?: number | string;
   /** Minimum character length for an input */
   minLength?: number;
+  /** Indicates that a blank value should not pass validation */
+  required?: boolean;
   /** A regular expression to check the value against */
   pattern?: string;
   /** Choose the keyboard that should be used on mobile devices */
@@ -169,6 +171,7 @@ export function TextField({
   maxLength,
   min,
   minLength,
+  required,
   pattern,
   inputMode,
   spellCheck,
@@ -423,6 +426,7 @@ export function TextField({
     minLength,
     maxLength,
     spellCheck,
+    required,
     pattern,
     inputMode,
     type: inputType,

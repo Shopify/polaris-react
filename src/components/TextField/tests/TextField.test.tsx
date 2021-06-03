@@ -26,6 +26,7 @@ describe('<TextField />', () => {
         minLength={2}
         maxLength={2}
         spellCheck={false}
+        required
         pattern={pattern}
         inputMode={inputMode}
         align="left"
@@ -43,6 +44,7 @@ describe('<TextField />', () => {
     expect(input.prop('minLength')).toBe(2);
     expect(input.prop('maxLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
+    expect(input.prop('required')).toBe(true);
     expect(input.prop('pattern')).toBe(pattern);
     expect(input.prop('inputMode')).toBe(inputMode);
   });
