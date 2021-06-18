@@ -11,6 +11,7 @@ import type {
   DisableableAction,
   Action,
   ActionListSection,
+  MenuGroupDescriptor,
 } from '../../types';
 import {ActionList} from '../ActionList';
 import {Popover} from '../Popover';
@@ -19,10 +20,10 @@ import {ButtonGroup} from '../ButtonGroup';
 import {EventListener} from '../EventListener';
 import {CheckableButton} from '../CheckableButton';
 
-import {BulkActionButton} from './components';
+import {BulkActionButton, BulkActionMenu} from './components';
 import styles from './BulkActions.scss';
 
-type BulkAction = DisableableAction & BadgeAction;
+export type BulkAction = DisableableAction & BadgeAction;
 
 type BulkActionListSection = ActionListSection;
 
@@ -42,7 +43,7 @@ export interface BulkActionsProps {
   /** List is in a selectable state */
   selectMode?: boolean;
   /** Actions that will be given more prominence */
-  promotedActions?: BulkAction[];
+  promotedActions?: (BulkAction | MenuGroupDescriptor)[];
   /** List of actions */
   actions?: (BulkAction | BulkActionListSection)[];
   /** Text to select all across pages */
@@ -178,6 +179,28 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
     }
   }
 
+  private rolledInPromotedActions() {
+    const {promotedActions} = this.props;
+    const numberOfPromotedActionsToRender = this.numberOfPromotedActionsToRender();
+
+    if (
+      !promotedActions ||
+      promotedActions.length === 0 ||
+      numberOfPromotedActionsToRender >= promotedActions.length
+    ) {
+      return [];
+    }
+
+    const rolledInPromotedActions = promotedActions.map((action) => {
+      if (instanceOfMenuGroupDescriptor(action)) {
+        return {items: [...action.actions]};
+      }
+      return {items: [action]};
+    });
+
+    return rolledInPromotedActions.slice(numberOfPromotedActionsToRender);
+  }
+
   // eslint-disable-next-line @typescript-eslint/member-ordering
   componentDidMount() {
     const {actions, promotedActions} = this.props;
@@ -302,21 +325,28 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
       promotedActions && numberOfPromotedActionsToRender > 0
         ? [...promotedActions]
             .slice(0, numberOfPromotedActionsToRender)
-            .map((action, index) => (
-              <BulkActionButton
-                disabled={disabled}
-                {...action}
-                key={index}
-                handleMeasurement={this.handleMeasurement}
-              />
-            ))
+            .map((action, index) => {
+              if (instanceOfMenuGroupDescriptor(action)) {
+                return (
+                  <BulkActionMenu
+                    key={index}
+                    {...action}
+                    isNewBadgeInBadgeActions={this.isNewBadgeInBadgeActions()}
+                  />
+                );
+              }
+              return (
+                <BulkActionButton
+                  disabled={disabled}
+                  {...action}
+                  key={index}
+                  handleMeasurement={this.handleMeasurement}
+                />
+              );
+            })
         : null;
 
-    const rolledInPromotedActions =
-      promotedActions &&
-      numberOfPromotedActionsToRender < promotedActions.length
-        ? [...promotedActions].slice(numberOfPromotedActionsToRender)
-        : [];
+    const rolledInPromotedActions = this.rolledInPromotedActions();
 
     const activatorLabel =
       !promotedActions ||
@@ -331,11 +361,11 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
     let combinedActions: ActionListSection[] = [];
 
     if (actionSections && rolledInPromotedActions.length > 0) {
-      combinedActions = [{items: rolledInPromotedActions}, ...actionSections];
+      combinedActions = [...rolledInPromotedActions, ...actionSections];
     } else if (actionSections) {
       combinedActions = actionSections;
     } else if (rolledInPromotedActions.length > 0) {
-      combinedActions = [{items: rolledInPromotedActions}];
+      combinedActions = [...rolledInPromotedActions];
     }
 
     const actionsPopover =
@@ -553,6 +583,12 @@ function instanceOfBulkActionArray(
   });
 
   return actions.length === validList.length;
+}
+
+function instanceOfMenuGroupDescriptor(
+  action: MenuGroupDescriptor | BulkAction,
+): action is MenuGroupDescriptor {
+  return (action as MenuGroupDescriptor).title !== undefined;
 }
 
 export function BulkActions(props: BulkActionsProps) {

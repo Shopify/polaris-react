@@ -6,8 +6,13 @@ import {mountWithApp} from 'test-utilities';
 import {Popover} from 'components';
 
 import {CheckableButton} from '../../CheckableButton';
-import {BulkActionButton, BulkActionButtonProps} from '../components';
-import {BulkActions, BulkActionsProps} from '../BulkActions';
+import {ActionList} from '../../ActionList';
+import {
+  BulkActionButton,
+  BulkActionButtonProps,
+  BulkActionMenu,
+} from '../components';
+import {BulkActions, BulkActionsProps, BulkAction} from '../BulkActions';
 
 interface Props {
   bulkActions: BulkActionButtonProps['content'][];
@@ -94,8 +99,8 @@ describe('<BulkActions />', () => {
         .filterWhere((el: any) => {
           const content = el.props().content;
           return (
-            content === promotedActions[0].content ||
-            content === promotedActions[1].content
+            content === (promotedActions[0] as BulkAction).content ||
+            content === (promotedActions[1] as BulkAction).content
           );
         }).length;
       expect(count).toBe(promotedActions.length);
@@ -261,7 +266,15 @@ describe('<BulkActions />', () => {
           bulkActions: [],
           promotedActions: [
             {
-              content: 'button 1',
+              title: 'button1',
+              actions: [
+                {
+                  content: 'action1',
+                },
+                {
+                  content: 'action2',
+                },
+              ],
             },
             {
               content: 'button 2',
@@ -281,6 +294,96 @@ describe('<BulkActions />', () => {
         );
         const bulkActionButtons = bulkActions.find(BulkActionButton);
         expect(bulkActionButtons).toHaveLength(3);
+        warnSpy.mockRestore();
+      });
+
+      it('renders a BulkActionMenu when promotedActions are menus', () => {
+        const warnSpy = jest.spyOn(console, 'warn');
+        warnSpy.mockImplementation(() => {});
+        const bulkActionProps: Props = {
+          bulkActions: [],
+          promotedActions: [
+            {
+              title: 'button1',
+              actions: [
+                {
+                  content: 'action1',
+                },
+                {
+                  content: 'action2',
+                },
+              ],
+            },
+            {
+              title: 'button2',
+              actions: [
+                {
+                  content: 'action1',
+                },
+                {
+                  content: 'action2',
+                },
+              ],
+            },
+            {
+              content: 'button 2',
+            },
+            {
+              content: 'button 3',
+            },
+          ],
+          paginatedSelectAllText: 'paginated select all text string',
+          selected: false,
+          accessibilityLabel: 'test-aria-label',
+          label: 'Test-Label',
+          disabled: false,
+        };
+        const bulkActions = mountWithAppProvider(
+          <BulkActions {...bulkActionProps} />,
+        );
+        const bulkActionButtons = bulkActions.find(BulkActionButton);
+        expect(bulkActionButtons).toHaveLength(4);
+        const bulkActionMenus = bulkActions.find(BulkActionMenu);
+        expect(bulkActionMenus).toHaveLength(2);
+        warnSpy.mockRestore();
+      });
+
+      it('opens a popover menu when clicking on a promoted action that is a menu', () => {
+        const warnSpy = jest.spyOn(console, 'warn');
+        warnSpy.mockImplementation(() => {});
+        const promotedActionToBeClicked = {
+          title: 'button1',
+          actions: [
+            {
+              content: 'action1',
+            },
+            {
+              content: 'action2',
+            },
+          ],
+        };
+        const bulkActionProps: Props = {
+          bulkActions: [],
+          promotedActions: [
+            {...promotedActionToBeClicked},
+            {
+              content: 'button 2',
+            },
+          ],
+          paginatedSelectAllText: 'paginated select all text string',
+          selected: false,
+          accessibilityLabel: 'test-aria-label',
+          label: 'Test-Label',
+          disabled: false,
+        };
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+
+        bulkActions.find(BulkActionButton)?.trigger('onAction');
+
+        const actionList = bulkActions.find(ActionList);
+        expect(actionList!.prop('items')).toBe(
+          promotedActionToBeClicked.actions,
+        );
         warnSpy.mockRestore();
       });
     });

@@ -11,6 +11,7 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Added `divider` prop to `Page` component ([#4260](https://github.com/Shopify/polaris-react/pull/4260))
 - Add `activator` prop to `Sheet` so the triggering element will regain focus ([#4201](https://github.com/Shopify/polaris-react/pull/4201))
 - Rename and expose Card compound components types ([#4261](https://github.com/Shopify/polaris-react/pull/4261))
+- Allow promoted actions to be rendered as a menu on the `BulkAction` component ([#4266](https://github.com/Shopify/polaris-react/pull/4266))
 
 ### Bug fixes
 
