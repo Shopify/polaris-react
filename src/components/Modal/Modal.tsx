@@ -41,8 +41,6 @@ export interface ModalProps extends FooterProps {
   sectioned?: boolean;
   /** Increases the modal width */
   large?: boolean;
-  /** Decreases the modal width */
-  small?: boolean;
   /** Limits modal height on large sceens with scrolling */
   limitHeight?: boolean;
   /** Replaces modal content with a spinner while a background action is being performed */
@@ -74,7 +72,6 @@ export const Modal: React.FunctionComponent<ModalProps> & {
   sectioned,
   loading,
   large,
-  small,
   limitHeight,
   footer,
   primaryAction,
@@ -111,7 +108,9 @@ export const Modal: React.FunctionComponent<ModalProps> & {
         ? activator && activator.current
         : activatorRef.current;
     if (activatorElement) {
-      requestAnimationFrame(() => focusFirstFocusableNode(activatorElement));
+      requestAnimationFrame(() =>
+        focusFirstFocusableNode(activatorElement, false),
+      );
     }
   }, [activator]);
 
@@ -189,7 +188,6 @@ export const Modal: React.FunctionComponent<ModalProps> & {
         onEntered={handleEntered}
         onExited={handleExited}
         large={large}
-        small={small}
         limitHeight={limitHeight}
       >
         <Header titleHidden={titleHidden} id={headerId} onClose={onClose}>

@@ -1,4 +1,11 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import debounce from 'lodash/debounce';
 
 import {useI18n} from '../../../../utilities/i18n';
@@ -28,7 +35,10 @@ interface MeasuredActions {
 
 const ACTION_SPACING = 8;
 
-export function Actions({actions = [], groups = []}: Props) {
+export const Actions = forwardRef<HTMLButtonElement, Props>(function Actions(
+  {actions = [], groups = []}: Props,
+  actionRef,
+) {
   const i18n = useI18n();
   const actionsLayoutRef = useRef<HTMLDivElement>(null);
   const menuGroupWidthRef = useRef<number>(0);
@@ -177,6 +187,7 @@ export function Actions({actions = [], groups = []}: Props) {
 
     return (
       <SecondaryAction
+        ref={actionRef}
         key={content}
         onClick={onAction}
         {...rest}
@@ -193,6 +204,7 @@ export function Actions({actions = [], groups = []}: Props) {
           (action) =>
             action.content && (
               <SecondaryAction
+                ref={actionRef}
                 key={action.content}
                 {...action}
                 getOffsetWidth={handleActionsOffsetWidth}
@@ -288,7 +300,7 @@ export function Actions({actions = [], groups = []}: Props) {
       <EventListener event="resize" handler={handleResize} />
     </div>
   );
-}
+});
 
 function isMenuGroup(
   actionOrMenuGroup: MenuGroupDescriptor | MenuActionDescriptor,

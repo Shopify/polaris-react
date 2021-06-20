@@ -5,7 +5,7 @@ import {classNames} from '../../utilities/css';
 import {useToggle} from '../../utilities/use-toggle';
 import {WithinContentContext} from '../../utilities/within-content-context';
 import {ButtonGroup} from '../ButtonGroup';
-import type {DisableableAction, ComplexAction} from '../../types';
+import type {DisableableAction, ComplexAction, RefAction} from '../../types';
 import {ActionList} from '../ActionList';
 import {Button, buttonFrom} from '../Button';
 import {Popover} from '../Popover';
@@ -29,7 +29,7 @@ export interface CardProps {
   /** Auto wrap content in section */
   sectioned?: boolean;
   /** Card header actions */
-  actions?: DisableableAction[];
+  actions?: (DisableableAction & RefAction)[];
   /** Primary action in the card footer */
   primaryFooterAction?: ComplexAction;
   /** Secondary actions in the card footer */

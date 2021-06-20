@@ -130,6 +130,13 @@ export interface OutlineableAction extends Action {
   outline?: boolean;
 }
 
+export interface RefAction extends Action {
+  /** Ref for action */
+  ref?:
+    | React.RefObject<HTMLButtonElement>
+    | ((element: HTMLElement | null) => void);
+}
+
 export interface ActionListItemDescriptor
   extends IconableAction,
     DisableableAction,
@@ -166,7 +173,8 @@ export interface ComplexAction
     DestructableAction,
     IconableAction,
     OutlineableAction,
-    LoadableAction {}
+    LoadableAction,
+    RefAction {}
 
 export interface MenuActionDescriptor extends ComplexAction {
   /** Zero-indexed numerical position. Overrides the action's order in the menu */

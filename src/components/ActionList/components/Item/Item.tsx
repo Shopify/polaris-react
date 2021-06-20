@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef} from 'react';
 
 import {classNames} from '../../../../utilities/css';
 import type {ActionListItemDescriptor} from '../../../../types';
@@ -12,25 +12,28 @@ import {handleMouseUpByBlurring} from '../../../../utilities/focus';
 
 export type ItemProps = ActionListItemDescriptor;
 
-export function Item({
-  id,
-  badge,
-  content,
-  accessibilityLabel,
-  helpText,
-  url,
-  onAction,
-  icon,
-  image,
-  prefix,
-  suffix,
-  disabled,
-  external,
-  destructive,
-  ellipsis,
-  active,
-  role,
-}: ItemProps) {
+export const Item = forwardRef<HTMLButtonElement, ItemProps>(function Item(
+  {
+    id,
+    badge,
+    content,
+    accessibilityLabel,
+    helpText,
+    url,
+    onAction,
+    icon,
+    image,
+    prefix,
+    suffix,
+    disabled,
+    external,
+    destructive,
+    ellipsis,
+    active,
+    role,
+  }: ItemProps,
+  itemRef,
+) {
   const className = classNames(
     styles.Item,
     disabled && styles.disabled,
@@ -100,6 +103,7 @@ export function Item({
       external={external}
       aria-label={accessibilityLabel}
       onClick={disabled ? null : onAction}
+      ref={itemRef}
     >
       {contentElement}
     </UnstyledLink>
@@ -112,6 +116,7 @@ export function Item({
       aria-label={accessibilityLabel}
       onClick={onAction}
       onMouseUp={handleMouseUpByBlurring}
+      ref={itemRef}
     >
       {contentElement}
     </button>
@@ -123,4 +128,4 @@ export function Item({
       {control}
     </li>
   );
-}
+});

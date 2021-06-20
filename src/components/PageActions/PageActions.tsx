@@ -4,6 +4,7 @@ import type {
   ComplexAction,
   DisableableAction,
   LoadableAction,
+  RefAction,
 } from '../../types';
 import {Stack} from '../Stack';
 import {ButtonGroup} from '../ButtonGroup';
@@ -13,7 +14,7 @@ import styles from './PageActions.scss';
 
 export interface PageActionsProps {
   /** The primary action for the page */
-  primaryAction?: DisableableAction & LoadableAction;
+  primaryAction?: DisableableAction & LoadableAction & RefAction;
   /** The secondary actions for the page */
   secondaryActions?: ComplexAction[];
 }

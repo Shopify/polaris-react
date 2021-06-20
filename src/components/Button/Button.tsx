@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {forwardRef, useCallback, useState} from 'react';
 import {
   CaretDownMinor,
   CaretUpMinor,
@@ -86,220 +86,235 @@ type ActionButtonProps = Pick<
 
 const DEFAULT_SIZE = 'medium';
 
-export function Button({
-  id,
-  children,
-  url,
-  disabled,
-  external,
-  download,
-  submit,
-  loading,
-  pressed,
-  accessibilityLabel,
-  role,
-  ariaControls,
-  ariaExpanded,
-  ariaDescribedBy,
-  onClick,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  onKeyPress,
-  onKeyUp,
-  onMouseEnter,
-  onTouchStart,
-  icon,
-  primary,
-  outline,
-  destructive,
-  disclosure,
-  plain,
-  monochrome,
-  removeUnderline,
-  size = DEFAULT_SIZE,
-  textAlign,
-  fullWidth,
-  connectedDisclosure,
-}: ButtonProps) {
-  const i18n = useI18n();
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      id,
+      children,
+      url,
+      disabled,
+      external,
+      download,
+      submit,
+      loading,
+      pressed,
+      accessibilityLabel,
+      role,
+      ariaControls,
+      ariaExpanded,
+      ariaDescribedBy,
+      onClick,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp,
+      onMouseEnter,
+      onTouchStart,
+      icon,
+      primary,
+      outline,
+      destructive,
+      disclosure,
+      plain,
+      monochrome,
+      removeUnderline,
+      size = DEFAULT_SIZE,
+      textAlign,
+      fullWidth,
+      connectedDisclosure,
+    }: ButtonProps,
+    buttonRef,
+  ) {
+    const i18n = useI18n();
 
-  const isDisabled = disabled || loading;
+    const isDisabled = disabled || loading;
 
-  const className = classNames(
-    styles.Button,
-    primary && styles.primary,
-    outline && styles.outline,
-    destructive && styles.destructive,
-    isDisabled && styles.disabled,
-    loading && styles.loading,
-    plain && styles.plain,
-    pressed && !disabled && !url && styles.pressed,
-    monochrome && styles.monochrome,
-    size && size !== DEFAULT_SIZE && styles[variationName('size', size)],
-    textAlign && styles[variationName('textAlign', textAlign)],
-    fullWidth && styles.fullWidth,
-    icon && children == null && styles.iconOnly,
-    connectedDisclosure && styles.connectedDisclosure,
-    removeUnderline && styles.removeUnderline,
-  );
-
-  const disclosureMarkup = disclosure ? (
-    <span className={styles.Icon}>
-      <div
-        className={classNames(styles.DisclosureIcon, loading && styles.hidden)}
-      >
-        <Icon
-          source={loading ? 'placeholder' : getDisclosureIconSource(disclosure)}
-        />
-      </div>
-    </span>
-  ) : null;
-
-  const iconSource = isIconSource(icon) ? (
-    <Icon source={loading ? 'placeholder' : icon} />
-  ) : (
-    icon
-  );
-  const iconMarkup = iconSource ? (
-    <span className={classNames(styles.Icon, loading && styles.hidden)}>
-      {iconSource}
-    </span>
-  ) : null;
-
-  const childMarkup = children ? (
-    <span
-      className={classNames(
-        styles.Text,
-        removeUnderline && styles.removeUnderline,
-      )}
-    >
-      {children}
-    </span>
-  ) : null;
-
-  const spinnerSVGMarkup = loading ? (
-    <span className={styles.Spinner}>
-      <Spinner
-        size="small"
-        accessibilityLabel={i18n.translate(
-          'Polaris.Button.spinnerAccessibilityLabel',
-        )}
-      />
-    </span>
-  ) : null;
-
-  const [disclosureActive, setDisclosureActive] = useState(false);
-  const toggleDisclosureActive = useCallback(() => {
-    setDisclosureActive((disclosureActive) => !disclosureActive);
-  }, []);
-
-  let connectedDisclosureMarkup;
-
-  if (connectedDisclosure) {
-    const connectedDisclosureClassName = classNames(
+    const className = classNames(
       styles.Button,
       primary && styles.primary,
       outline && styles.outline,
+      destructive && styles.destructive,
+      isDisabled && styles.disabled,
+      loading && styles.loading,
+      plain && styles.plain,
+      pressed && !disabled && !url && styles.pressed,
+      monochrome && styles.monochrome,
       size && size !== DEFAULT_SIZE && styles[variationName('size', size)],
       textAlign && styles[variationName('textAlign', textAlign)],
-      destructive && styles.destructive,
-      connectedDisclosure.disabled && styles.disabled,
-      styles.iconOnly,
-      styles.ConnectedDisclosure,
-      monochrome && styles.monochrome,
+      fullWidth && styles.fullWidth,
+      icon && children == null && styles.iconOnly,
+      connectedDisclosure && styles.connectedDisclosure,
+      removeUnderline && styles.removeUnderline,
     );
 
-    const defaultLabel = i18n.translate(
-      'Polaris.Button.connectedDisclosureAccessibilityLabel',
-    );
-
-    const {
-      disabled,
-      accessibilityLabel: disclosureLabel = defaultLabel,
-    } = connectedDisclosure;
-
-    const connectedDisclosureActivator = (
-      <button
-        type="button"
-        className={connectedDisclosureClassName}
-        disabled={disabled}
-        aria-label={disclosureLabel}
-        aria-describedby={ariaDescribedBy}
-        onClick={toggleDisclosureActive}
-        onMouseUp={handleMouseUpByBlurring}
-      >
-        <span className={styles.Icon}>
-          <Icon source={CaretDownMinor} />
-        </span>
-      </button>
-    );
-
-    connectedDisclosureMarkup = (
-      <Popover
-        active={disclosureActive}
-        onClose={toggleDisclosureActive}
-        activator={connectedDisclosureActivator}
-        preferredAlignment="right"
-      >
-        <ActionList
-          items={connectedDisclosure.actions}
-          onActionAnyItem={toggleDisclosureActive}
-        />
-      </Popover>
-    );
-  }
-
-  const commonProps: CommonButtonProps = {
-    id,
-    className,
-    accessibilityLabel,
-    ariaDescribedBy,
-    role,
-    onClick,
-    onFocus,
-    onBlur,
-    onMouseUp: handleMouseUpByBlurring,
-    onMouseEnter,
-    onTouchStart,
-  };
-  const linkProps: LinkButtonProps = {
-    url,
-    external,
-    download,
-  };
-  const actionProps: ActionButtonProps = {
-    submit,
-    disabled: isDisabled,
-    loading,
-    ariaControls,
-    ariaExpanded,
-    pressed,
-    onKeyDown,
-    onKeyUp,
-    onKeyPress,
-  };
-
-  const buttonMarkup = (
-    <UnstyledButton {...commonProps} {...linkProps} {...actionProps}>
-      <span className={styles.Content}>
-        {spinnerSVGMarkup}
-        {iconMarkup}
-        {childMarkup}
-        {disclosureMarkup}
+    const disclosureMarkup = disclosure ? (
+      <span className={styles.Icon}>
+        <div
+          className={classNames(
+            styles.DisclosureIcon,
+            loading && styles.hidden,
+          )}
+        >
+          <Icon
+            source={
+              loading ? 'placeholder' : getDisclosureIconSource(disclosure)
+            }
+          />
+        </div>
       </span>
-    </UnstyledButton>
-  );
+    ) : null;
 
-  return connectedDisclosureMarkup ? (
-    <div className={styles.ConnectedDisclosureWrapper}>
-      {buttonMarkup}
-      {connectedDisclosureMarkup}
-    </div>
-  ) : (
-    buttonMarkup
-  );
-}
+    const iconSource = isIconSource(icon) ? (
+      <Icon source={loading ? 'placeholder' : icon} />
+    ) : (
+      icon
+    );
+    const iconMarkup = iconSource ? (
+      <span className={classNames(styles.Icon, loading && styles.hidden)}>
+        {iconSource}
+      </span>
+    ) : null;
+
+    const childMarkup = children ? (
+      <span
+        className={classNames(
+          styles.Text,
+          removeUnderline && styles.removeUnderline,
+        )}
+      >
+        {children}
+      </span>
+    ) : null;
+
+    const spinnerSVGMarkup = loading ? (
+      <span className={styles.Spinner}>
+        <Spinner
+          size="small"
+          accessibilityLabel={i18n.translate(
+            'Polaris.Button.spinnerAccessibilityLabel',
+          )}
+        />
+      </span>
+    ) : null;
+
+    const [disclosureActive, setDisclosureActive] = useState(false);
+    const toggleDisclosureActive = useCallback(() => {
+      setDisclosureActive((disclosureActive) => !disclosureActive);
+    }, []);
+
+    let connectedDisclosureMarkup;
+
+    if (connectedDisclosure) {
+      const connectedDisclosureClassName = classNames(
+        styles.Button,
+        primary && styles.primary,
+        outline && styles.outline,
+        size && size !== DEFAULT_SIZE && styles[variationName('size', size)],
+        textAlign && styles[variationName('textAlign', textAlign)],
+        destructive && styles.destructive,
+        connectedDisclosure.disabled && styles.disabled,
+        styles.iconOnly,
+        styles.ConnectedDisclosure,
+        monochrome && styles.monochrome,
+      );
+
+      const defaultLabel = i18n.translate(
+        'Polaris.Button.connectedDisclosureAccessibilityLabel',
+      );
+
+      const {
+        disabled,
+        accessibilityLabel: disclosureLabel = defaultLabel,
+      } = connectedDisclosure;
+
+      const connectedDisclosureActivator = (
+        <button
+          type="button"
+          className={connectedDisclosureClassName}
+          disabled={disabled}
+          aria-label={disclosureLabel}
+          aria-describedby={ariaDescribedBy}
+          onClick={toggleDisclosureActive}
+          onMouseUp={handleMouseUpByBlurring}
+        >
+          <span className={styles.Icon}>
+            <Icon source={CaretDownMinor} />
+          </span>
+        </button>
+      );
+
+      connectedDisclosureMarkup = (
+        <Popover
+          active={disclosureActive}
+          onClose={toggleDisclosureActive}
+          activator={connectedDisclosureActivator}
+          preferredAlignment="right"
+        >
+          <ActionList
+            items={connectedDisclosure.actions}
+            onActionAnyItem={toggleDisclosureActive}
+          />
+        </Popover>
+      );
+    }
+
+    const commonProps: CommonButtonProps = {
+      id,
+      className,
+      accessibilityLabel,
+      ariaDescribedBy,
+      role,
+      onClick,
+      onFocus,
+      onBlur,
+      onMouseUp: handleMouseUpByBlurring,
+      onMouseEnter,
+      onTouchStart,
+    };
+    const linkProps: LinkButtonProps = {
+      url,
+      external,
+      download,
+    };
+    const actionProps: ActionButtonProps = {
+      submit,
+      disabled: isDisabled,
+      loading,
+      ariaControls,
+      ariaExpanded,
+      pressed,
+      onKeyDown,
+      onKeyUp,
+      onKeyPress,
+    };
+
+    const buttonMarkup = (
+      <UnstyledButton
+        ref={buttonRef}
+        {...commonProps}
+        {...linkProps}
+        {...actionProps}
+      >
+        <span className={styles.Content}>
+          {spinnerSVGMarkup}
+          {iconMarkup}
+          {childMarkup}
+          {disclosureMarkup}
+        </span>
+      </UnstyledButton>
+    );
+
+    return connectedDisclosureMarkup ? (
+      <div className={styles.ConnectedDisclosureWrapper}>
+        {buttonMarkup}
+        {connectedDisclosureMarkup}
+      </div>
+    ) : (
+      buttonMarkup
+    );
+  },
+);
 
 function isIconSource(x: any): x is IconSource {
   return (
