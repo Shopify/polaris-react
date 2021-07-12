@@ -45,6 +45,7 @@ export interface IndexTableBaseProps {
   children?: React.ReactNode;
   emptyState?: React.ReactNode;
   sort?: React.ReactNode;
+  lastColumnSticky?: boolean;
 }
 
 export interface TableHeadingRect {
@@ -64,6 +65,7 @@ function IndexTableBase({
   children,
   emptyState,
   sort,
+  lastColumnSticky = false,
 }: IndexTableBaseProps) {
   const {
     loading,
@@ -85,7 +87,6 @@ function IndexTableBase({
     toggle: toggleHasMoreLeftColumns,
   } = useToggle(false);
 
-  const onboardingScrollButtons = useRef(false);
   const tablePosition = useRef({top: 0, left: 0});
   const tableHeadingRects = useRef<TableHeadingRect[]>([]);
 
@@ -204,6 +205,27 @@ function IndexTableBase({
     [resizeTableScrollBar],
   );
 
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const setRightScroll = useCallback(() => {
+    if (
+      !lastColumnSticky ||
+      !tableElement.current ||
+      !scrollableContainerElement.current
+    ) {
+      return;
+    }
+
+    const tableRect = tableElement.current.getBoundingClientRect();
+    const scrollableRect = scrollableContainerElement.current.getBoundingClientRect();
+
+    setCanScrollRight(tableRect.width > scrollableRect.width);
+  }, [lastColumnSticky, setCanScrollRight]);
+
+  useEffect(() => {
+    setRightScroll();
+  }, [setRightScroll]);
+
   const handleResize = useCallback(() => {
     // hide the scrollbar when resizing
     scrollBarElement.current?.style.setProperty(
@@ -213,7 +235,8 @@ function IndexTableBase({
 
     resizeTableHeadings();
     debounceResizeTableScrollbar();
-  }, [debounceResizeTableScrollbar, resizeTableHeadings]);
+    setRightScroll();
+  }, [debounceResizeTableScrollbar, resizeTableHeadings, setRightScroll]);
 
   const handleScrollContainerScroll = useCallback(
     (canScrollLeft, canScrollRight) => {
@@ -240,9 +263,7 @@ function IndexTableBase({
         toggleHasMoreLeftColumns();
       }
 
-      if (!canScrollRight) {
-        onboardingScrollButtons.current = false;
-      }
+      setCanScrollRight(canScrollRight);
     },
     [hasMoreLeftColumns, toggleHasMoreLeftColumns],
   );
@@ -500,6 +521,8 @@ function IndexTableBase({
     hasMoreLeftColumns && styles['Table-scrolling'],
     selectMode && styles.disableTextSelection,
     selectMode && shouldShowBulkActions && styles.selectMode,
+    lastColumnSticky && styles['Table-sticky-last'],
+    lastColumnSticky && canScrollRight && styles['Table-sticky-scrolling'],
   );
 
   const emptyStateMarkup = emptyState ? (
@@ -566,9 +589,11 @@ function IndexTableBase({
 
   function renderHeading(heading: IndexTableHeading, index: number) {
     const isSecond = index === 0;
+    const isLast = index === headings.length - 1;
     const headingContentClassName = classNames(
       styles.TableHeading,
       isSecond && styles['TableHeading-second'],
+      isLast && !heading.hidden && styles['TableHeading-last'],
     );
 
     const stickyPositioningStyle =
