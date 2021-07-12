@@ -1,5 +1,11 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import debounce from 'lodash/debounce';
+
+import {
+  ScrollContext,
+  ScrollContextType,
+  scrollDefaultContext,
+} from '../../../../utilities/index-table';
 
 import styles from './ScrollContainer.scss';
 
@@ -19,6 +25,10 @@ export function ScrollContainer({
     scrollableContainerRef.current.dispatchEvent(new Event('scroll'));
   }, [scrollableContainerRef]);
 
+  const [containerScroll, setContainerScroll] = useState<ScrollContextType>(
+    scrollDefaultContext,
+  );
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleScroll = useCallback(
     debounce(
@@ -35,6 +45,11 @@ export function ScrollContainer({
         const canScrollRight =
           scrollableContainerRef.current.scrollLeft < availableScrollAmount;
         onScroll(canScrollLeft, canScrollRight);
+        setContainerScroll({
+          scrollableContainer: scrollableContainerRef.current,
+          canScrollLeft,
+          canScrollRight,
+        });
       },
       40,
       {trailing: true, leading: true, maxWait: 40},
@@ -43,12 +58,14 @@ export function ScrollContainer({
   );
 
   return (
-    <div
-      className={styles.ScrollContainer}
-      ref={scrollableContainerRef}
-      onScroll={handleScroll}
-    >
-      {children}
-    </div>
+    <ScrollContext.Provider value={containerScroll}>
+      <div
+        className={styles.ScrollContainer}
+        ref={scrollableContainerRef}
+        onScroll={handleScroll}
+      >
+        {children}
+      </div>
+    </ScrollContext.Provider>
   );
 }

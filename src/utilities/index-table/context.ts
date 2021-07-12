@@ -9,3 +9,19 @@ interface RowContextType {
 export const RowContext = createContext<RowContextType>({});
 
 export const RowHoveredContext = createContext<boolean | undefined>(undefined);
+
+export interface ScrollContextType {
+  scrollableContainer: HTMLDivElement | null;
+  canScrollLeft: boolean;
+  canScrollRight: boolean;
+}
+
+export const scrollDefaultContext = {
+  scrollableContainer: null,
+  canScrollLeft: false,
+  canScrollRight: false,
+};
+
+export const ScrollContext = createContext<ScrollContextType>(
+  scrollDefaultContext,
+);
