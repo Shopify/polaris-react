@@ -188,6 +188,27 @@ describe('<PopoverOverlay />', () => {
     });
   });
 
+  it('passes mutationObserveConfig to PositionedOverlay', () => {
+    const mockMutationObserveConfig = {
+      attributes: true,
+    };
+    const popoverOverlay = mountWithApp(
+      <PopoverOverlay
+        active
+        mutationObserveConfig={mockMutationObserveConfig}
+        id="PopoverOverlay-1"
+        activator={activator}
+        onClose={noop}
+      >
+        {children}
+      </PopoverOverlay>,
+    );
+
+    expect(popoverOverlay).toContainReactComponent(PositionedOverlay, {
+      mutationObserveConfig: mockMutationObserveConfig,
+    });
+  });
+
   it("doesn't include a tabindex prop when autofocusTarget is 'none'", () => {
     const popoverOverlay = mountWithAppProvider(
       <PopoverOverlay

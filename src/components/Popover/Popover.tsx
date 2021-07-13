@@ -44,6 +44,8 @@ export interface PopoverProps {
    * @default true
    */
   preferInputActivator?: PopoverOverlayProps['preferInputActivator'];
+  /** Customize the MutationObserveInit object for more precise Popover re-rendering on `children` changes */
+  mutationObserveConfig?: PopoverOverlayProps['mutationObserveConfig'];
   /**
    * The element type to wrap the activator with
    * @default 'div'
@@ -96,6 +98,7 @@ export const Popover: React.FunctionComponent<PopoverProps> & {
   fixed,
   ariaHaspopup,
   preferInputActivator = true,
+  mutationObserveConfig,
   colorScheme,
   zIndexOverride,
   ...rest
@@ -181,6 +184,7 @@ export const Popover: React.FunctionComponent<PopoverProps> & {
         id={id}
         activator={activatorNode}
         preferInputActivator={preferInputActivator}
+        mutationObserveConfig={mutationObserveConfig}
         onClose={handleClose}
         active={active}
         fixed={fixed}

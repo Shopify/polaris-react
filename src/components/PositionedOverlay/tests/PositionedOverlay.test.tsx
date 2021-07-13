@@ -243,6 +243,13 @@ describe('<PositionedOverlay />', () => {
       ).toBe(false);
     });
   });
+
+  describe('mutationObserveConfig', () => {
+    // Find the `overlay` and compare against DEFAULT_OBSERVER_CONFIG
+    it.todo('passes default config');
+    // Find the `overlay` and compare against mockMutationObserveConfig
+    it.todo('merges prop with default config');
+  });
 });
 
 function mockRender() {

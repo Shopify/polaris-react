@@ -47,6 +47,7 @@ export interface PopoverOverlayProps {
   zIndexOverride?: number;
   activator: HTMLElement;
   preferInputActivator?: PositionedOverlayProps['preferInputActivator'];
+  mutationObserveConfig?: PositionedOverlayProps['mutationObserveConfig'];
   sectioned?: boolean;
   fixed?: boolean;
   hideOnPrint?: boolean;
@@ -120,6 +121,7 @@ export class PopoverOverlay extends PureComponent<PopoverOverlayProps, State> {
       preferInputActivator = true,
       fixed,
       zIndexOverride,
+      mutationObserveConfig,
     } = this.props;
     const {transitionStatus} = this.state;
     if (transitionStatus === TransitionStatus.Exited && !active) return null;
@@ -148,6 +150,7 @@ export class PopoverOverlay extends PureComponent<PopoverOverlayProps, State> {
         onScrollOut={this.handleScrollOut}
         classNames={className}
         zIndexOverride={zIndexOverride}
+        mutationObserveConfig={mutationObserveConfig}
       />
     );
   }

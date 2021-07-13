@@ -136,6 +136,25 @@ describe('<Popover />', () => {
     });
   });
 
+  it('passes mutationObserveConfig to PopoverOverlay', () => {
+    const mockMutationObserveConfig = {
+      attributes: true,
+    };
+    const popover = mountWithApp(
+      <Popover
+        active={false}
+        preferredPosition="above"
+        activator={<div>Activator</div>}
+        onClose={spy}
+        mutationObserveConfig={mockMutationObserveConfig}
+      />,
+    );
+
+    expect(popover).toContainReactComponent(PopoverOverlay, {
+      mutationObserveConfig: mockMutationObserveConfig,
+    });
+  });
+
   it('has a div as activatorWrapper by default', () => {
     const popover = mountWithApp(
       <Popover

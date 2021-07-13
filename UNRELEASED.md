@@ -6,6 +6,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 
 ### Enhancements
 
+- `Popover` and `PositionedOverlay` can now accept a `mutationObserveConfig` prop ([#4303](https://github.com/Shopify/polaris-react/pull/4303))
+
 ### Bug fixes
 
 ### Documentation
