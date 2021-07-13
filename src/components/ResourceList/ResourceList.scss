@@ -240,3 +240,16 @@ $item-wrapper-loading-height: rem(64px);
 .disableTextSelection {
   user-select: none;
 }
+
+.HeaderTitleWrapper,
+.CheckableButtonWrapper,
+.AlternateToolWrapper,
+.SortWrapper,
+.SelectButtonWrapper {
+  @include layout-flex-fix;
+}
+
+.HeaderTitleWrapper,
+.CheckableButtonWrapper {
+  min-width: spacing();
+}
