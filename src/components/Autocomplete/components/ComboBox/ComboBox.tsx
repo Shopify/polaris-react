@@ -318,8 +318,6 @@ export function ComboBox({
         aria-haspopup
         onFocus={forcePopoverActiveTrue}
         onBlur={handleBlur}
-        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
-        tabIndex={options.length === 0 ? -1 : 0}
       >
         <KeypressListener keyCode={Key.DownArrow} handler={selectNextOption} />
         <KeypressListener
