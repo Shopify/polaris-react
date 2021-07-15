@@ -1,6 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
 
 import {TabMeasurer} from '../TabMeasurer';
@@ -58,60 +56,75 @@ describe('<TabMeasurer />', () => {
     const tabToFocus = 0;
 
     it('passes focused value of 0 to Tab', () => {
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} tabToFocus={tabToFocus} />,
       );
-      const tabs = tabMeasurer.find(Tab);
-      expect(tabs.first().prop('focused')).toBe(true);
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'repeat-customersMeasurer',
+        focused: true,
+      });
     });
 
     it('does not pass wrong focused value to Tab', () => {
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} tabToFocus={tabToFocus} />,
       );
-      const tabs = tabMeasurer.find(Tab);
-      expect(tabs.last().prop('focused')).toBe(false);
+
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'prospectsMeasurer',
+        focused: false,
+      });
     });
   });
 
   describe('siblingTabHasFocus', () => {
     it('gets passed to Tab', () => {
       const siblingTabHasFocus = true;
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} siblingTabHasFocus={siblingTabHasFocus} />,
       );
-      const tabs = tabMeasurer.find(Tab);
-      expect(tabs.first().prop('siblingTabHasFocus')).toBe(true);
+
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'prospectsMeasurer',
+        siblingTabHasFocus: true,
+      });
     });
   });
 
   describe('activator', () => {
     it('renders activator', () => {
       const activator = <Item id="id" focused />;
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} activator={activator} />,
       );
-      expect(tabMeasurer.contains(activator)).toBe(true);
+      expect(tabMeasurer).toContainReactComponent(Item, {
+        id: 'id',
+      });
     });
   });
 
   describe('selected', () => {
     it('passes selected to Tab', () => {
       const selected = 1;
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} selected={selected} />,
       );
-      const tabs = tabMeasurer.find(Tab);
-      expect(tabs.first().prop('selected')).toBe(false);
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'prospectsMeasurer',
+        selected: true,
+      });
     });
 
     it('does not pass the wrong selected to Tab', () => {
       const selected = 1;
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} selected={selected} />,
       );
-      const tabs = tabMeasurer.find(Tab);
-      expect(tabs.last().prop('selected')).toBe(true);
+
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'repeat-customersMeasurer',
+        selected: false,
+      });
     });
   });
 
@@ -127,10 +140,11 @@ describe('<TabMeasurer />', () => {
           content: 'prospects',
         },
       ];
-      const tabMeasurer = mountWithAppProvider(
+      const tabMeasurer = mountWithApp(
         <TabMeasurer {...mockProps} tabs={tabs} />,
       );
-      expect(tabMeasurer.find(Tab)).toHaveLength(2);
+
+      expect(tabMeasurer).toContainReactComponentTimes(Tab, 2);
     });
   });
 });

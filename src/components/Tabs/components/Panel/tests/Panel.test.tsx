@@ -1,30 +1,31 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 
 import {Panel} from '../Panel';
 
 describe('<Panel />', () => {
   it('adds the tabpanel role', () => {
-    const panel = mountWithAppProvider(<Panel id="panel" tabID="tab" />);
-    expect(panel.find('div').prop('role')).toBe('tabpanel');
+    const panel = mountWithApp(<Panel id="panel" tabID="tab" />);
+    expect(panel).toContainReactComponent('div', {
+      role: 'tabpanel',
+    });
   });
 
   describe('id', () => {
     it('uses the ID for panel', () => {
-      const panel = mountWithAppProvider(
-        <Panel id="my-panel" tabID="my-tab" />,
-      );
-      expect(panel.find('div').prop('id')).toBe('my-panel');
+      const panel = mountWithApp(<Panel id="my-panel" tabID="my-tab" />);
+      expect(panel).toContainReactComponent('div', {
+        id: 'my-panel',
+      });
     });
   });
 
   describe('tabID', () => {
     it('uses the ID as the labeling element', () => {
-      const panel = mountWithAppProvider(
-        <Panel id="my-panel" tabID="my-tab" />,
-      );
-      expect(panel.find('div').prop('aria-labelledby')).toBe('my-tab');
+      const panel = mountWithApp(<Panel id="my-panel" tabID="my-tab" />);
+      expect(panel).toContainReactComponent('div', {
+        'aria-labelledby': 'my-tab',
+      });
     });
   });
 });
