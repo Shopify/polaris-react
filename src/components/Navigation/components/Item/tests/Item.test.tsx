@@ -369,6 +369,34 @@ describe('<Nav.Item />', () => {
         });
       expect(context.onNavigationDismiss).toHaveBeenCalledTimes(1);
     });
+
+    it('calls onClick for the SubNavigationItem when clicked', () => {
+      const context = {
+        location: 'foo',
+        onNavigationDismiss: jest.fn(),
+      };
+
+      const subNavigationItemOnClick = jest.fn();
+
+      const item = mountWithNavigationProvider(
+        <Item
+          label="some label"
+          url="foo"
+          disabled={false}
+          subNavigationItems={[
+            {
+              label: 'bar',
+              url: 'baz',
+              disabled: false,
+              onClick: subNavigationItemOnClick,
+            },
+          ]}
+        />,
+        {...context},
+      );
+      item.find(UnstyledLink).last().find('a').simulate('click');
+      expect(subNavigationItemOnClick).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('renders an indicator if a sub navigation item is marked as new', () => {

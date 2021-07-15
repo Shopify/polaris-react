@@ -54,7 +54,7 @@ export interface ItemProps extends ItemURLDetails {
   new?: boolean;
   subNavigationItems?: SubNavigationItem[];
   secondaryAction?: SecondaryAction;
-  onClick?(): void;
+  onClick?(event?: MouseEvent<HTMLElement>): void;
 }
 
 enum MatchState {
@@ -248,13 +248,13 @@ export function Item({
         <Secondary expanded={showExpanded} id={secondaryNavigationId}>
           {subNavigationItems.map((item) => {
             const {label, ...rest} = item;
+
             return (
               <Item
                 {...rest}
                 key={label}
                 label={label}
                 matches={item === longestMatch}
-                onClick={onNavigationDismiss}
               />
             );
           })}
@@ -311,14 +311,14 @@ export function Item({
         setExpanded(!expanded);
       } else if (onNavigationDismiss) {
         onNavigationDismiss();
-        if (onClick && onClick !== onNavigationDismiss) {
-          onClick();
+        if (onClick) {
+          onClick(event);
         }
         return;
       }
 
       if (onClick) {
-        onClick();
+        onClick(event);
       }
     };
   }
