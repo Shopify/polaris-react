@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {forwardRef, RefObject, useEffect, useRef} from 'react';
 
 import {Button} from '../../../Button';
 import type {ButtonProps} from '../../../Button';
@@ -10,12 +10,10 @@ interface SecondaryAction extends ButtonProps {
   getOffsetWidth?(width: number): void;
 }
 
-export function SecondaryAction({
-  children,
-  onAction,
-  getOffsetWidth,
-  ...rest
-}: SecondaryAction) {
+function SecondaryActionComponent(
+  {children, onAction, getOffsetWidth, ...rest}: SecondaryAction,
+  actionRef: RefObject<HTMLButtonElement>,
+) {
   const secondaryActionsRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -26,9 +24,11 @@ export function SecondaryAction({
 
   return (
     <span className={styles.SecondaryAction} ref={secondaryActionsRef}>
-      <Button onClick={onAction} {...rest}>
+      <Button onClick={onAction} {...rest} ref={actionRef}>
         {children}
       </Button>
     </span>
   );
 }
+
+export const SecondaryAction = forwardRef(SecondaryActionComponent);

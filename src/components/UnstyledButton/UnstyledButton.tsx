@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {forwardRef, RefObject} from 'react';
 
 import type {BaseButton} from '../../types';
 import {handleMouseUpByBlurring} from '../../utilities/focus';
@@ -12,32 +12,35 @@ export interface UnstyledButtonProps extends BaseButton {
   [key: string]: any;
 }
 
-export function UnstyledButton({
-  id,
-  children,
-  className,
-  url,
-  external,
-  download,
-  submit,
-  disabled,
-  loading,
-  pressed,
-  accessibilityLabel,
-  role,
-  ariaControls,
-  ariaExpanded,
-  ariaDescribedBy,
-  onClick,
-  onFocus,
-  onBlur,
-  onKeyDown,
-  onKeyPress,
-  onKeyUp,
-  onMouseEnter,
-  onTouchStart,
-  ...rest
-}: UnstyledButtonProps) {
+function UnstyledButtonComponent(
+  {
+    id,
+    children,
+    className,
+    url,
+    external,
+    download,
+    submit,
+    disabled,
+    loading,
+    pressed,
+    accessibilityLabel,
+    role,
+    ariaControls,
+    ariaExpanded,
+    ariaDescribedBy,
+    onClick,
+    onFocus,
+    onBlur,
+    onKeyDown,
+    onKeyPress,
+    onKeyUp,
+    onMouseEnter,
+    onTouchStart,
+    ...rest
+  }: UnstyledButtonProps,
+  buttonRef: RefObject<HTMLButtonElement>,
+) {
   let buttonMarkup;
 
   const commonProps = {
@@ -86,6 +89,7 @@ export function UnstyledButton({
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
         onKeyPress={onKeyPress}
+        ref={buttonRef}
         {...rest}
       >
         {children}
@@ -95,3 +99,5 @@ export function UnstyledButton({
 
   return buttonMarkup;
 }
+
+export const UnstyledButton = forwardRef(UnstyledButtonComponent);
