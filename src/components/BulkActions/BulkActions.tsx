@@ -236,7 +236,6 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
       <Button
         onClick={paginatedSelectAllAction.onAction}
         plain
-        testID="paginated-action"
         disabled={disabled}
       >
         {paginatedSelectAllAction.content}
@@ -252,10 +251,7 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
 
     const paginatedSelectAllMarkup =
       paginatedSelectAllActionMarkup || paginatedSelectAllTextMarkup ? (
-        <div
-          className={styles.PaginatedSelectAll}
-          testID="paginated-select-all"
-        >
+        <div className={styles.PaginatedSelectAll}>
           {paginatedSelectAllTextMarkup} {paginatedSelectAllActionMarkup}
         </div>
       ) : null;
@@ -263,7 +259,6 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
     const cancelButton = (
       <Button
         onClick={this.setSelectMode.bind(this, false)}
-        testID="btn-cancel"
         disabled={disabled}
       >
         {i18n.translate('Polaris.Common.cancel')}
@@ -377,7 +372,6 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
         timeout={0}
         in={selectMode}
         key="smallGroup"
-        testID="smallGroup"
         nodeRef={this.smallScreenGroupNode}
       >
         {(status: TransitionStatus) => {
@@ -435,7 +429,6 @@ class BulkActionsInner extends PureComponent<CombinedProps, State> {
         in={selectMode}
         key="largeGroup"
         nodeRef={this.largeScreenGroupNode}
-        testID="largeGroup"
       >
         {(status: TransitionStatus) => {
           const largeScreenGroupClassName = classNames(

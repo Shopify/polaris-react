@@ -1,6 +1,5 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 
 import type {CallbackAction, LinkAction} from '../../../types';
 import {Breadcrumbs} from '../Breadcrumbs';
@@ -16,11 +15,11 @@ describe('<Breadcrumbs />', () => {
         },
       ];
 
-      const breadcrumbs = mountWithAppProvider(
+      const breadcrumbs = mountWithApp(
         <Breadcrumbs breadcrumbs={linkBreadcrumbs} />,
       );
 
-      expect(breadcrumbs.find('a')).toHaveLength(1);
+      expect(breadcrumbs).toContainReactComponentTimes('a', 1);
     });
 
     it('passes the accessibilityLabel through to <a> tag', () => {
@@ -32,13 +31,13 @@ describe('<Breadcrumbs />', () => {
         },
       ];
 
-      const breadcrumbs = mountWithAppProvider(
+      const breadcrumbs = mountWithApp(
         <Breadcrumbs breadcrumbs={linkBreadcrumbs} />,
       );
 
-      expect(breadcrumbs.find('a').prop('aria-label')).toStrictEqual(
-        'Go to Products',
-      );
+      expect(breadcrumbs).toContainReactComponent('a', {
+        'aria-label': 'Go to Products',
+      });
     });
   });
 
@@ -51,11 +50,11 @@ describe('<Breadcrumbs />', () => {
         },
       ];
 
-      const breadcrumbs = mountWithAppProvider(
+      const breadcrumbs = mountWithApp(
         <Breadcrumbs breadcrumbs={callbackBreadcrumbs} />,
       );
 
-      expect(breadcrumbs.find('button')).toHaveLength(1);
+      expect(breadcrumbs).toContainReactComponentTimes('button', 1);
     });
 
     it('passes accessibilityLabel through to <button> tag', () => {
@@ -67,13 +66,13 @@ describe('<Breadcrumbs />', () => {
         },
       ];
 
-      const breadcrumbs = mountWithAppProvider(
+      const breadcrumbs = mountWithApp(
         <Breadcrumbs breadcrumbs={callbackBreadcrumbs} />,
       );
 
-      expect(breadcrumbs.find('button').prop('aria-label')).toStrictEqual(
-        'Go to Products',
-      );
+      expect(breadcrumbs).toContainReactComponent('button', {
+        'aria-label': 'Go to Products',
+      });
     });
 
     it('triggers the callback function when clicked', () => {
@@ -81,15 +80,15 @@ describe('<Breadcrumbs />', () => {
       const callbackBreadcrumbs: CallbackAction[] = [
         {
           content: 'Products',
-          onAction: spy(),
+          onAction: spy,
         },
       ];
 
-      const breadcrumbs = mountWithAppProvider(
+      const breadcrumbs = mountWithApp(
         <Breadcrumbs breadcrumbs={callbackBreadcrumbs} />,
       );
 
-      breadcrumbs.find('button').simulate('click');
+      breadcrumbs.find('button')!.trigger('onClick');
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -102,17 +101,15 @@ describe('<Breadcrumbs />', () => {
   ];
 
   it('renders breadcrumb content as a visually hidden label when the new design language is enabled', () => {
-    const wrapper = mountWithAppProvider(
-      <Breadcrumbs breadcrumbs={linkBreadcrumbs} />,
-    );
+    const wrapper = mountWithApp(<Breadcrumbs breadcrumbs={linkBreadcrumbs} />);
 
-    expect(wrapper.find(VisuallyHidden).text()).toStrictEqual('Products');
+    expect(wrapper.find(VisuallyHidden))!.toContainReactText('Products');
   });
 
   it('renders nothing when empty', () => {
-    const wrapper = mountWithAppProvider(<Breadcrumbs breadcrumbs={[]} />);
+    const wrapper = mountWithApp(<Breadcrumbs breadcrumbs={[]} />);
 
-    expect(wrapper.isEmptyRender()).toBeTruthy();
+    expect(wrapper.html()).toBe('');
   });
 });
 

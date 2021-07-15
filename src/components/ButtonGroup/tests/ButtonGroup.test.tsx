@@ -1,6 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
 import {Button} from 'components';
 
@@ -10,23 +8,25 @@ import {ButtonGroup} from '../ButtonGroup';
 describe('<ButtonGroup />', () => {
   describe('children', () => {
     it('renders each child as an item', () => {
-      const buttonGroup = mountWithAppProvider(
+      const buttonGroup = mountWithApp(
         <ButtonGroup>
           <Button>Cancel</Button>
           <Button primary>Save</Button>
         </ButtonGroup>,
       );
-      expect(buttonGroup.find(Item)).toHaveLength(2);
+      expect(buttonGroup).toContainReactComponentTimes(Item, 2);
     });
 
     it('items receive the buttons', () => {
       const key = 'cancel-button';
-      const buttonGroup = mountWithAppProvider(
+      const buttonGroup = mountWithApp(
         <ButtonGroup>
           <Button key={key}>Cancel</Button>
         </ButtonGroup>,
       );
-      expect(buttonGroup.find(Item).prop('button').key).toContain(key);
+      const item = buttonGroup.find(Item)!;
+      expect(item.prop('button').key).toContain(key);
+      expect(item.find(Button)).toContainReactText('Cancel');
     });
 
     it('adds a data-buttongroup-segmented to the outter div when segmented', () => {

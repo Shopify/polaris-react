@@ -1,6 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
 import {Button} from 'components';
 
@@ -10,8 +8,8 @@ describe('<Item />', () => {
   describe('button', () => {
     it('renders the given button', () => {
       const button = <Button>Button text</Button>;
-      const item = mountWithAppProvider(<Item button={button} />);
-      expect(item.contains(button)).toBeTruthy();
+      const item = mountWithApp(<Item button={button} />);
+      expect(item.find('button')).toContainReactText('Button text');
     });
 
     it('sets focus styles when focused', () => {

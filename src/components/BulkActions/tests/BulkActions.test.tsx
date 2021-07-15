@@ -1,13 +1,13 @@
 import React from 'react';
 import {Transition, CSSTransition} from 'react-transition-group';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider, findByTestID} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
 import {Popover} from 'components';
 
 import {CheckableButton} from '../../CheckableButton';
+import {Button} from '../../Button';
 import {BulkActionButton, BulkActionButtonProps} from '../components';
 import {BulkActions, BulkActionsProps} from '../BulkActions';
+import styles from '../BulkActions.scss';
 
 interface Props {
   bulkActions: BulkActionButtonProps['content'][];
@@ -18,8 +18,6 @@ interface Props {
   label: string;
   disabled: boolean;
 }
-
-type TestValue = string | boolean;
 
 const bulkActionProps: Props = {
   bulkActions: ['button 3', 'button 4', 'button 5'],
@@ -37,16 +35,6 @@ const bulkActionProps: Props = {
   label: 'Test-Label',
   disabled: false,
 };
-
-function searchCheckableButton(
-  element: any,
-  key: string,
-  testValue: TestValue,
-) {
-  return element
-    .find(CheckableButton)
-    .filterWhere((el: any) => el.props()[key] === testValue).length;
-}
 
 describe('<BulkActions />', () => {
   describe('actions', () => {
@@ -86,51 +74,45 @@ describe('<BulkActions />', () => {
 
     it('promotedActions render in the last position on initial load', () => {
       const {promotedActions} = bulkActionProps;
-      const bulkActions = mountWithAppProvider(
+      const bulkActions = mountWithApp(
         <BulkActions {...bulkActionProps} promotedActions={promotedActions} />,
       );
-      const count = bulkActions
-        .find(BulkActionButton)
-        .filterWhere((el: any) => {
-          const content = el.props().content;
-          return (
-            content === promotedActions[0].content ||
-            content === promotedActions[1].content
-          );
-        }).length;
-      expect(count).toBe(promotedActions.length);
+
+      const bulkActionsCount = bulkActions.findAllWhere(
+        (node: any) =>
+          node.props.content === promotedActions[0].content ||
+          node.props.content === promotedActions[1].content,
+      ).length;
+
+      expect(bulkActionsCount).toBe(promotedActions.length);
     });
 
     it('bulkActions render in the first position on initial load', () => {
       const {bulkActions} = bulkActionProps;
-      const bulkActionsElement = mountWithAppProvider(
+      const bulkActionsElement = mountWithApp(
         <BulkActions {...bulkActionProps} />,
       );
-      const count = bulkActionsElement
-        .find(BulkActionButton)
-        .filterWhere((el: any) => {
-          const content = el.props().content;
-          return (
-            content === bulkActions[0] ||
-            content === bulkActions[1] ||
-            content === bulkActions[2]
-          );
-        }).length;
-      expect(count).toBe(0);
+      const bulkActionsCount = bulkActionsElement.findAllWhere(
+        (node: any) =>
+          node.props.content === bulkActions[0] ||
+          node.props.content === bulkActions[1] ||
+          node.props.content === bulkActions[2],
+      ).length;
+
+      expect(bulkActionsCount).toBe(0);
     });
 
     it('renders a Popover when smallScreen is true', () => {
-      const bulkActionsElement = mountWithAppProvider(
+      const bulkActionsElement = mountWithApp(
         <BulkActions {...bulkActionProps} smallScreen />,
       );
-      const popover = bulkActionsElement.find(Popover);
-      expect(popover).toHaveLength(1);
+      expect(bulkActionsElement).toContainReactComponentTimes(Popover, 1);
     });
   });
 
   describe('loading', () => {
     it('disables buttons', () => {
-      const bulkActionsElement = mountWithAppProvider(
+      const bulkActionsElement = mountWithApp(
         <BulkActions
           {...bulkActionProps}
           promotedActions={[
@@ -143,11 +125,9 @@ describe('<BulkActions />', () => {
         />,
       );
 
-      expect(
-        bulkActionsElement
-          .find('button')
-          .filterWhere((element) => Boolean(element.prop('disabled'))),
-      ).toHaveLength(2);
+      expect(bulkActionsElement).toContainReactComponentTimes('button', 2, {
+        disabled: true,
+      });
     });
   });
 
@@ -155,100 +135,106 @@ describe('<BulkActions />', () => {
     describe('accessibilityLabel', () => {
       it('is passed down to CheckableButton', () => {
         const {accessibilityLabel} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const checkableButton = bulkActions.find(CheckableButton);
-        expect(
-          searchCheckableButton(
-            bulkActions,
-            'accessibilityLabel',
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+        const checkableButtonLength = bulkActions.findAll(CheckableButton)
+          .length;
+
+        expect(bulkActions).toContainReactComponentTimes(
+          CheckableButton,
+          checkableButtonLength,
+          {
             accessibilityLabel,
-          ),
-        ).toBe(checkableButton.length);
+          },
+        );
       });
 
       it('does not pass down to CheckableButton when the property is not provided', () => {
         const {accessibilityLabel, ...props} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(<BulkActions {...props} />);
-        expect(
-          searchCheckableButton(
-            bulkActions,
-            'accessibilityLabel',
-            accessibilityLabel,
-          ),
-        ).toBe(0);
+        const bulkActions = mountWithApp(<BulkActions {...props} />);
+
+        expect(bulkActions).toContainReactComponentTimes(CheckableButton, 0, {
+          accessibilityLabel,
+        });
       });
     });
 
     describe('label', () => {
       it('is passed down to CheckableButton', () => {
         const {label} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const checkableButton = bulkActions.find(CheckableButton);
-        expect(searchCheckableButton(bulkActions, 'label', label)).toBe(
-          checkableButton.length,
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+        const checkableButtonLength = bulkActions.findAll(CheckableButton)
+          .length;
+        expect(bulkActions).toContainReactComponentTimes(
+          CheckableButton,
+          checkableButtonLength,
+          {label},
         );
       });
 
       it('does not pass down to CheckableButton when the property is not provided', () => {
         const {label, ...props} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(<BulkActions {...props} />);
-        expect(searchCheckableButton(bulkActions, 'label', label)).toBe(0);
+        const bulkActions = mountWithApp(<BulkActions {...props} />);
+        expect(bulkActions).toContainReactComponentTimes(CheckableButton, 0, {
+          label,
+        });
       });
     });
 
     describe('selected', () => {
       it('is passed down to CheckableButton', () => {
         const {selected} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const length = bulkActions.find(CheckableButton).length;
-        expect(searchCheckableButton(bulkActions, 'selected', selected)).toBe(
-          length,
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+        const checkableButtonLength = bulkActions.findAll(CheckableButton)
+          .length;
+
+        expect(bulkActions).toContainReactComponentTimes(
+          CheckableButton,
+          checkableButtonLength,
+          {selected},
         );
       });
 
       it('does not pass down to CheckableButton when the property is not provided', () => {
         const {selected, ...props} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(<BulkActions {...props} />);
-        expect(searchCheckableButton(bulkActions, 'selected', selected)).toBe(
-          0,
-        );
+        const bulkActions = mountWithApp(<BulkActions {...props} />);
+
+        expect(bulkActions).toContainReactComponentTimes(CheckableButton, 0, {
+          selected,
+        });
       });
     });
 
     describe('selectMode', () => {
       it('is passed down to Transition', () => {
-        const bulkActions = mountWithAppProvider(
+        const bulkActions = mountWithApp(
           <BulkActions {...bulkActionProps} selectMode />,
         );
-        const transition = bulkActions.find(Transition);
-        expect(transition.first().prop('in')).toBe(true);
+
+        expect(bulkActions).toContainReactComponent(Transition, {
+          in: true,
+        });
       });
 
       it('is passed down to CSSTransition', () => {
-        const bulkActions = mountWithAppProvider(
+        const bulkActions = mountWithApp(
           <BulkActions {...bulkActionProps} selectMode />,
         );
-        const cssTransition = bulkActions
-          .find(CSSTransition)
-          .filterWhere((component) => component.prop('appear') === true);
+
+        const cssTransition = bulkActions.findAll(CSSTransition, {
+          appear: true,
+        });
         cssTransition.forEach((cssTransitionComponent) => {
-          expect(cssTransitionComponent.prop('in')).toBe(true);
+          expect(cssTransitionComponent).toHaveReactProps({in: true});
         });
       });
 
       it('is passed down to CheckableButton', () => {
-        const bulkActions = mountWithAppProvider(
+        const bulkActions = mountWithApp(
           <BulkActions {...bulkActionProps} selectMode />,
         );
-        const checkableButton = bulkActions.find(CheckableButton);
+        const checkableButton = bulkActions.findAll(CheckableButton);
         checkableButton.forEach((checkableButtonComponent) => {
-          expect(checkableButtonComponent.prop('selectMode')).toBe(true);
+          expect(checkableButtonComponent).toHaveReactProps({selectMode: true});
         });
       });
     });
@@ -276,11 +262,9 @@ describe('<BulkActions />', () => {
           label: 'Test-Label',
           disabled: false,
         };
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const bulkActionButtons = bulkActions.find(BulkActionButton);
-        expect(bulkActionButtons).toHaveLength(3);
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+
+        expect(bulkActions).toContainReactComponentTimes(BulkActionButton, 3);
         warnSpy.mockRestore();
       });
     });
@@ -305,12 +289,14 @@ describe('<BulkActions />', () => {
 
       it('is passed down to CheckableButton', () => {
         const {disabled} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const length = bulkActions.find(CheckableButton).length;
-        expect(searchCheckableButton(bulkActions, 'disabled', disabled)).toBe(
-          length,
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+        const checkableButtonLength = bulkActions.findAll(CheckableButton)
+          .length;
+
+        expect(bulkActions).toContainReactComponentTimes(
+          CheckableButton,
+          checkableButtonLength,
+          {disabled},
         );
       });
 
@@ -329,45 +315,44 @@ describe('<BulkActions />', () => {
           label: 'Test-Label',
           disabled: false,
         };
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const bulkActionButton = bulkActions.find(BulkActionButton).last();
-        expect(bulkActionButton.prop('disabled')).toBe(true);
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+
+        expect(bulkActions).toContainReactComponentTimes(BulkActionButton, 1, {
+          disabled: true,
+        });
       });
     });
 
     describe('paginatedSelectAllText', () => {
       it('renders when provided', () => {
         const {paginatedSelectAllText} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(
-          <BulkActions {...bulkActionProps} />,
-        );
-        const text = findByTestID(bulkActions, 'paginated-select-all')
-          .text()
-          .trim();
-        expect(text).toBe(paginatedSelectAllText);
+        const bulkActions = mountWithApp(<BulkActions {...bulkActionProps} />);
+        expect(
+          bulkActions.find('div', {className: styles.PaginatedSelectAll}),
+        ).toContainReactText(paginatedSelectAllText);
       });
 
       it('does not render when not provided', () => {
         const {paginatedSelectAllText, ...props} = bulkActionProps;
-        const bulkActions = mountWithAppProvider(<BulkActions {...props} />);
-        expect(findByTestID(bulkActions, 'paginated-select-all').exists()).toBe(
-          false,
-        );
+        const bulkActions = mountWithApp(<BulkActions {...props} />);
+
+        expect(bulkActions).not.toContainReactComponent('div', {
+          className: styles.PaginatedSelectAll,
+        });
       });
     });
 
     describe('paginatedSelectAllAction', () => {
       it('onAction is called when CheckableButton is clicked', () => {
         const spy = jest.fn();
-        const bulkActions = mountWithAppProvider(
+
+        const bulkActions = mountWithApp(
           <BulkActions
             {...bulkActionProps}
             paginatedSelectAllAction={{content: 'content', onAction: spy}}
           />,
         );
-        findByTestID(bulkActions, 'paginated-action').simulate('click');
+        bulkActions.find(Button, {onClick: spy})!.trigger('onClick');
         expect(spy).toHaveBeenCalled();
       });
     });
@@ -409,25 +394,27 @@ describe('<BulkActions />', () => {
 
     describe('smallScreen', () => {
       it('renders only the large screen bulkactions if smallScreen is false', () => {
-        const bulkActions = mountWithAppProvider(
+        const bulkActions = mountWithApp(
           <BulkActions {...bulkActionProps} selectMode />,
         );
-        const smallGroup = findByTestID(bulkActions, 'smallGroup');
-        const largeGroup = findByTestID(bulkActions, 'largeGroup');
-
-        expect(smallGroup.exists()).toBe(false);
-        expect(largeGroup.exists()).toBe(true);
+        expect(bulkActions).not.toContainReactComponent('div', {
+          className: expect.stringContaining(styles['Group-smallScreen']),
+        });
+        expect(bulkActions).toContainReactComponent('div', {
+          className: expect.stringContaining(styles['Group-largeScreen']),
+        });
       });
 
       it('renders only the small screen bulkactions if smallScreen is true', () => {
-        const bulkActions = mountWithAppProvider(
+        const bulkActions = mountWithApp(
           <BulkActions {...bulkActionProps} selectMode smallScreen />,
         );
-        const smallGroup = findByTestID(bulkActions, 'smallGroup');
-        const largeGroup = findByTestID(bulkActions, 'largeGroup');
-
-        expect(smallGroup.exists()).toBe(true);
-        expect(largeGroup.exists()).toBe(false);
+        expect(bulkActions).toContainReactComponent('div', {
+          className: expect.stringContaining(styles['Group-smallScreen']),
+        });
+        expect(bulkActions).not.toContainReactComponent('div', {
+          className: expect.stringContaining(styles['Group-largeScreen']),
+        });
       });
     });
   });
