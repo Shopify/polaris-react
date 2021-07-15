@@ -7,3 +7,9 @@
   width: 100%;
   padding: spacing(tight) spacing();
 }
+
+.SectionWrapper {
+  > *:not(:first-child) {
+    margin-top: spacing(tight);
+  }
+}

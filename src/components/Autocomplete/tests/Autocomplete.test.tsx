@@ -3,7 +3,7 @@ import {mountWithApp, ReactTestingElement, CustomRoot} from 'test-utilities';
 import {KeypressListener} from 'components';
 
 import {TextField} from '../../TextField';
-import {Key} from '../../../types';
+import {Key, SectionDescriptor} from '../../../types';
 import {MappedOption, MappedAction} from '../components';
 import {ComboBoxTextFieldContext} from '../../../utilities/combo-box';
 import {Autocomplete} from '../Autocomplete';
@@ -485,6 +485,78 @@ describe('<Autocomplete/>', () => {
       autocomplete.find(ComboBox)?.trigger('onScrolledToBottom');
 
       expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('Multiple sections', () => {
+    const multipleSectionsOptions: SectionDescriptor[] = [
+      {
+        title: 'Pizzas',
+        options: [
+          {value: 'cheese_pizza', label: 'Cheese Pizza'},
+          {value: 'macaroni_pizza', label: 'Macaroni Pizza'},
+        ],
+      },
+      {
+        title: 'Pastas',
+        options: [
+          {value: 'spaghetti', label: 'Spaghetti'},
+          {value: 'conchiglie', label: 'Conchiglie'},
+          {value: 'Bucatini', label: 'Bucatini'},
+        ],
+      },
+    ];
+
+    it('renders one ListBox.Option for each option provided on all sections', () => {
+      const allOptionsLength = multipleSectionsOptions.reduce(
+        (lengthAccumulated, {options}) => {
+          return lengthAccumulated + options.length;
+        },
+        0,
+      );
+
+      const autocomplete = mountWithApp(
+        <Autocomplete {...defaultProps} options={multipleSectionsOptions} />,
+      );
+
+      triggerFocus(autocomplete.find(ComboBox));
+
+      expect(autocomplete).toContainReactComponentTimes(
+        ListBox.Option,
+        allOptionsLength,
+      );
+    });
+
+    it('renders one ListBox.Section for each section', () => {
+      const autocomplete = mountWithApp(
+        <Autocomplete {...defaultProps} options={multipleSectionsOptions} />,
+      );
+
+      triggerFocus(autocomplete.find(ComboBox));
+      expect(autocomplete).toContainReactComponentTimes(
+        ListBox.Section,
+        multipleSectionsOptions.length,
+      );
+    });
+
+    it('does not show section options and title if no options are provided', () => {
+      const sectionWithNoOption: SectionDescriptor = {
+        title: 'Candies',
+        options: [],
+      };
+
+      const newOptions = [...multipleSectionsOptions, sectionWithNoOption];
+
+      const autocomplete = mountWithApp(
+        <Autocomplete {...defaultProps} options={newOptions} />,
+      );
+
+      triggerFocus(autocomplete.find(ComboBox));
+
+      expect(autocomplete).toContainReactComponentTimes(
+        ListBox.Section,
+        newOptions.length - 1,
+      );
     });
   });
 

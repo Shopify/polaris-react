@@ -1,38 +1,13 @@
 import React, {useState, useCallback} from 'react';
+import type {Descriptor, OptionDescriptor, SectionDescriptor} from 'types';
 
+import {isSection} from '../../utilities/options';
 import {arraysAreEqual} from '../../utilities/arrays';
-import type {IconProps} from '../Icon';
-import type {AvatarProps} from '../Avatar';
-import type {ThumbnailProps} from '../Thumbnail';
 import {useUniqueId} from '../../utilities/unique-id';
 import {useDeepEffect} from '../../utilities/use-deep-effect';
 
 import {Option} from './components';
 import styles from './OptionList.scss';
-
-export interface OptionDescriptor {
-  /** Value of the option */
-  value: string;
-  /** Display label for the option */
-  label: React.ReactNode;
-  /** Whether the option is disabled or not */
-  disabled?: boolean;
-  /** Whether the option is active or not */
-  active?: boolean;
-  /** Unique identifier for the option */
-  id?: string;
-  /** Media to display to the left of the option content */
-  media?: React.ReactElement<IconProps | ThumbnailProps | AvatarProps>;
-}
-
-interface SectionDescriptor {
-  /** Collection of options within the section */
-  options: OptionDescriptor[];
-  /** Section title */
-  title?: string;
-}
-
-type Descriptor = OptionDescriptor | SectionDescriptor;
 
 export interface OptionListProps {
   /** A unique identifier for the option list */
@@ -177,13 +152,6 @@ function createNormalizedOptions(
     },
     ...sections,
   ];
-}
-
-function isSection(arr: Descriptor[]): arr is SectionDescriptor[] {
-  return (
-    typeof arr[0] === 'object' &&
-    Object.prototype.hasOwnProperty.call(arr[0], 'options')
-  );
 }
 
 function optionArraysAreEqual(

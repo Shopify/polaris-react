@@ -1,3 +1,29 @@
+import type {AvatarProps, IconProps, ThumbnailProps} from 'components';
+
+export interface OptionDescriptor {
+  /** Value of the option */
+  value: string;
+  /** Display label for the option */
+  label: React.ReactNode;
+  /** Whether the option is disabled or not */
+  disabled?: boolean;
+  /** Whether the option is active or not */
+  active?: boolean;
+  /** Unique identifier for the option */
+  id?: string;
+  /** Media to display to the left of the option content */
+  media?: React.ReactElement<IconProps | ThumbnailProps | AvatarProps>;
+}
+
+export interface SectionDescriptor {
+  /** Collection of options within the section */
+  options: OptionDescriptor[];
+  /** Section title */
+  title?: string;
+}
+
+export type Descriptor = OptionDescriptor | SectionDescriptor;
+
 export type IconSource =
   | React.SFC<React.SVGProps<SVGSVGElement>>
   | 'placeholder'

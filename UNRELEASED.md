@@ -20,6 +20,9 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 - Rename and expose Card compound components types ([#4261](https://github.com/Shopify/polaris-react/pull/4261))
 - Add `monospaced` prop to `TextField` component ([#4264](https://github.com/Shopify/polaris-react/pull/4264))
 - Add base tight spacing option to `Stack` component([#4273](https://github.com/Shopify/polaris-react/pull/4273))
+- Added support for sectioned options in `Autocomplete` [#4221](https://github.com/Shopify/polaris-react/pull/4221)
+
+### Bug fixes
 
 ### Bug fixes
 
