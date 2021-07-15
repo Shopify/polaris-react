@@ -299,6 +299,9 @@ export {ThemeProvider} from './ThemeProvider';
 export {Thumbnail} from './Thumbnail';
 export type {ThumbnailProps} from './Thumbnail';
 
+export {TimePicker} from './TimePicker';
+export type {TimePickerProps} from './TimePicker';
+
 export {Toast} from './Toast';
 export type {ToastProps} from './Toast';
 

@@ -1,0 +1,11 @@
+.TimePart {
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+.TimePartActive {
+  opacity: 1;
+}

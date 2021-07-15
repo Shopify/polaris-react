@@ -1,0 +1,81 @@
+@import '../../styles/common';
+@import './shared';
+
+.Wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.Time {
+  margin-bottom: spacing();
+}
+
+.TimeWithPeriods {
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  grid-column-gap: spacing();
+  align-items: center;
+}
+
+.Clock {
+  position: relative;
+  width: $clockSize;
+  height: $clockSize;
+  border-radius: 50%;
+  background-color: color('sky', 'light');
+}
+
+.Dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: #{$dotSize / -2};
+  margin-left: #{$dotSize / -2};
+  width: $dotSize;
+  height: $dotSize;
+  background-color: color('blue');
+  border-radius: 50%;
+}
+
+.Line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1px;
+  width: 2px;
+  height: #{$clockSize / 2 - $digitSize * 0.9};
+  background-color: color('blue');
+  transform: translateY(-100%);
+  transform-origin: bottom;
+}
+
+.InnerLine {
+  height: #{$innerClockSize / 2 - $digitSize * 0.9};
+}
+
+.DigitsWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.InnerDigitsWrapper {
+  position: relative;
+  width: $innerClockSize;
+  height: $innerClockSize;
+}
+
+@for $i from 1 through 23 {
+  .LineHour#{$i} {
+    transform: translateY(-100%) rotate(#{$i * $hourAngle});
+  }
+}
+
+@for $i from 1 through 59 {
+  .LineMinute#{$i} {
+    transform: translateY(-100%) rotate(#{$i * $minuteAngle});
+  }
+}
