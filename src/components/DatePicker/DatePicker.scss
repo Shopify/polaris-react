@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import '../../styles/common';
 
 $font-size: rem(12px);
@@ -35,7 +37,7 @@ $range-end-border-radius: rem(30px);
 }
 
 .DayCell {
-  width: (100% / 7);
+  width: math.div(100%, 7);
   background: transparent;
   margin: 0;
   padding: 0;

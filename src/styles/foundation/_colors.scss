@@ -1,4 +1,6 @@
 // stylelint-disable-next-line scss/partial-no-import
+@use "sass:math";
+
 @import '../polaris-tokens/colors.color-map';
 
 ///
@@ -69,9 +71,9 @@ $color-palette-data: map-extend(
     $background: rgb(255, 255, 255);
   }
 
-  $red: red($background) * red($foreground) / 255;
-  $green: green($background) * green($foreground) / 255;
-  $blue: blue($background) * blue($foreground) / 255;
+  $red: math.div(red($background) * red($foreground), 255);
+  $green: math.div(green($background) * green($foreground), 255);
+  $blue: math.div(blue($background) * blue($foreground), 255);
 
   $opacity: opacity($foreground);
   $background-opacity: opacity($background);

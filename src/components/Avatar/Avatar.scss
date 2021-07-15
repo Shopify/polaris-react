@@ -12,7 +12,7 @@ $large-size: rem(60px);
   max-width: 100%;
   background: var(--p-surface-neutral);
   color: var(--p-icon-subdued);
-  border-radius: $large-size / 2;
+  border-radius: $large-size * 0.5;
   user-select: none;
 
   @media (forced-colors: active) {
@@ -78,7 +78,7 @@ $large-size: rem(60px);
   width: 100%;
   height: 100%;
   background-color: var(--p-background);
-  border-radius: $large-size / 2;
+  border-radius: $large-size * 0.5;
   transform: translate(-50%, -50%);
   object-fit: cover;
 }

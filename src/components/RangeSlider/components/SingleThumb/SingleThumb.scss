@@ -111,11 +111,11 @@ $stacking-order: (
 
   &::-ms-thumb {
     margin-top: 0;
-    transform: translateY($range-thumb-size / 5) scale(0.4);
+    transform: translateY($range-thumb-size * 0.2) scale(0.4);
   }
 
   &::-webkit-slider-thumb {
-    margin-top: -($range-thumb-size - $range-track-height) / 2;
+    margin-top: -($range-thumb-size - $range-track-height) * 0.5;
   }
 
   &:active {
@@ -216,7 +216,7 @@ $range-output-spacing: rem(16px);
     transform: translateY(-$range-output-spacing);
 
     @include page-content-when-not-partially-condensed {
-      transform: translateY(-($range-output-spacing / 2));
+      transform: translateY(-($range-output-spacing * 0.5));
     }
   }
   @include high-contrast-outline;

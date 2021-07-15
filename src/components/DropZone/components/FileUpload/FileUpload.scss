@@ -2,7 +2,7 @@
 
 $fileupload-padding: rem(15px);
 $slim-min-height: rem(30px);
-$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
+$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) * 0.5;
 
 .FileUpload {
   padding: $fileupload-padding;

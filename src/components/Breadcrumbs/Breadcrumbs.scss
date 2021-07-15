@@ -13,7 +13,7 @@ $icon-size: rem(20px);
   color: var(--p-text-subdued);
   text-decoration: none;
   margin: 0;
-  padding: spacing(extra-tight) / 2;
+  padding: spacing(extra-tight) * 0.5;
   border-radius: var(--p-border-radius-base);
   border: 1px solid var(--p-border-neutral-subdued);
   @include focus-ring($border-width: rem(1px));

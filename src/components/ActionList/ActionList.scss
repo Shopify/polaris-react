@@ -2,7 +2,7 @@
 
 $image-size: rem(20px);
 $item-min-height: rem(40px);
-$item-vertical-padding: ($item-min-height - line-height(body)) / 2;
+$item-vertical-padding: ($item-min-height - line-height(body)) * 0.5;
 
 .ActionList {
   list-style: none;

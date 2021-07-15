@@ -1,10 +1,12 @@
+@use "sass:math";
+
 @import '../../styles/common';
 
 $secondary-basis: layout-width(secondary, min);
 $primary-basis: layout-width(primary, min);
 $one-half-basis: layout-width(one-half-width, base);
 $one-third-basis: layout-width(one-third-width, base);
-$relative-size: $primary-basis / $secondary-basis;
+$relative-size: math.div($primary-basis, $secondary-basis);
 
 .Layout {
   display: flex;

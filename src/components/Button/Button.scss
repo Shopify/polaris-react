@@ -1,11 +1,11 @@
 @import '../../styles/common';
 
 $min-height: control-height();
-$vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
+$vertical-padding: ($min-height - line-height(body) - rem(2px)) * 0.5;
 $slim-min-height: rem(28px);
-$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
+$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) * 0.5;
 $large-min-height: rem(44px);
-$large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
+$large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) * 0.5;
 $spinner-size: rem(20px);
 
 $partial-button-filled-pressed-box-shadow: inset 0 0 0 0 transparent,
@@ -107,8 +107,8 @@ $stacking-order: (
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -($spinner-size / 2);
-  margin-left: -($spinner-size / 2);
+  margin-top: -($spinner-size * 0.5);
+  margin-left: -($spinner-size * 0.5);
 }
 
 .primary {

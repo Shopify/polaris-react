@@ -2,6 +2,8 @@
 // polaris-react. As the AppProvider is a required wrapper when using polaris
 // components then this css shall always be present.
 
+@use "sass:math";
+
 @import '../../styles/common';
 
 :root {
@@ -32,7 +34,7 @@ button {
 
 html {
   position: relative;
-  font-size: ($base-font-size / $default-browser-font-size) * 100%;
+  font-size: math.div($base-font-size, $default-browser-font-size) * 100%;
   -webkit-font-smoothing: antialiased;
 
   // This needs to come after -webkit-font-smoothing

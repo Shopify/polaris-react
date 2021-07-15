@@ -6,7 +6,7 @@ $bottom-shadow-size: 2px;
 .KeyboardKey {
   display: inline-block;
   height: $key-base-height;
-  margin: 0 (spacing(extra-tight) / 2) $bottom-shadow-size;
+  margin: 0 (spacing(extra-tight) * 0.5) $bottom-shadow-size;
   padding: 0 spacing(extra-tight);
   background-color: var(--p-surface);
   box-shadow: 0 0 0 1px var(--p-border-subdued),

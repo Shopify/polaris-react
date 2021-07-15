@@ -10,7 +10,7 @@ $control-vertical-adjustment: rem(2px);
   min-height: $min-height;
   text-align: left;
   border-radius: var(--p-border-radius-base);
-  margin-top: spacing(tight) / 2;
+  margin-top: spacing(tight) * 0.5;
 }
 
 .SingleSelectOption {

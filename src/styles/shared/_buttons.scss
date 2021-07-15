@@ -6,7 +6,7 @@
 
 @mixin button-base {
   $min-height: control-height();
-  $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
+  $vertical-padding: ($min-height - line-height(body) - rem(2px)) * 0.5;
 
   @include recolor-icon(var(--p-icon));
   @include focus-ring($border-width: border-width('base'));

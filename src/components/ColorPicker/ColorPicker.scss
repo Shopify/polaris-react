@@ -1,3 +1,5 @@
+@use "sass:list";
+
 @import '../../styles/common';
 
 $picker-size: rem(160px);
@@ -15,7 +17,7 @@ $stacking-order: (
       var(--p-surface) 0% 25%,
       var(--p-surface-neutral-subdued) 0% 50%
     )
-    50% / #{spacing() spacing()};
+    list.slash(50%, spacing() spacing());
 }
 
 .ColorPicker {

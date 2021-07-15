@@ -2,7 +2,7 @@ import path from 'path';
 import {promisify} from 'util';
 
 import {createFilter} from '@rollup/pluginutils';
-import nodeSass from 'node-sass';
+import sass from 'sass';
 import postcss from 'postcss';
 import cssModules from 'postcss-modules';
 
@@ -22,7 +22,7 @@ export function styles({
 
   const filter = createFilter(include, exclude);
 
-  const renderSass = promisify(nodeSass.render);
+  const renderSass = promisify(sass.render);
 
   const styleProcessor = postcss([
     cssModules({
@@ -147,7 +147,6 @@ export function styles({
 
       const sassOutput = await renderSass({
         data: source,
-        outputStyle: 'compact',
         includePaths: [path.dirname(id)],
       }).then((result) => result.css.toString());
 

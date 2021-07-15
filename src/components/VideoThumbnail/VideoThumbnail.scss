@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import '../../styles/common';
 $start-button-size: rem(60px);
 $progress-bar-height: rem(6px);
@@ -5,7 +7,7 @@ $progress-bar-height: rem(6px);
 .Thumbnail {
   position: relative;
   // Accommodating 16:9 responsive block for video
-  padding-bottom: 9 / 16 * 100%;
+  padding-bottom: math.div(9, 16) * 100%;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -53,8 +55,8 @@ $progress-bar-height: rem(6px);
   left: 50%;
   width: rem($start-button-size);
   height: rem($start-button-size);
-  margin-top: rem(-$start-button-size / 2);
-  margin-left: rem(-$start-button-size / 2);
+  margin-top: rem(-$start-button-size * 0.5);
+  margin-left: rem(-$start-button-size * 0.5);
 }
 
 .Timestamp {

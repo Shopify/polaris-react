@@ -131,7 +131,7 @@ $range-output-spacing: rem(16px);
   transition-property: opacity, visibility, bottom;
   transition-duration: var(--p-duration-1-5-0);
   transition-timing-function: var(--p-ease);
-  transform: translateX(calc(-50% + #{$range-thumb-size / 2}));
+  transform: translateX(calc(-50% + #{$range-thumb-size * 0.5}));
 
   .Thumbs:hover + &,
   .Thumbs:focus + & {
@@ -169,7 +169,7 @@ $range-output-spacing: rem(16px);
     transform: translateY(-$range-output-spacing);
 
     @include page-content-when-not-partially-condensed {
-      transform: translateY(-($range-output-spacing / 2));
+      transform: translateY(-($range-output-spacing * 0.5));
     }
   }
   // stylelint-enable selector-max-specificity, selector-max-combinators, selector-max-class

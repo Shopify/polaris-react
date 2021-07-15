@@ -125,7 +125,7 @@ $action-menu-rollup-computed-width: rem(40px);
   // stylelint-disable-next-line selector-max-class
   .mobileView & {
     position: absolute;
-    top: spacing(loose) + (control-height() / 4);
+    top: spacing(loose) + (control-height() * 0.25);
     right: spacing(loose);
     margin-top: 0;
 
@@ -136,7 +136,7 @@ $action-menu-rollup-computed-width: rem(40px);
 
   // stylelint-disable-next-line selector-max-class
   .mobileView.hasNavigation & {
-    top: control-height() / 2;
+    top: control-height() * 0.5;
   }
 
   @include print-hidden;

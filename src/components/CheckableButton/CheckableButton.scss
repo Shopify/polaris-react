@@ -2,8 +2,8 @@
 
 $button-min-height: control-height();
 
-$button-vertical-padding: ($button-min-height - line-height(body) - rem(2px)) /
-  2;
+$button-vertical-padding: ($button-min-height - line-height(body) - rem(2px)) *
+  0.5;
 $control-size: rem(16px);
 $chekbox-label-margin: rem(20px);
 
