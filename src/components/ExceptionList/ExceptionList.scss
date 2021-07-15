@@ -1,9 +1,12 @@
 @import '../../styles/common';
 
+$icon-height: rem(20px);
+
 .ExceptionList {
   margin: 0;
   padding: 0;
   list-style: none;
+  min-height: $icon-height;
 }
 
 .Item {
@@ -24,7 +27,7 @@
   align-items: center;
   justify-content: center;
   min-width: rem(20px);
-  height: rem(20px);
+  height: $icon-height;
   margin-right: spacing(extra-tight);
 
   @include recolor-icon(var(--p-icon-subdued));

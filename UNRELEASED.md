@@ -10,6 +10,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 
 ### Bug fixes
 
+- Fix collapsed `ExceptionList` when description is undefined [#2863](https://github.com/Shopify/polaris-react/pull/2863)
+
 ### Documentation
 
 ### Development workflow
