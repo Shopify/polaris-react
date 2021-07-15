@@ -225,7 +225,7 @@
           "on_or_after": "dopo il {date}"
         }
       },
-      "showingTotalCount": "Visualizzazione di {itemsCount} su {totalItemsCount}{resource}",
+      "showingTotalCount": "Visualizzazione di {itemsCount} su {totalItemsCount} {resource}",
       "allFilteredItemsSelected": "Tutti i {resourceNamePlural} {itemsLength}+ in questo filtro sono selezionati.",
       "selectAllFilteredItems": "Seleziona tutti i {resourceNamePlural} {itemsLength}+ in questo filtro"
     },
