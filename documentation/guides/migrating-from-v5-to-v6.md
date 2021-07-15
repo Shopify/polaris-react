@@ -101,7 +101,7 @@ The `Modal` component's `title` prop is now required to help enforce accessibili
     },
   ]}
 +  title="Reach more shoppers with Instagram product tags"
-+  hiddenTitle
++  titleHidden
 >
   <Modal.Section>
     <TextContainer>
