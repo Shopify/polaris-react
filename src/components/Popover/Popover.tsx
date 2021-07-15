@@ -134,16 +134,17 @@ export const Popover: React.FunctionComponent<PopoverProps> & {
       return;
     }
 
-    if (
-      (source === PopoverCloseSource.FocusOut ||
-        source === PopoverCloseSource.EscapeKeypress) &&
-      activatorNode
-    ) {
+    if (activatorNode) {
       const focusableActivator =
         findFirstFocusableNodeIncludingDisabled(activatorNode) ||
         findFirstFocusableNodeIncludingDisabled(activatorContainer.current) ||
         activatorContainer.current;
-      if (!focusNextFocusableNode(focusableActivator, isInPortal)) {
+
+      if (
+        source === PopoverCloseSource.EscapeKeypress ||
+        (source === PopoverCloseSource.FocusOut &&
+          !focusNextFocusableNode(focusableActivator, isInPortal))
+      ) {
         focusableActivator.focus();
       }
     }

@@ -275,7 +275,7 @@ describe('<Popover />', () => {
     expect(onCloseSpy).not.toHaveBeenCalled();
   });
 
-  it('focuses the next available element when the popover is closed', () => {
+  it('focuses the next available element when the popover is closed by tabbing out', () => {
     const id = 'focus-target';
     function PopoverTest() {
       return (
@@ -290,7 +290,7 @@ describe('<Popover />', () => {
 
     const popover = mountWithApp(<PopoverTest />);
 
-    popover.find(PopoverOverlay)!.trigger('onClose', 1);
+    popover.find(PopoverOverlay)!.trigger('onClose', 2);
     const focusTarget = popover.find('button', {id})!.domNode;
 
     expect(document.activeElement).toBe(focusTarget);
@@ -302,6 +302,25 @@ describe('<Popover />', () => {
       return (
         <>
           <Popover active activator={<button id={id} />} onClose={noop} />
+        </>
+      );
+    }
+
+    const popover = mountWithApp(<PopoverTest />);
+
+    popover.find(PopoverOverlay)!.trigger('onClose', 1);
+    const focusTarget = popover.find('button', {id})!.domNode;
+
+    expect(document.activeElement).toBe(focusTarget);
+  });
+
+  it('focuses on the activator when closing the popover by escape key', () => {
+    const id = 'activator';
+    function PopoverTest() {
+      return (
+        <>
+          <Popover active activator={<button id={id} />} onClose={noop} />
+          <button />
         </>
       );
     }

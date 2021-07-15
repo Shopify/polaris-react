@@ -6,7 +6,7 @@ export type MouseUpBlurHandler = (
 ) => void;
 
 const FOCUSABLE_SELECTOR =
-  'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]';
+  'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]:not(:disabled)';
 const KEYBOARD_FOCUSABLE_SELECTORS =
   'a,frame,iframe,input:not([type=hidden]):not(:disabled),select:not(:disabled),textarea:not(:disabled),button:not(:disabled),*[tabindex]:not([tabindex="-1"])';
 

@@ -424,6 +424,7 @@ A popover can contain many numerous types of content. Whether it's a menu, grid 
 - When a popover opens, focus moves to the first focusable element or to the popover container
 - Once focus is in the popover, merchants can access controls in the popover using the <kbd>tab</kbd> key (and <kbd>shift</kbd> + <kbd>tab</kbd> backwards) and standard keystrokes for interacting
 - Merchants can dismiss the popover by tabbing out of it, pressing the <kbd>esc</kbd> key, or clicking outside of it
-- When the popover is closed, focus returns to the element that launched it
+- When the popover is closed by pressing the <kbd>esc</kbd> key, focus returns to the element that launched it
+- Tabbing out of a popover will place the focus on the next focusable element
 
 <!-- /content-for -->
