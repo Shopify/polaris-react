@@ -5,7 +5,13 @@ import {
   SelectMinor,
 } from '@shopify/polaris-icons';
 
-import type {BaseButton, ConnectedDisclosure, IconSource} from '../../types';
+import type {
+  ButtonActionProps,
+  ButtonUrlProps,
+  BaseButton,
+  ConnectedDisclosure,
+  IconSource,
+} from '../../types';
 import {classNames, variationName} from '../../utilities/css';
 import {
   handleMouseUpByBlurring,
@@ -20,7 +26,7 @@ import {UnstyledButton, UnstyledButtonProps} from '../UnstyledButton';
 
 import styles from './Button.scss';
 
-export interface ButtonProps extends BaseButton {
+interface BaseProps {
   /** The content to display inside the button */
   children?: string | string[];
   /** Provides extra visual weight and identifies the primary action in a set of buttons */
@@ -52,12 +58,13 @@ export interface ButtonProps extends BaseButton {
   connectedDisclosure?: ConnectedDisclosure;
 }
 
+export type ButtonProps = BaseButton & BaseProps;
+
 interface CommonButtonProps
   extends Pick<
     ButtonProps,
     | 'id'
     | 'accessibilityLabel'
-    | 'ariaDescribedBy'
     | 'role'
     | 'onClick'
     | 'onFocus'
@@ -69,20 +76,20 @@ interface CommonButtonProps
   onMouseUp: MouseUpBlurHandler;
 }
 
-type LinkButtonProps = Pick<ButtonProps, 'url' | 'external' | 'download'>;
+type LinkButtonProps = Pick<ButtonUrlProps, 'url' | 'external' | 'download'>;
 
 type ActionButtonProps = Pick<
-  ButtonProps,
+  ButtonActionProps,
   | 'submit'
-  | 'disabled'
-  | 'loading'
   | 'ariaControls'
   | 'ariaExpanded'
+  | 'ariaDescribedBy'
   | 'pressed'
   | 'onKeyDown'
   | 'onKeyUp'
   | 'onKeyPress'
->;
+> &
+  Pick<ButtonProps, 'disabled' | 'loading'>;
 
 const DEFAULT_SIZE = 'medium';
 
@@ -256,7 +263,6 @@ export function Button({
     id,
     className,
     accessibilityLabel,
-    ariaDescribedBy,
     role,
     onClick,
     onFocus,
@@ -265,25 +271,28 @@ export function Button({
     onMouseEnter,
     onTouchStart,
   };
-  const linkProps: LinkButtonProps = {
-    url,
-    external,
-    download,
-  };
-  const actionProps: ActionButtonProps = {
-    submit,
-    disabled: isDisabled,
-    loading,
-    ariaControls,
-    ariaExpanded,
-    pressed,
-    onKeyDown,
-    onKeyUp,
-    onKeyPress,
-  };
+
+  const conditionalProps: LinkButtonProps | ActionButtonProps = url
+    ? {
+        url,
+        external,
+        download,
+      }
+    : {
+        submit,
+        disabled: isDisabled,
+        loading,
+        ariaControls,
+        ariaExpanded,
+        ariaDescribedBy,
+        pressed,
+        onKeyDown,
+        onKeyUp,
+        onKeyPress,
+      };
 
   const buttonMarkup = (
-    <UnstyledButton {...commonProps} {...linkProps} {...actionProps}>
+    <UnstyledButton {...commonProps} {...conditionalProps}>
       <span className={styles.Content}>
         {spinnerSVGMarkup}
         {iconMarkup}
