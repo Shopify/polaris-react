@@ -7,6 +7,7 @@ export default {
   title: 'Playground/Playground',
   parameters: {
     layout: 'fullscreen',
+    chromatic: {disable: true},
   },
 };
 
