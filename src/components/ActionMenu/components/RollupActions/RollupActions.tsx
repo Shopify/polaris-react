@@ -10,17 +10,24 @@ import {useToggle} from '../../../../utilities/use-toggle';
 import {ActionList} from '../../../ActionList';
 import {Button} from '../../../Button';
 import {Popover} from '../../../Popover';
+import {Tooltip} from '../../../Tooltip';
 
 import styles from './RollupActions.scss';
 
 export interface RollupActionsProps {
+  /** Accessibilty label override */
+  accessibilityLabelOverride?: string;
   /** Collection of actions for the list */
   items?: ActionListItemDescriptor[];
   /** Collection of sectioned action items */
   sections?: ActionListSection[];
 }
 
-export function RollupActions({items = [], sections = []}: RollupActionsProps) {
+export function RollupActions({
+  accessibilityLabelOverride,
+  items = [],
+  sections = [],
+}: RollupActionsProps) {
   const i18n = useI18n();
 
   const {value: rollupOpen, toggle: toggleRollupOpen} = useToggle(false);
@@ -29,16 +36,20 @@ export function RollupActions({items = [], sections = []}: RollupActionsProps) {
     return null;
   }
 
+  const accessibilityLabel = accessibilityLabelOverride
+    ? accessibilityLabelOverride
+    : i18n.translate('Polaris.ActionMenu.RollupActions.rollupButton');
+
   const activatorMarkup = (
     <div className={styles.RollupActivator}>
-      <Button
-        outline
-        icon={HorizontalDotsMinor}
-        accessibilityLabel={i18n.translate(
-          'Polaris.ActionMenu.RollupActions.rollupButton',
-        )}
-        onClick={toggleRollupOpen}
-      />
+      <Tooltip content={accessibilityLabel}>
+        <Button
+          outline
+          icon={HorizontalDotsMinor}
+          accessibilityLabel={accessibilityLabel}
+          onClick={toggleRollupOpen}
+        />
+      </Tooltip>
     </div>
   );
 

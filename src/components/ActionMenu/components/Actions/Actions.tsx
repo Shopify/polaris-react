@@ -44,7 +44,7 @@ export function Actions({actions = [], groups = []}: Props) {
     rolledUp: [],
   });
   const defaultRollupGroup: MenuGroupDescriptor = {
-    title: i18n.translate('Polaris.Actions.moreActions'),
+    title: i18n.translate('Polaris.ActionMenu.Actions.moreActions'),
     actions: [],
   };
   const lastMenuGroup = [...groups].pop();

@@ -17,12 +17,15 @@ export interface ActionMenuProps {
   groups?: MenuGroupDescriptor[];
   /** Roll up all actions into a Popover > ActionList */
   rollup?: boolean;
+  /** Override label for rolled up actions activator */
+  rollupActionsLabelOverride?: string;
 }
 
 export function ActionMenu({
   actions = [],
   groups = [],
   rollup,
+  rollupActionsLabelOverride,
 }: ActionMenuProps) {
   if (actions.length === 0 && groups.length === 0) {
     return null;
@@ -38,7 +41,11 @@ export function ActionMenu({
   return (
     <div className={actionMenuClassNames}>
       {rollup ? (
-        <RollupActions items={actions} sections={rollupSections} />
+        <RollupActions
+          accessibilityLabelOverride={rollupActionsLabelOverride}
+          items={actions}
+          sections={rollupSections}
+        />
       ) : (
         <Actions actions={actions} groups={groups} />
       )}

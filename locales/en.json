@@ -1,7 +1,12 @@
 {
   "Polaris": {
-    "Actions": {
-      "moreActions": "More actions"
+    "ActionMenu": {
+      "Actions": {
+        "moreActions": "More actions"
+      },
+      "RollupActions": {
+        "rollupButton": "View actions"
+      }
     },
     "Avatar": {
       "label": "Avatar",
@@ -129,11 +134,6 @@
         "closeMobileNavigationLabel": "Close navigation"
       }
     },
-    "ActionMenu": {
-      "RollupActions": {
-        "rollupButton": "Actions"
-      }
-    },
     "Filters": {
       "moreFilters": "More filters",
       "moreFiltersWithCount": "More filters ({count})",
@@ -173,6 +173,11 @@
     "Modal": {
       "iFrameTitle": "body markup",
       "modalWarning": "These required properties are missing from Modal: {missingProps}"
+    },
+    "Page": {
+      "Header": {
+        "rollupActionsLabelOverride": "View more actions"
+      }
     },
     "Pagination": {
       "previous": "Previous",

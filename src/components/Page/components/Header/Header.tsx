@@ -4,6 +4,7 @@ import {classNames} from '../../../../utilities/css';
 import {buttonsFrom} from '../../../Button';
 import {TextStyle} from '../../../TextStyle';
 import {useMediaQuery} from '../../../../utilities/media-query';
+import {useI18n} from '../../../../utilities/i18n';
 import {
   ConditionalRender,
   ConditionalWrapper,
@@ -77,6 +78,7 @@ export function Header({
   secondaryActions = [],
   actionGroups = [],
 }: HeaderProps) {
+  const i18n = useI18n();
   const {isNavigationCollapsed} = useMediaQuery();
   const isSingleRow =
     !primaryAction &&
@@ -134,6 +136,9 @@ export function Header({
         actions={secondaryActions}
         groups={actionGroups}
         rollup={isNavigationCollapsed}
+        rollupActionsLabelOverride={i18n.translate(
+          'Polaris.Page.Header.rollupActionsLabelOverride',
+        )}
       />
     ) : null;
 
