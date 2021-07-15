@@ -56,7 +56,8 @@ $content-max-width: rem(400px);
 .Wrapper {
   position: relative;
   overflow: hidden;
-  background-color: var(--p-surface);
+  // background-color: var(--p-surface);
+  background-color: pink;
   border-radius: var(--p-border-radius-wide);
   outline: 1px solid transparent;
 }

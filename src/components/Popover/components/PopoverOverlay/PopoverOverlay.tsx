@@ -234,6 +234,10 @@ export class PopoverOverlay extends PureComponent<PopoverOverlayProps, State> {
       </div>
     );
 
+    console.log({content});
+
+    const [firstGrandChild] = content.props.children.props.children;
+
     return (
       <div className={className} {...overlay.props}>
         <EventListener event="click" handler={this.handleClick} />
@@ -246,7 +250,9 @@ export class PopoverOverlay extends PureComponent<PopoverOverlayProps, State> {
           onFocus={this.handleFocusFirstItem}
         />
         <ThemeProvider alwaysRenderCustomProperties theme={{colorScheme}}>
-          <div className={styles.Wrapper}>{content}</div>
+          {firstGrandChild.props.items.length > 0 && (
+            <div className={styles.Wrapper}>{content}</div>
+          )}
         </ThemeProvider>
         <div
           className={styles.FocusTracker}
