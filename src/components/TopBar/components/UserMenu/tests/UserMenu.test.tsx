@@ -1,8 +1,7 @@
 import React from 'react';
 import {ViewMinor} from '@shopify/polaris-icons';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
 import {mountWithApp} from 'test-utilities';
+import {Avatar} from 'components/Avatar';
 
 import {UserMenu} from '../UserMenu';
 import {Menu} from '../../Menu';
@@ -17,13 +16,37 @@ describe('<UserMenu />', () => {
   };
 
   it('renders with the given props', () => {
-    const userMenu = mountWithAppProvider(<UserMenu {...userMenuProps} />);
-    expect(userMenu.find(UserMenu).props()).toStrictEqual(userMenuProps);
+    const userMenu = mountWithApp(<UserMenu {...userMenuProps} />);
+
+    expect(userMenu).toContainReactComponent(Menu, {
+      actions: userMenuProps.actions,
+      open: userMenuProps.open,
+      onOpen: userMenuProps.onToggle,
+      onClose: userMenuProps.onToggle,
+    });
+    expect(userMenu).toContainReactComponent('p', {
+      children: userMenuProps.name,
+    });
+    expect(userMenu).toContainReactComponent(Avatar, {
+      initials: userMenuProps.initials,
+    });
   });
 
   it('renders with the given props when in mobile view but no mobile props are available', () => {
-    const userMenu = mountWithAppProvider(<UserMenu {...userMenuProps} />);
-    expect(userMenu.find(UserMenu).props()).toStrictEqual(userMenuProps);
+    const userMenu = mountWithApp(<UserMenu {...userMenuProps} />);
+
+    expect(userMenu).toContainReactComponent(Menu, {
+      actions: userMenuProps.actions,
+      open: userMenuProps.open,
+      onOpen: userMenuProps.onToggle,
+      onClose: userMenuProps.onToggle,
+    });
+    expect(userMenu).toContainReactComponent('p', {
+      children: userMenuProps.name,
+    });
+    expect(userMenu).toContainReactComponent(Avatar, {
+      initials: userMenuProps.initials,
+    });
   });
 
   it('passes accessibilityLabel to the menu component', () => {

@@ -1,33 +1,34 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 
 import {Search} from '../Search';
 import {SearchDismissOverlay} from '../../SearchDismissOverlay';
 
 describe('<Search />', () => {
   it('mounts', () => {
-    const search = mountWithAppProvider(<Search />);
-    expect(search.exists()).toBe(true);
+    const search = mountWithApp(<Search />);
+    expect(search).not.toBeNull();
   });
 
   it('renders its children', () => {
-    const search = mountWithAppProvider(<Search>Hello Polaris</Search>);
-    expect(search.text()).toContain('Hello Polaris');
+    const search = mountWithApp(<Search>Hello Polaris</Search>);
+    expect(search).toContainReactText('Hello Polaris');
   });
 
   it('renders a SearchDismissOverlay', () => {
-    const search = mountWithAppProvider(<Search visible>Hello Polaris</Search>);
-    expect(search.find(SearchDismissOverlay)).toHaveLength(1);
+    const search = mountWithApp(<Search visible>Hello Polaris</Search>);
+    expect(search).toContainReactComponent(SearchDismissOverlay);
   });
 
   it('passes the overlayVisible prop to SearchDismissOverlay', () => {
-    const search = mountWithAppProvider(
+    const search = mountWithApp(
       <Search visible overlayVisible>
         Hello Polaris
       </Search>,
     );
 
-    expect(search.find(SearchDismissOverlay).prop('visible')).toBe(true);
+    expect(search).toContainReactComponent(SearchDismissOverlay, {
+      visible: true,
+    });
   });
 });

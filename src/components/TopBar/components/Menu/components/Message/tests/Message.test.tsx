@@ -1,6 +1,5 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 
 import {Message} from '../Message';
 import {Badge} from '../../../../../../Badge';
@@ -17,26 +16,26 @@ const messageProps = {
 
 describe('<Message />', () => {
   it('mounts', () => {
-    const message = mountWithAppProvider(<Message {...messageProps} />);
+    const message = mountWithApp(<Message {...messageProps} />);
 
-    expect(message.exists()).toBe(true);
+    expect(message).not.toBeNull();
   });
 
   it('will not render badge content by default', () => {
-    const message = mountWithAppProvider(<Message {...messageProps} />);
+    const message = mountWithApp(<Message {...messageProps} />);
 
-    expect(message.find(Badge)).toHaveLength(0);
+    expect(message).not.toContainReactComponent(Badge);
   });
 
   it('renders a badge when the badge prop is provided', () => {
-    const message = mountWithAppProvider(
+    const message = mountWithApp(
       <Message
         {...messageProps}
         badge={{content: 'new', status: 'new' as 'new'}}
       />,
     );
 
-    expect(message.find(Badge)).toHaveLength(1);
+    expect(message).toContainReactComponent(Badge);
   });
 });
 

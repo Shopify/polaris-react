@@ -1,6 +1,5 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider, findByTestID} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 import {Image, UnstyledLink} from 'components';
 
 import {TopBar} from '../TopBar';
@@ -14,9 +13,9 @@ const actions = [
 
 describe('<TopBar />', () => {
   it('mounts', () => {
-    const topBar = mountWithAppProvider(<TopBar />);
+    const topBar = mountWithApp(<TopBar />);
 
-    expect(topBar.exists()).toBe(true);
+    expect(topBar).not.toBeNull();
   });
 
   describe('compound components', () => {
@@ -37,16 +36,16 @@ describe('<TopBar />', () => {
           onToggle={noop}
         />
       );
-      const topBar = mountWithAppProvider(<TopBar userMenu={user} />);
-      expect(topBar.find(UserMenu)).toHaveLength(1);
+      const topBar = mountWithApp(<TopBar userMenu={user} />);
+      expect(topBar).toContainReactComponent(UserMenu);
     });
 
     it('renders the searchField prop', () => {
       const searchField = (
         <TopBar.SearchField onChange={noop} value="" placeholder="Search" />
       );
-      const topBar = mountWithAppProvider(<TopBar searchField={searchField} />);
-      expect(topBar.find(SearchField)).toHaveLength(1);
+      const topBar = mountWithApp(<TopBar searchField={searchField} />);
+      expect(topBar).toContainReactComponent(SearchField);
     });
 
     it('renders the secondaryMenu prop', () => {
@@ -59,27 +58,31 @@ describe('<TopBar />', () => {
           onOpen={noop}
         />
       );
-      const topBar = mountWithAppProvider(
-        <TopBar secondaryMenu={secondaryMenu} />,
-      );
-      expect(topBar.find(Menu)).toHaveLength(1);
+      const topBar = mountWithApp(<TopBar secondaryMenu={secondaryMenu} />);
+      expect(topBar).toContainReactComponent(Menu);
     });
   });
 
   describe('navigation content', () => {
     it('renders a navigation button when hasNavigation is true', () => {
-      const topBar = mountWithAppProvider(<TopBar showNavigationToggle />);
+      const topBar = mountWithApp(<TopBar showNavigationToggle />);
 
-      expect(topBar.find('[aria-label="Toggle menu"]')).toHaveLength(1);
+      expect(topBar).toContainReactComponent('button', {
+        'aria-label': 'Toggle menu',
+      });
     });
 
     it('sets onToggleNavigation on the navigation button', () => {
       const spy = jest.fn();
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar showNavigationToggle onNavigationToggle={spy} />,
       );
 
-      topBar.find('[aria-label="Toggle menu"]').simulate('click');
+      topBar
+        .find('button', {
+          'aria-label': 'Toggle menu',
+        })
+        ?.trigger('onClick');
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
@@ -92,7 +95,7 @@ describe('<TopBar />', () => {
     const searchResults = <div id="search-content">Hello</div>;
 
     it('renders the search results', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           searchResultsVisible
@@ -100,11 +103,11 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find(Search)).toHaveLength(1);
+      expect(topBar).toContainReactComponent(Search);
     });
 
     it('renders the search results when `searchResultsVisible` is false', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           searchResultsVisible={false}
@@ -112,11 +115,11 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find(Search)).toHaveLength(1);
+      expect(topBar).toContainReactComponent(Search);
     });
 
     it('renders the search prop', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           searchResultsVisible
@@ -124,11 +127,13 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find('#search-content')).toHaveLength(1);
+      expect(topBar).toContainReactComponent('div', {
+        id: 'search-content',
+      });
     });
 
     it('passes the visible prop to search', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           searchField={searchField}
@@ -136,11 +141,11 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find(Search).prop('visible')).toBe(true);
+      expect(topBar).toContainReactComponent(Search, {visible: true});
     });
 
     it('passes the searchResultsOverlayVisible prop to search', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           searchField={searchField}
@@ -148,11 +153,11 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find(Search).prop('overlayVisible')).toBe(true);
+      expect(topBar).toContainReactComponent(Search, {overlayVisible: true});
     });
 
     it('passes the onSearchDismiss prop to search', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar
           searchResults={searchResults}
           onSearchResultsDismiss={noop}
@@ -161,55 +166,63 @@ describe('<TopBar />', () => {
         />,
       );
 
-      expect(topBar.find(Search).prop('onDismiss')).toBe(noop);
+      expect(topBar).toContainReactComponent(Search, {onDismiss: noop});
     });
   });
 
   describe('logo', () => {
     it('will render an image with the logo top bar source', () => {
-      const topBar = mountWithAppProvider(<TopBar />, {
+      const topBar = mountWithApp(<TopBar />, {
         theme: {
           logo: {
             topBarSource: './assets/shopify.svg',
           },
         },
       });
-      expect(topBar.find(Image).prop('source')).toBe('./assets/shopify.svg');
+      expect(topBar).toContainReactComponent(Image, {
+        source: './assets/shopify.svg',
+      });
     });
 
     it('will render an image with the logo accessibility label', () => {
-      const topBar = mountWithAppProvider(<TopBar />, {
+      const topBar = mountWithApp(<TopBar />, {
         theme: {
           logo: {
             accessibilityLabel: 'Shopify',
           },
         },
       });
-      expect(topBar.find(Image).prop('alt')).toBe('Shopify');
+      expect(topBar).toContainReactComponent(Image, {
+        alt: 'Shopify',
+      });
     });
 
     it('will render an unstyled link with the logo URL', () => {
-      const topBar = mountWithAppProvider(<TopBar />, {
+      const topBar = mountWithApp(<TopBar />, {
         theme: {logo: {url: 'https://shopify.com'}},
       });
-      expect(topBar.find(UnstyledLink).prop('url')).toBe('https://shopify.com');
+
+      expect(topBar).toContainReactComponent(UnstyledLink, {
+        url: 'https://shopify.com',
+      });
     });
 
     it('will render an unstyled link with the logo width', () => {
-      const topBar = mountWithAppProvider(<TopBar />, {
+      const topBar = mountWithApp(<TopBar />, {
         theme: {logo: {width: 124}},
       });
-      expect(topBar.find(UnstyledLink).prop('style')).toStrictEqual({
-        width: '124px',
+
+      expect(topBar).toContainReactComponent(UnstyledLink, {
+        style: {width: '124px'},
       });
     });
 
     it('will render an unstyled link with a default width', () => {
-      const topBar = mountWithAppProvider(<TopBar />, {
+      const topBar = mountWithApp(<TopBar />, {
         theme: {logo: {}},
       });
-      expect(topBar.find(UnstyledLink).prop('style')).toStrictEqual({
-        width: '104px',
+      expect(topBar).toContainReactComponent(UnstyledLink, {
+        style: {width: '104px'},
       });
     });
   });
@@ -226,15 +239,17 @@ describe('<TopBar />', () => {
     );
 
     it('renders', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar contextControl={mockContextControl} />,
       );
-      expect(findByTestID(topBar, 'ContextControl').exists()).toBe(true);
-      expect(topBar.contains(mockContextControl)).toBe(true);
+      expect(topBar).toContainReactComponent('div', {
+        className: 'ContextControl',
+      });
+      expect(topBar).toContainReactComponent(TopBar.Menu);
     });
 
     it('doesn’t render a logo when defined', () => {
-      const topBar = mountWithAppProvider(
+      const topBar = mountWithApp(
         <TopBar contextControl={mockContextControl} />,
         {
           theme: {
@@ -242,12 +257,14 @@ describe('<TopBar />', () => {
           },
         },
       );
-      expect(topBar.find(Image).exists()).toBe(false);
+      expect(topBar).not.toContainReactComponent(Image);
     });
 
     it('doesn’t render the wrapper when not defined and no logo is available', () => {
-      const topBar = mountWithAppProvider(<TopBar />);
-      expect(findByTestID(topBar, 'ContextControl').exists()).toBe(false);
+      const topBar = mountWithApp(<TopBar />);
+      expect(topBar).not.toContainReactComponent('div', {
+        className: 'ContextControl',
+      });
     });
   });
 });

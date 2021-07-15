@@ -1,23 +1,24 @@
 import React from 'react';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider} from 'test-utilities/legacy';
+import {mountWithApp} from 'test-utilities';
 
 import {SearchDismissOverlay} from '../SearchDismissOverlay';
 
 describe('<SearchDismissOverlay />', () => {
   it('mounts', () => {
-    const search = mountWithAppProvider(
-      <SearchDismissOverlay visible={false} />,
-    );
-    expect(search.exists()).toBe(true);
+    const search = mountWithApp(<SearchDismissOverlay visible={false} />);
+    expect(search).not.toBeNull();
   });
 
   it('calls onDismiss when clicked', () => {
     const spy = jest.fn();
-    const search = mountWithAppProvider(
+    const search = mountWithApp(
       <SearchDismissOverlay visible={false} onDismiss={spy} />,
     );
-    search.simulate('click');
+
+    search.find('div')!.trigger('onClick', {
+      target: search!.domNode as HTMLInputElement,
+    });
+
     expect(spy).toHaveBeenCalled();
   });
 });

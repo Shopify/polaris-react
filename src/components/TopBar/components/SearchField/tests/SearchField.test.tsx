@@ -1,18 +1,19 @@
 import React from 'react';
 import {CircleCancelMinor} from '@shopify/polaris-icons';
 import {mountWithApp} from 'test-utilities';
-// eslint-disable-next-line no-restricted-imports
-import {mountWithAppProvider, ReactWrapper} from 'test-utilities/legacy';
 
+import {Icon} from '../../../../Icon';
 import {SearchField} from '../SearchField';
 
 describe('<SearchField />', () => {
   it('passes the placeholder prop to input', () => {
-    const textField = mountWithAppProvider(
+    const textField = mountWithApp(
       <SearchField value="" onChange={noop} placeholder="hello polaris" />,
     );
 
-    expect(findInput(textField).prop('placeholder')).toBe('hello polaris');
+    expect(textField).toContainReactComponent('input', {
+      placeholder: 'hello polaris',
+    });
   });
 
   describe('focused', () => {
@@ -47,24 +48,23 @@ describe('<SearchField />', () => {
 
   describe('clear content', () => {
     it('will render a cancel icon when a value is provided', () => {
-      const textField = mountWithAppProvider(
+      const textField = mountWithApp(
         <SearchField value="hello polaris" onChange={noop} />,
       );
 
-      expect(
-        textField
-          .find('Icon')
-          .filterWhere((el) => el.prop('source') === CircleCancelMinor),
-      ).toHaveLength(1);
+      expect(textField).toContainReactComponent(Icon, {
+        source: CircleCancelMinor,
+      });
     });
 
     it('will call the onChange with an empty string when the cancel button is pressed', () => {
       const spy = jest.fn();
-      const textField = mountWithAppProvider(
+      const textField = mountWithApp(
         <SearchField value="hello polaris" onChange={spy} />,
       );
 
-      textField.find('button').simulate('click');
+      textField.find('button')!.trigger('onClick');
+
       expect(spy).toHaveBeenCalledWith('');
     });
   });
@@ -72,11 +72,12 @@ describe('<SearchField />', () => {
   describe('onBlur()', () => {
     it('is called when the text field is blurred', () => {
       const spy = jest.fn();
-      const textField = mountWithAppProvider(
+      const textField = mountWithApp(
         <SearchField value="hello polaris" onChange={noop} onBlur={spy} />,
       );
 
-      textField.simulate('blur');
+      textField.find('div')!.trigger('onBlur');
+
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
@@ -84,11 +85,12 @@ describe('<SearchField />', () => {
   describe('onFocus', () => {
     it('is called when the text field is focused', () => {
       const spy = jest.fn();
-      const textField = mountWithAppProvider(
+      const textField = mountWithApp(
         <SearchField value="hello polaris" onChange={noop} onFocus={spy} />,
       );
 
-      textField.simulate('focus');
+      textField.find('div')!.trigger('onFocus');
+
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
@@ -96,24 +98,29 @@ describe('<SearchField />', () => {
   describe('onChange()', () => {
     it('is called with the new value', () => {
       const spy = jest.fn();
-      const textField = mountWithAppProvider(
-        <SearchField value="hello polaris" onChange={spy} />,
+      const newValue = 'hello polaris';
+      const textField = mountWithApp(
+        <SearchField value={newValue} onChange={spy} />,
       );
 
-      (findInput(textField) as any).instance().value = 'hello world';
-      findInput(textField).simulate('change');
-      expect(spy).toHaveBeenCalledWith('hello world');
+      textField.find('input')!.trigger('onChange', {
+        currentTarget: {
+          value: newValue,
+        },
+      });
+
+      expect(spy).toHaveBeenCalledWith(newValue);
     });
   });
 
   describe('onKeyDown', () => {
     it("will prevent default on the 'enter' keydown", () => {
       const spy = jest.fn();
-      const textField = mountWithAppProvider(
+      const textField = mountWithApp(
         <SearchField value="hello polaris" onChange={noop} />,
       );
 
-      findInput(textField).simulate('keydown', {
+      textField.find('input')!.trigger('onKeyDown', {
         key: 'Enter',
         preventDefault: spy,
       });
@@ -122,18 +129,14 @@ describe('<SearchField />', () => {
   });
 
   it('adds a "BackdropShowFocusBorder" class when "showFocusBorder" is passed', () => {
-    const textField = mountWithAppProvider(
+    const textField = mountWithApp(
       <SearchField value="" onChange={noop} showFocusBorder />,
     );
 
-    expect(textField.find('div').last().prop('className')).toBe(
-      'Backdrop BackdropShowFocusBorder',
-    );
+    expect(textField).toContainReactComponent('div', {
+      className: 'Backdrop BackdropShowFocusBorder',
+    });
   });
 });
 
 function noop() {}
-
-function findInput(wrapper: ReactWrapper) {
-  return wrapper.find('input');
-}
