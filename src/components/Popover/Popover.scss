@@ -37,8 +37,7 @@ $content-max-width: rem(400px);
 }
 
 .fullWidth {
-  margin: 0;
-  margin-top: $visible-portion-of-arrow;
+  margin: $visible-portion-of-arrow auto 0;
 
   .Content {
     max-width: none;
@@ -49,7 +48,7 @@ $content-max-width: rem(400px);
   margin: spacing() spacing(tight) $visible-portion-of-arrow;
 
   &.fullWidth {
-    margin: 0 0 $visible-portion-of-arrow;
+    margin: 0 auto $visible-portion-of-arrow;
   }
 }
 

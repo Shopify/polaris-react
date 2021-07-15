@@ -10,6 +10,8 @@ Use [the changelog guidelines](https://git.io/polaris-changelog-guidelines) to f
 
 ### Bug fixes
 
+- Center full width `Popover` on small viewports ([#4114](https://github.com/Shopify/polaris-react/pull/4114))
+
 ### Documentation
 
 ### Development workflow
