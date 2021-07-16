@@ -86,6 +86,15 @@ describe('<Resizer />', () => {
         '&lt;div&gt;&amp;<br>Contents&lt;/div&gt;<br></div>';
       expect(contentsNode.html()).toContain(expectedEncodedContents);
     });
+
+    it('keeps a comma as a comma', () => {
+      const contents = `Contents1,Contents2, Contents3`;
+      const resizer = mountWithAppProvider(
+        <Resizer {...mockProps} contents={contents} />,
+      );
+      const contentsNode = findByTestID(resizer, 'ContentsNode');
+      expect(contentsNode.html()).toContain(contents);
+    });
   });
 
   describe('minimumLines', () => {
