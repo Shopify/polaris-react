@@ -312,7 +312,7 @@ Translations are provided in the locales folder. When using Polaris, you are abl
 If a project has only one locale, then you can pass the JSON content from the locale file into `AppProvider`.
 
 ```jsx
-import AppProvider from '@shopify/polaris';
+import { AppProvider } from '@shopify/polaris';
 // en.json is English. Replace with fr.json for French, etc
 import translations from '@shopify/polaris/locales/en.json';
 
@@ -324,7 +324,7 @@ function App() {
 If a project supports multiple locales, then load them dynamically using [`@shopify/react-i18n`](https://github.com/Shopify/quilt/tree/master/packages/react-i18n#translation). This ensures that you load only the translations you need.
 
 ```jsx
-import AppProvider from '@shopify/polaris';
+import { AppProvider } from '@shopify/polaris';
 // en.json is English. Replace with fr.json for French, etc
 import translations from '@shopify/polaris/locales/en.json';
 import {useI18n} from '@shopify/react-i18n';
