@@ -75,7 +75,7 @@
     "@shopify/postcss-plugin": "^5.0.1",
     "@shopify/react-testing": "^4.1.0",
     "@shopify/useful-types": "^5.3.0",
-    "@storybook/addon-a11y": "^8.6.4",
+    "@storybook/addon-a11y": "^9.1.5",
     "@storybook/addon-toolbars": "^8.6.4",
     "@storybook/addon-viewport": "^8.6.4",
     "@storybook/blocks": "^8.6.14",
