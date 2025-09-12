@@ -98,8 +98,8 @@ function Frame({darkMode, children}: Props) {
         <div>
           <a href="https://shopify.dev/beta/next-gen-dev-platform/polaris">
             {icons.Polaris()}
-            <strong>Introducing Polaris</strong> - Unified and for the web.{' '}
-            <span className={styles.ReleaseCandidate}>Release Candidate</span>
+            <strong>Polaris React is now deprecated</strong>{' '}
+            <span className={styles.NewLibrary}>Check out the new library</span>
             <Icon source={ArrowRightIcon} />
           </a>
         </div>
