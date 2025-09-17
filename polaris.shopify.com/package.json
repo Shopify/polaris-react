@@ -37,7 +37,7 @@
     "base-64": "^1.0.0",
     "codesandbox": "^2.2.3",
     "endent": "^2.1.0",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "^12.23.13",
     "fuse.js": "^6.5.3",
     "gray-matter": "^4.0.3",
     "lodash.get": "^4.4.2",
