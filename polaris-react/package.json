@@ -96,7 +96,7 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.1.0",
     "change-case": "^3.1.0",
-    "chromatic": "^6.5.4",
+    "chromatic": "^13.2.0",
     "concurrently": "^8.2.2",
     "globby": "^11.1.0",
     "http-server": "^14.1.1",
