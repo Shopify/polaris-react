@@ -46,7 +46,7 @@
     "postcss": "^8.5.6",
     "postcss-scss": "^4.0.4",
     "postcss-value-parser": "^4.2.0",
-    "stylelint": "^14.15.0"
+    "stylelint": "^14.16.1"
   },
   "devDependencies": {
     "@types/is-git-clean": "^1.1.0",
