@@ -160,7 +160,7 @@ jobs:
           STORYBOOK_GITHUB_PR: ${{ github.event.number }}
 
       - name: Run Chromatic tests
-        uses: chromaui/action@c93e0bc3a63aa176e14a75b61a31847cbfdd341c # v11.27.0
+        uses: chromaui/action@070fa3e7f73b8dd89954690b292486462dbc739d # v13.2.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
