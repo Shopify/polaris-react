@@ -11,18 +11,6 @@ function HomePage({}: Props) {
       <div className={styles.HomePage}>
         <PageMeta description="A starter kit for reimagining commerce." />
 
-        <div className={styles.Hero}>
-          <div className={styles.Text}>
-            <h1>
-              <span>Build.</span> <span>Contribute.</span> <span>Evolve.</span>
-            </h1>
-            <p>
-              Shape the merchant experience for Shopify’s core product, the
-              admin.
-            </p>
-          </div>
-        </div>
-
         <div className={styles.EntryPoints}>
           <Link href="/foundations" className={styles.EntryPoint}>
             <h3>Foundations</h3>
