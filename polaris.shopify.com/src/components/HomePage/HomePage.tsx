@@ -10,15 +10,13 @@ function HomePage({}: Props) {
     <Page>
       <div className={styles.HomePage}>
         <PageMeta description="A starter kit for reimagining commerce." />
-
         <div className={styles.Hero}>
           <div className={styles.Text}>
             <h1>
-              <span>Build.</span> <span>Contribute.</span> <span>Evolve.</span>
+              <span>Polaris</span> <span>Design System</span> <span>for React</span>
             </h1>
             <p>
-              Shape the merchant experience for Shopify’s core product, the
-              admin.
+              (Deprecated)
             </p>
           </div>
         </div>

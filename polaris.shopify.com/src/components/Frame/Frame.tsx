@@ -96,10 +96,10 @@ function Frame({darkMode, children}: Props) {
     <>
       <div className={styles.PolarisUnifiedCta}>
         <div>
-          <a href="https://shopify.dev/beta/next-gen-dev-platform/polaris">
+          <a href="https://shopify.dev/docs/api/app-home/polaris-web-components">
             {icons.Polaris()}
-            <strong>Introducing Polaris</strong> - Unified and for the web.{' '}
-            <span className={styles.ReleaseCandidate}>Release Candidate</span>
+            <strong>Introducing Polaris Web Components</strong>{' '}
+            <span className={styles.ReleaseCandidate}>Now Released</span>
             <Icon source={ArrowRightIcon} />
           </a>
         </div>

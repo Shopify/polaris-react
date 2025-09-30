@@ -1,17 +1,19 @@
-<div align="center">
-  <a href="https://polaris.shopify.com">
-    <img
-      src="https://github.com/Shopify/polaris/blob/main/documentation/readme.png?raw=true"
-      alt=""
-    />
-  </a>
-</div>
+# Polaris React (⚠️ Deprecated)
 
-# Polaris React
+[![storybook](https://shields.io/badge/storybook-grey?logo=storybook&style=flat)](https://storybook.polaris.shopify.dev) [![npm version](https://img.shields.io/npm/v/@shopify/polaris.svg?label=@shopify/polaris)](https://www.npmjs.com/package/@shopify/polaris) [![CI](https://github.com/shopify/polaris/workflows/CI/badge.svg)](https://github.com/Shopify/polaris/actions?query=branch%3Amain)
 
-> Build. Contribute. Evolve. Shape the merchant experience for Shopify’s core product, the admin.
+The **Shopify Polaris React library** is deprecated.  
+We are no longer accepting contributions or feature requests in this repository.
 
-[![storybook](https://shields.io/badge/storybook-grey?logo=storybook&style=flat)](https://storybook.polaris.shopify.dev) [![npm version](https://img.shields.io/npm/v/@shopify/polaris.svg?label=@shopify/polaris)](https://www.npmjs.com/package/@shopify/polaris) [![CI](https://github.com/shopify/polaris/workflows/CI/badge.svg)](https://github.com/Shopify/polaris/actions?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Shopify/polaris/blob/main/.github/CONTRIBUTING.md#your-first-pull-request)
+On October 1, 2025, we released our [Polaris Web Components](https://shopify.dev/docs/api/app-home/polaris-web-components) for Shopify app development. We encourage Shopify App developers to adopt Polaris Web Components for new development.
+
+This repository will remain available for historical purposes, but it will not receive updates or maintenance.
+
+## Why Web Components?
+
+Polaris Web Components provide a more **technology-agnostic foundation**.  
+They are framework-independent and can be used in **React, Vue, Next.js, plain JavaScript, or even server-rendered stacks like Rails or PHP**. This enables more Shopify App developers across more platforms to use Polaris.
+
 
 ## About this repo
 
