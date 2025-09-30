@@ -10,6 +10,16 @@ function HomePage({}: Props) {
     <Page>
       <div className={styles.HomePage}>
         <PageMeta description="A starter kit for reimagining commerce." />
+        <div className={styles.Hero}>
+          <div className={styles.Text}>
+            <h1>
+              <span>Polaris</span> <span>Design System</span> <span>for React</span>
+            </h1>
+            <p>
+              (Deprecated)
+            </p>
+          </div>
+        </div>
 
         <div className={styles.EntryPoints}>
           <Link href="/foundations" className={styles.EntryPoint}>
