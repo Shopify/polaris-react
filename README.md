@@ -9,7 +9,7 @@ On October 1, 2025, we released our [Polaris Web Components](https://shopify.dev
 
 This repository will remain available for historical purposes, but it will not receive updates or maintenance.
 
-### Why Web Components?
+## Why Web Components?
 
 Polaris Web Components provide a more **technology-agnostic foundation**.  
 They are framework-independent and can be used in **React, Vue, Next.js, plain JavaScript, or even server-rendered stacks like Rails or PHP**. This enables more Shopify App developers across more platforms to use Polaris.
