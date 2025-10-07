@@ -240,7 +240,7 @@ importers:
         specifier: ^13.3.0
         version: 13.3.0(rollup@2.79.2)
       '@shopify/polaris':
-        specifier: ^13.10.0
+        specifier: ^13.10.1
         version: link:../polaris-react
       '@types/is-git-clean':
         specifier: ^1.1.0
@@ -451,7 +451,7 @@ importers:
         specifier: ^0.0.14
         version: 0.0.14(react@18.2.0)
       '@shopify/polaris':
-        specifier: ^13.10.0
+        specifier: ^13.10.1
         version: link:../polaris-react
       '@shopify/polaris-icons':
         specifier: ^9.3.1

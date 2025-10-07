@@ -1,5 +1,11 @@
 # Changelog
 
+## 13.10.1
+
+### Patch Changes
+
+- [`00aa2d6`](https://github.com/Shopify/polaris-react/commit/00aa2d65749677c1a2068275d6bb1b9ac87f69d5) Thanks [@Aubron](https://github.com/Aubron)! - Update README to announce deprecation
+
 ## 13.10.0
 
 ### Minor Changes
