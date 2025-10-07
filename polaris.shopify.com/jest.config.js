@@ -9,4 +9,6 @@ module.exports = {
     escapeString: true,
     printBasicPrototype: true,
   },
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
+  testPathIgnorePatterns: ['<rootDir>/.next/'],
 };
