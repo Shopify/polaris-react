@@ -59,6 +59,6 @@
     "plop": "^3.1.1",
     "plop-dir": "^0.0.5",
     "prettier": "^2.7.1",
-    "type-fest": "^2.19.0"
+    "type-fest": "^5.0.1"
   }
 }
