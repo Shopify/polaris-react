@@ -12,7 +12,7 @@ This repository will remain available for historical purposes, but it will not r
 ## Why Web Components?
 
 Polaris Web Components provide a more **technology-agnostic foundation**.  
-They work with every framework as well as plain JS and server-rendered sites, enabling more Shopify App developers across more platforms to use Polaris.
+They work with every framework as well as plain JavaScript and server-rendered sites, enabling more Shopify App developers across more platforms to use Polaris.
 
 
 ## About this repo
