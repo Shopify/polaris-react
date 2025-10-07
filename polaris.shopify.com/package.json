@@ -98,7 +98,7 @@
     "ora": "^5.4.1",
     "patch-package": "^6.4.7",
     "p-map": "^5.5.0",
-    "playroom": "^0.28.0",
+    "playroom": "^0.44.3",
     "sass": "^1.89.2",
     "satori": "^0.15.2",
     "style-loader": "^3.3.1",
