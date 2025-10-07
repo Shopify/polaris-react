@@ -81,7 +81,7 @@
     "babel-plugin-preval": "^5.1.0",
     "chalk": "^5.2.0",
     "chokidar": "^3.5.3",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.2.1",
     "css-loader": "^5.2.7",
     "eslint": "8.10.0",
     "eslint-config-next": "^13.0.0",
