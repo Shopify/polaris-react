@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to release from'
+        required: true
+        default: 'main'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -19,7 +25,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
         with:
-          token: ${{ secrets.SHOPIFY_GH_ACCESS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ inputs.branch }}
 
       - name: Free up space on GitHub image
         run: |
