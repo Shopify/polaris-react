@@ -2,6 +2,10 @@
 title: Button
 shortDescription: Used primarily for actions like 'Add', 'Close', 'Cancel', or 'Save'. Plain buttons are used for less important actions.
 category: Actions
+webComponent:
+  name: s-button
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/button
+  type: polaris
 keywords:
   - CTA
   - call to action
@@ -83,9 +87,16 @@ previewImg: /images/components/actions/button.png
 
 <Lede>
 
-Buttons are used primarily for actions, such as “Add”, “Close”, “Cancel”, or “Save”. Plain buttons, which look similar to links, are used for less important or less commonly used actions, such as “view shipping settings”.
+Buttons are used primarily for actions, such as "Add", "Close", "Cancel", or "Save". Plain buttons, which look similar to links, are used for less important or less commonly used actions, such as "view shipping settings".
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

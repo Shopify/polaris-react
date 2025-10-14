@@ -2,6 +2,10 @@
 title: Icon
 shortDescription: Used to visually communicate core parts of the product and available actions, acting as wayfinding tools.
 category: Images and icons
+webComponent:
+  name: s-icon
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/media/icon
+  type: polaris
 keywords:
   - iconography
   - visual indicator
@@ -36,6 +40,13 @@ previewImg: /images/components/images-and-icons/icon.png
 Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

@@ -2,6 +2,10 @@
 title: Popover
 shortDescription: Small overlays that open on demand and close when the merchant interacts with any other part of Shopify. Used to surface secondary information or actions.
 category: Overlays
+webComponent:
+  name: s-popover
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/overlays/popover
+  type: polaris
 keywords:
   - interactive
   - container
@@ -46,6 +50,13 @@ previewImg: /images/components/overlays/popover.png
 Popovers are small overlays that open on demand. They let merchants access additional content and actions without cluttering the page.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

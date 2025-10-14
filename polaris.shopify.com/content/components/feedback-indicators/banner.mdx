@@ -2,6 +2,10 @@
 title: Banner
 shortDescription: Informs merchants about important changes or persistent conditions in a prominent way.
 category: Feedback indicators
+webComponent:
+  name: s-banner
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/feedback/banner
+  type: polaris
 keywords:
   - inform
   - update
@@ -65,6 +69,13 @@ previewImg: /images/components/feedback-indicators/banner.png
 Informs merchants about important changes or persistent conditions. Use this component if you need to communicate to merchants in a prominent way. Banners are placed at the top of the page or section they apply to, and below the page or section header.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 
