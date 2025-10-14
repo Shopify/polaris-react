@@ -12,12 +12,49 @@ const PolarisStarIcon = () => (
   <svg
     width="16"
     height="16"
-    viewBox="0 0 32 32"
+    viewBox="0 0 120 120"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M13.6943 1.95697C14.1241 -0.652322 17.8759 -0.652322 18.3057 1.95697L19.6932 10.3809C19.856 11.3693 20.6307 12.144 21.6191 12.3068L30.043 13.6943C32.6523 14.1241 32.6523 17.8759 30.043 18.3057L21.6191 19.6932C20.6307 19.856 19.856 20.6307 19.6932 21.6191L18.3057 30.043C17.8759 32.6523 14.1241 32.6523 13.6943 30.043L12.3068 21.6191C12.144 20.6307 11.3693 19.856 10.3809 19.6932L1.95697 18.3057C-0.652322 17.8759 -0.652322 14.1241 1.95697 13.6943L10.3809 12.3068C11.3693 12.144 12.144 11.3693 12.3068 10.3809L13.6943 1.95697Z"
+      d="M71.5722 38.6116C72.4275 43.6363 76.3637 47.5725 81.3884 48.4278L115.071 54.161C117.918 54.6455 120 57.1123 120 60C120 62.8877 117.918 65.3544 115.071 65.839L81.3884 71.5722C76.3637 72.4275 72.4275 76.3637 71.5722 81.3884L65.839 115.071C65.3544 117.918 62.8877 120 60 120C57.1123 120 54.6455 117.918 54.161 115.071L48.4278 81.3884C47.5725 76.3637 43.6363 72.4275 38.6116 71.5722L4.9291 65.839C2.08238 65.3544 0 62.8877 0 60C0 57.1123 2.08239 54.6455 4.92911 54.161L38.6116 48.4278C43.6363 47.5725 47.5725 43.6363 48.4278 38.6116L54.161 4.9291C54.6455 2.08238 57.1123 0 60 0C62.8877 0 65.3544 2.08239 65.839 4.92911L71.5722 38.6116Z"
+      fill="white"
+    />
+  </svg>
+);
+
+const AppsIcon = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      className="appIconTopLeft"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M3.5 5.75C3.5 4.50736 4.50736 3.5 5.75 3.5H8.5C9.05228 3.5 9.5 3.94771 9.5 4.5V8.5C9.5 9.05228 9.05229 9.5 8.5 9.5H4.5C3.94772 9.5 3.5 9.05229 3.5 8.5V5.75ZM5.75 5C5.33579 5 5 5.33579 5 5.75V8H8V5H5.75Z"
+      fill="white"
+    />
+    <path
+      className="appIconBottomLeft"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M3.5 14.25C3.5 15.4926 4.50736 16.5 5.75 16.5H8.5C9.05228 16.5 9.5 16.0523 9.5 15.5V11.5C9.5 10.9477 9.05229 10.5 8.5 10.5H4.5C3.94772 10.5 3.5 10.9477 3.5 11.5V14.25ZM5.75 15C5.33579 15 5 14.6642 5 14.25V12H8V15H5.75Z"
+      fill="white"
+    />
+    <path
+      className="appIconBottomRight"
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M14.25 16.5C15.4926 16.5 16.5 15.4926 16.5 14.25V11.5C16.5 10.9477 16.0523 10.5 15.5 10.5H11.5C10.9477 10.5 10.5 10.9477 10.5 11.5V15.5C10.5 16.0523 10.9477 16.5 11.5 16.5H14.25ZM15 14.25C15 14.6642 14.6642 15 14.25 15H12V12H15V14.25Z"
+      fill="white"
+    />
+    <path
+      className="appIconPlus"
+      d="M13.5 3.5C13.9142 3.5 14.25 3.83579 14.25 4.25V5.75H15.75C16.1642 5.75 16.5 6.08579 16.5 6.5C16.5 6.91421 16.1642 7.25 15.75 7.25H14.25V8.75C14.25 9.16421 13.9142 9.5 13.5 9.5C13.0858 9.5 12.75 9.16421 12.75 8.75V7.25H11.25C10.8358 7.25 10.5 6.91421 10.5 6.5C10.5 6.08579 10.8358 5.75 11.25 5.75H12.75V4.25C12.75 3.83579 13.0858 3.5 13.5 3.5Z"
       fill="white"
     />
   </svg>
@@ -234,8 +271,18 @@ function WebComponentBanner({
 
   const {title, description, ctaText} = config[type];
 
+  const bannerClassName = `${styles.WebComponentBanner} ${
+    type === 'pattern'
+      ? styles.PatternBanner
+      : type === 'app-bridge'
+      ? styles.AppBridgeBanner
+      : styles.PolarisBanner
+  }`;
+
+  const FloatingIcon = type === 'app-bridge' ? AppsIcon : PolarisStarIcon;
+
   return (
-    <div className={styles.WebComponentBanner}>
+    <div className={bannerClassName}>
       <div className={styles.Stars}>
         <span className={styles.Star1}></span>
         <span className={styles.Star2}></span>
@@ -257,7 +304,7 @@ function WebComponentBanner({
         <span className={styles.Star18}></span>
       </div>
       <div className={styles.FloatingStarMobile}>
-        <PolarisStarIcon />
+        <FloatingIcon />
       </div>
       <div className={styles.Content}>
         <div className={styles.Text}>
@@ -272,7 +319,7 @@ function WebComponentBanner({
         <HandIcon />
       </div>
       <div className={styles.FloatingStar}>
-        <PolarisStarIcon />
+        <FloatingIcon />
       </div>
     </div>
   );

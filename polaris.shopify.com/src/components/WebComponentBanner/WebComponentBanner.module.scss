@@ -3,7 +3,6 @@
 @import '../../styles/mixins.scss';
 
 .WebComponentBanner {
-  background: radial-gradient(circle at 71% 54%, #067bac 0%, #012839 100%);
   border-radius: var(--border-radius-600);
   padding: var(--p-space-600);
   margin: var(--p-space-800) 0;
@@ -11,20 +10,6 @@
   overflow: hidden;
   container-type: inline-size;
   box-shadow: var(--p-shadow-400);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 75% 50%, #2a96c4 0%, #001d25 100%);
-    opacity: 0;
-    animation: gradientFade 4s ease-in-out infinite alternate;
-    pointer-events: none;
-    border-radius: var(--border-radius-600);
-  }
 
   &::after {
     content: '';
@@ -41,6 +26,60 @@
 
   @container (max-width: 480px) {
     text-align: center;
+  }
+}
+
+.PolarisBanner {
+  background: radial-gradient(circle at 71% 54%, #067bac 0%, #012839 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 75% 50%, #2a96c4 0%, #001d25 100%);
+    opacity: 0;
+    animation: gradientFade 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    border-radius: var(--border-radius-600);
+  }
+}
+
+.AppBridgeBanner {
+  background: radial-gradient(circle at 71% 54%, #3da45f 0%, #013936 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 75% 50%, #52b975 0%, #00251e 100%);
+    opacity: 0;
+    animation: gradientFade 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    border-radius: var(--border-radius-600);
+  }
+}
+
+.PatternBanner {
+  background: radial-gradient(circle at 71% 54%, #4a57a4 0%, #311749 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 75% 50%, #6372c3 0%, #1f0d2e 100%);
+    opacity: 0;
+    animation: gradientFade 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    border-radius: var(--border-radius-600);
   }
 }
 
@@ -135,7 +174,7 @@
   pointer-events: none;
   animation: handLift 1s ease-out;
   mix-blend-mode: luminosity;
-  z-index: 1;
+  z-index: 3;
 
   svg {
     width: 100%;
@@ -175,7 +214,7 @@
   width: 60px;
   height: 60px;
   pointer-events: auto;
-  z-index: 3;
+  z-index: 4;
   cursor: pointer;
   opacity: 1;
   transform: translateY(0);
@@ -207,6 +246,30 @@
     }
   }
 
+  :global(.appIconTopLeft) {
+    animation: appIconPop 0.4s ease-out 0s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconBottomLeft) {
+    animation: appIconPop 0.4s ease-out 0.15s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconBottomRight) {
+    animation: appIconPop 0.4s ease-out 0.3s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconPlus) {
+    animation: appIconPop 0.4s ease-out 0.45s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
   @container (max-width: 480px) {
     display: none;
   }
@@ -215,7 +278,7 @@
 .FloatingStarMobile {
   display: none;
   position: relative;
-  z-index: 2;
+  z-index: 4;
   width: 48px;
   height: 48px;
   margin: 0 auto var(--p-space-400);
@@ -247,6 +310,30 @@
     }
   }
 
+  :global(.appIconTopLeft) {
+    animation: appIconPop 0.4s ease-out 0s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconBottomLeft) {
+    animation: appIconPop 0.4s ease-out 0.15s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconBottomRight) {
+    animation: appIconPop 0.4s ease-out 0.3s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
+  :global(.appIconPlus) {
+    animation: appIconPop 0.4s ease-out 0.45s forwards;
+    transform-origin: center;
+    opacity: 0;
+  }
+
   @container (max-width: 480px) {
     display: block;
   }
@@ -258,6 +345,20 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes appIconPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
