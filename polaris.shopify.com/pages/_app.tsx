@@ -11,6 +11,7 @@ import {className} from '../src/utils/various';
 import Frame from '../src/components/Frame';
 import '../src/styles/globals.scss';
 import ViewTransition from '../src/components/ViewTransition';
+import InterstitialModal from '../src/components/InterstitialModal';
 
 const PUBLIC_GA_ID = 'UA-49178120-32';
 
@@ -144,6 +145,7 @@ function MyApp({Component, pageProps}: AppProps) {
           </Frame>
         )}
       </div>
+      <InterstitialModal />
     </>
   );
 }

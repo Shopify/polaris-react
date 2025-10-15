@@ -23,6 +23,10 @@ export function normalizePath(path: string): string {
   let normalizedPath = path;
   if (normalizedPath.startsWith('.')) {
     normalizedPath = normalizedPath.replace(/^\.{1,2}\//, '');
+  } else if (normalizedPath.includes('polaris.shopify.com')) {
+    // Extract everything from 'polaris.shopify.com' onwards
+    const match = normalizedPath.match(/polaris\.shopify\.com.*$/);
+    normalizedPath = match ? match[0] : normalizedPath;
   } else if (normalizedPath.includes('/polaris/')) {
     normalizedPath = normalizedPath.split(/\/(polaris\/)+/).at(-1)!;
   } else if (normalizedPath.startsWith('/')) {
