@@ -5,6 +5,8 @@ import Button from '../Button';
 const WEB_COMPONENTS_URL =
   'https://shopify.dev/docs/api/app-home/polaris-web-components';
 
+const STORAGE_KEY = 'polaris-migration-modal-shown';
+
 interface ShootingStar {
   id: number;
   x: number;
@@ -200,15 +202,25 @@ export default function InterstitialModal() {
     // SSR safety check
     if (typeof window === 'undefined') return;
 
-    // Don't show the interstitial if we're inside an iframe
-    if (window.self !== window.top) {
-      return;
+    // Don't show if inside an iframe
+    if (window.self !== window.top) return;
+
+    // Check if already shown this session
+    try {
+      const hasShown = sessionStorage.getItem(STORAGE_KEY);
+      if (hasShown) return;
+    } catch {
+      // sessionStorage may fail in private browsing - continue anyway
     }
 
-    // Show the interstitial on every page load/reload
-    // Small delay to ensure smooth page load
+    // Show modal once per session with small delay for smooth page load
     const timeoutId = setTimeout(() => {
       setIsOpen(true);
+      try {
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+      } catch {
+        // Fail silently if sessionStorage unavailable
+      }
     }, 500);
 
     return () => clearTimeout(timeoutId);
