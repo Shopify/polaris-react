@@ -118,7 +118,7 @@ export const foundationsCategories = [
   'tools',
 ] as const;
 
-export type FoundationsCategory = typeof foundationsCategories[number];
+export type FoundationsCategory = (typeof foundationsCategories)[number];
 
 export const searchResultCategories = [
   'foundations',
@@ -128,7 +128,7 @@ export const searchResultCategories = [
   'icons',
 ] as const;
 
-export type SearchResultCategory = typeof searchResultCategories[number];
+export type SearchResultCategory = (typeof searchResultCategories)[number];
 
 export interface SearchResult {
   id: string;
