@@ -4,13 +4,38 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, #067bac 0%, #012839 100%);
+  background: radial-gradient(ellipse at center, #3da8d5 0%, #0a4d6b 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
   padding: 2rem;
   animation: fadeIn 0.4s ease-in-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    background: radial-gradient(ellipse at center, #067bac 0%, #012839 100%);
+  }
+
+  // Night gradient overlay for sunsetting effect - darkens to original colors
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, #067bac 0%, #012839 100%);
+    opacity: 0;
+    pointer-events: none;
+    animation: sunsetDarken 3s ease-in-out 0.5s forwards;
+    z-index: 1;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 1;
+    }
+  }
 
   &::before {
     content: '';
@@ -24,6 +49,7 @@
     background-size: 256px 256px;
     opacity: 0.25;
     pointer-events: none;
+    z-index: 2;
   }
 }
 
@@ -36,12 +62,31 @@
   }
 }
 
+@keyframes sunsetDarken {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .Star {
   position: absolute;
+  top: var(--star-top);
+  left: var(--star-left);
+  width: var(--star-size);
+  height: var(--star-size);
   background: var(--surface);
   border-radius: 50%;
   pointer-events: none;
-  animation: twinkle infinite ease-in-out;
+  animation: twinkle var(--star-duration) ease-in-out var(--star-delay) infinite;
+  z-index: 2;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.5;
+  }
 }
 
 @keyframes twinkle {
@@ -56,10 +101,27 @@
   }
 }
 
+// Shooting stars SVG container
+.ShootingStarsSvg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
 .Modal {
   max-width: 900px;
   width: 100%;
   animation: slideUp 0.5s ease-out;
+  position: relative;
+  z-index: 3;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -83,6 +145,157 @@
 
   @media (max-width: 768px) {
     padding: 1.5rem;
+  }
+}
+
+.StarIconContainer {
+  position: relative;
+  width: 240px;
+  height: 280px;
+  margin: -2rem auto 8rem;
+  padding-bottom: 4rem;
+  padding-top: 3rem;
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 240px;
+    margin: -1rem auto 5rem;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+  }
+}
+
+// Bottom layer - heavily blurred (sunsetting effect)
+.BackgroundStarBottom {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600%;
+  height: 280%;
+  opacity: 0;
+  filter: blur(15px);
+  animation: backgroundStarBottomSink 2s ease-out 0.3s forwards;
+  mask-image: linear-gradient(to bottom, transparent 30%, white 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 30%, white 100%);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.6;
+    transform: translate(-50%, -40%);
+    filter: blur(40px);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Top layer - less blurred
+.BackgroundStarTop {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280%;
+  height: 280%;
+  opacity: 0;
+  filter: blur(5px);
+  animation: backgroundStarTopSink 2s ease-out 0.3s forwards;
+  mask-image: linear-gradient(to bottom, white 0%, transparent 70%);
+  -webkit-mask-image: linear-gradient(to bottom, white 0%, transparent 70%);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.6;
+    transform: translate(-50%, -40%);
+    filter: blur(20px);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.MainStar {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 240px;
+  height: 240px;
+  opacity: 0;
+  z-index: 1;
+  animation: starRise 1.5s ease-out 0.3s forwards,
+    starFloat 3s ease-in-out 2s infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+// Background star bottom layer sinks down and blurs more (sunsetting)
+@keyframes backgroundStarBottomSink {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+    filter: blur(15px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translate(-50%, -40%);
+    filter: blur(40px);
+  }
+}
+
+// Background star top layer sinks down and blurs more (sunsetting)
+@keyframes backgroundStarTopSink {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 0.6;
+    transform: translate(-50%, -40%);
+    filter: blur(20px);
+  }
+}
+
+// Main star rises up
+@keyframes starRise {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 30px)) scale(0.9) rotate(-5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+// Floating bounce animation
+@keyframes starFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, calc(-50% - 12px)) scale(1) rotate(0deg);
   }
 }
 
@@ -123,24 +336,39 @@
   padding: 1rem 2rem !important;
   font-size: var(--font-size-600) !important;
   font-weight: var(--font-weight-600) !important;
-  background: var(--surface) !important;
-  color: #012839 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  background: var(--p-color-bg-fill) !important;
+  color: var(--p-color-text-on-color) !important;
+  border-radius: var(--p-border-radius-200) !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  border: none !important;
   transition: all var(--duration-200) var(--ease-in-out) !important;
 
   &:hover {
-    background: var(--surface-subdued) !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25) !important;
+    background: var(--p-color-bg-fill-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: none !important;
+
+    @media (prefers-reduced-motion: reduce) {
+      transform: none;
+    }
   }
 
   &:active {
+    background: var(--p-color-bg-fill-active) !important;
     transform: translateY(0);
+
+    @media (prefers-reduced-motion: reduce) {
+      transform: none;
+    }
   }
 
+  &:focus,
   &:focus-visible {
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5) !important;
-    outline: none !important;
+    outline: 2px solid var(--p-color-border-focus) !important;
+    outline-offset: 2px !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 }
 

@@ -39,10 +39,6 @@ interface Props {
   editPageLinkPath: string;
 }
 
-interface Props {
-  editPageLinkPath: string;
-}
-
 const Components = ({
   examples,
   mdx,

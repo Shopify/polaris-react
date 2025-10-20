@@ -30,6 +30,8 @@
 }
 
 .PolarisBanner {
+  --glow-color: rgba(6, 123, 172, 0.9);
+  --glow-color-light: rgba(6, 123, 172, 0.6);
   background: radial-gradient(circle at 71% 54%, #067bac 0%, #012839 100%);
 
   &::before {
@@ -44,10 +46,16 @@
     animation: gradientFade 4s ease-in-out infinite alternate;
     pointer-events: none;
     border-radius: var(--border-radius-600);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 }
 
 .AppBridgeBanner {
+  --glow-color: rgba(61, 164, 95, 0.9);
+  --glow-color-light: rgba(61, 164, 95, 0.6);
   background: radial-gradient(circle at 71% 54%, #3da45f 0%, #013936 100%);
 
   &::before {
@@ -62,10 +70,16 @@
     animation: gradientFade 4s ease-in-out infinite alternate;
     pointer-events: none;
     border-radius: var(--border-radius-600);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 }
 
 .PatternBanner {
+  --glow-color: rgba(74, 87, 164, 0.9);
+  --glow-color-light: rgba(74, 87, 164, 0.6);
   background: radial-gradient(circle at 71% 54%, #4a57a4 0%, #311749 100%);
 
   &::before {
@@ -80,6 +94,10 @@
     animation: gradientFade 4s ease-in-out infinite alternate;
     pointer-events: none;
     border-radius: var(--border-radius-600);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 }
 
@@ -176,6 +194,10 @@
   mix-blend-mode: luminosity;
   z-index: 3;
 
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
   svg {
     width: 100%;
     height: auto;
@@ -202,6 +224,16 @@
     animation: fingerWiggle2 3.5s ease-in-out 0.8s infinite;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    :global(.finger1),
+    :global(.finger2),
+    :global(.finger3),
+    :global(.finger4),
+    :global(.finger5) {
+      animation: none !important;
+    }
+  }
+
   @container (max-width: 480px) {
     display: none;
   }
@@ -213,24 +245,32 @@
   bottom: 40px;
   width: 60px;
   height: 60px;
+  padding: 0;
+  border: none;
+  background: transparent;
   pointer-events: auto;
   z-index: 4;
   cursor: pointer;
   opacity: 1;
   transform: translateY(0);
   filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1))
-    drop-shadow(0 0 60px rgba(6, 123, 172, 0.9))
-    drop-shadow(0 0 90px rgba(6, 123, 172, 0.6));
+    drop-shadow(0 0 60px var(--glow-color))
+    drop-shadow(0 0 90px var(--glow-color-light));
   transition: opacity 1.2s ease-out, transform 1.2s ease-out,
     filter 1.2s ease-out;
   animation: float 3s ease-in-out 1.2s infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transition: none;
+  }
 
   @starting-style {
     opacity: 0;
     transform: translateY(-20px);
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))
-      drop-shadow(0 0 15px rgba(6, 123, 172, 0.2))
-      drop-shadow(0 0 20px rgba(6, 123, 172, 0.1));
+      drop-shadow(0 0 15px var(--glow-color-light))
+      drop-shadow(0 0 20px var(--glow-color-light));
   }
 
   svg {
@@ -244,30 +284,6 @@
     svg {
       transform: scale(1.1) rotate(360deg);
     }
-  }
-
-  :global(.appIconTopLeft) {
-    animation: appIconPop 0.4s ease-out 0s forwards;
-    transform-origin: center;
-    opacity: 0;
-  }
-
-  :global(.appIconBottomLeft) {
-    animation: appIconPop 0.4s ease-out 0.15s forwards;
-    transform-origin: center;
-    opacity: 0;
-  }
-
-  :global(.appIconBottomRight) {
-    animation: appIconPop 0.4s ease-out 0.3s forwards;
-    transform-origin: center;
-    opacity: 0;
-  }
-
-  :global(.appIconPlus) {
-    animation: appIconPop 0.4s ease-out 0.45s forwards;
-    transform-origin: center;
-    opacity: 0;
   }
 
   @container (max-width: 480px) {
@@ -281,20 +297,28 @@
   z-index: 4;
   width: 48px;
   height: 48px;
+  padding: 0;
+  border: none;
+  background: transparent;
   margin: 0 auto var(--p-space-400);
   opacity: 1;
   filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1))
-    drop-shadow(0 0 60px rgba(6, 123, 172, 0.9))
-    drop-shadow(0 0 90px rgba(6, 123, 172, 0.6));
+    drop-shadow(0 0 60px var(--glow-color))
+    drop-shadow(0 0 90px var(--glow-color-light));
   transition: opacity 1.2s ease-out, filter 1.2s ease-out;
   animation: float 3s ease-in-out 1.2s infinite;
   cursor: pointer;
 
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    transition: none;
+  }
+
   @starting-style {
     opacity: 0;
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))
-      drop-shadow(0 0 15px rgba(6, 123, 172, 0.2))
-      drop-shadow(0 0 20px rgba(6, 123, 172, 0.1));
+      drop-shadow(0 0 15px var(--glow-color-light))
+      drop-shadow(0 0 20px var(--glow-color-light));
   }
 
   svg {
@@ -310,6 +334,14 @@
     }
   }
 
+  @container (max-width: 480px) {
+    display: block;
+  }
+}
+
+// Shared app icon animations for both desktop and mobile stars
+.FloatingStar,
+.FloatingStarMobile {
   :global(.appIconTopLeft) {
     animation: appIconPop 0.4s ease-out 0s forwards;
     transform-origin: center;
@@ -334,8 +366,14 @@
     opacity: 0;
   }
 
-  @container (max-width: 480px) {
-    display: block;
+  @media (prefers-reduced-motion: reduce) {
+    :global(.appIconTopLeft),
+    :global(.appIconBottomLeft),
+    :global(.appIconBottomRight),
+    :global(.appIconPlus) {
+      animation: none !important;
+      opacity: 1 !important;
+    }
   }
 }
 
@@ -477,23 +515,23 @@
 @keyframes starGlow {
   0% {
     filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3))
-      drop-shadow(0 0 15px rgba(6, 123, 172, 0.2))
-      drop-shadow(0 0 20px rgba(6, 123, 172, 0.1));
+      drop-shadow(0 0 15px var(--glow-color-light))
+      drop-shadow(0 0 20px var(--glow-color-light));
   }
   30% {
     filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.5))
-      drop-shadow(0 0 28px rgba(6, 123, 172, 0.4))
-      drop-shadow(0 0 40px rgba(6, 123, 172, 0.25));
+      drop-shadow(0 0 28px var(--glow-color-light))
+      drop-shadow(0 0 40px var(--glow-color-light));
   }
   60% {
     filter: drop-shadow(0 0 22px rgba(255, 255, 255, 0.75))
-      drop-shadow(0 0 44px rgba(6, 123, 172, 0.65))
-      drop-shadow(0 0 65px rgba(6, 123, 172, 0.4));
+      drop-shadow(0 0 44px var(--glow-color))
+      drop-shadow(0 0 65px var(--glow-color-light));
   }
   100% {
     filter: drop-shadow(0 0 30px rgba(255, 255, 255, 1))
-      drop-shadow(0 0 60px rgba(6, 123, 172, 0.9))
-      drop-shadow(0 0 90px rgba(6, 123, 172, 0.6));
+      drop-shadow(0 0 60px var(--glow-color))
+      drop-shadow(0 0 90px var(--glow-color-light));
   }
 }
 
@@ -528,132 +566,26 @@
   animation: starsRise 1.5s ease-out;
   will-change: transform, opacity;
 
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+
   span {
     position: absolute;
-    width: 2px;
-    height: 2px;
     background: white;
     border-radius: 50%;
     box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none !important;
+    }
   }
 }
 
-.Star1 {
-  top: 15%;
-  left: 10%;
-  animation: scintillate 2.5s infinite;
-}
-
-.Star2 {
-  top: 25%;
-  left: 25%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 3s infinite 0.5s;
-}
-
-.Star3 {
-  top: 40%;
-  left: 15%;
-  animation: scintillate 2s infinite 1s;
-}
-
-.Star4 {
-  top: 20%;
-  left: 45%;
-  animation: scintillate 3.5s infinite 0.8s;
-}
-
-.Star5 {
-  top: 55%;
-  left: 35%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 2.8s infinite 1.5s;
-}
-
-.Star6 {
-  top: 35%;
-  left: 60%;
-  animation: scintillate 2.2s infinite 0.3s;
-}
-
-.Star7 {
-  top: 65%;
-  left: 20%;
-  animation: scintillate 3.2s infinite 1.2s;
-}
-
-.Star8 {
-  top: 10%;
-  left: 70%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 2.6s infinite 0.7s;
-}
-
-.Star9 {
-  top: 45%;
-  left: 75%;
-  animation: scintillate 3.3s infinite 1.8s;
-}
-
-.Star10 {
-  top: 70%;
-  left: 55%;
-  animation: scintillate 2.4s infinite 0.4s;
-}
-
-.Star11 {
-  top: 30%;
-  left: 85%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 2.9s infinite 1.1s;
-}
-
-.Star12 {
-  top: 60%;
-  left: 80%;
-  animation: scintillate 3.1s infinite 1.6s;
-}
-
-.Star13 {
-  top: 50%;
-  left: 5%;
-  animation: scintillate 2.7s infinite 0.6s;
-}
-
-.Star14 {
-  top: 12%;
-  left: 35%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 3.4s infinite 1.3s;
-}
-
-.Star15 {
-  top: 75%;
-  left: 40%;
-  animation: scintillate 2.3s infinite 0.9s;
-}
-
-.Star16 {
-  top: 48%;
-  left: 50%;
-  animation: scintillate 2.9s infinite 1.7s;
-}
-
-.Star17 {
-  top: 18%;
-  left: 90%;
-  width: 3px;
-  height: 3px;
-  animation: scintillate 3.6s infinite 0.2s;
-}
-
-.Star18 {
-  top: 80%;
-  left: 65%;
-  animation: scintillate 2.5s infinite 1.4s;
+.Star {
+  top: var(--star-top);
+  left: var(--star-left);
+  width: var(--star-size);
+  height: var(--star-size);
+  animation: scintillate var(--star-duration) infinite var(--star-delay);
 }
