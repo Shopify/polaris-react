@@ -83,6 +83,11 @@ export type FrontMatter = {
   newSection?: true;
   primitives?: string[];
   variants?: string[];
+  webComponent?: {
+    name: string;
+    url?: string;
+    type?: 'polaris' | 'pattern' | 'app-bridge';
+  };
 };
 
 export type PatternFrontMatter = Omit<FrontMatter, 'description' | 'lede'> & {
