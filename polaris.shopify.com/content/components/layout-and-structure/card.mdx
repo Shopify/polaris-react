@@ -2,6 +2,10 @@
 title: Card
 shortDescription: Used to group similar concepts and tasks together for easier scanning and reading.
 category: Layout and structure
+webComponent:
+  name: s-section
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/structure/section
+  type: polaris
 keywords:
   - layout
   - card
@@ -117,6 +121,13 @@ previewImg: /images/components/layout-and-structure/card.png
 Cards are used to group similar concepts and tasks together for merchants to scan, read, and get things done. It displays content in a familiar and recognizable style.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

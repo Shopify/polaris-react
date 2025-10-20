@@ -2,6 +2,10 @@
 title: Page
 shortDescription: Used to build the layout of a page in the Shopify admin. A flexible container for composing pages consistently.
 category: Layout and structure
+webComponent:
+  name: s-page
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/structure/page
+  type: polaris
 keywords:
   - page
   - breadcrumbs
@@ -69,6 +73,13 @@ previewImg: /images/components/layout-and-structure/page.png
 Use to build the outer wrapper of a page, including the page title and associated actions.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

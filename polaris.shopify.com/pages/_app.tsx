@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Script from 'next/script';
 import {useEffect, StrictMode} from 'react';
 import {useRouter} from 'next/router';
-import useDarkMode from 'use-dark-mode';
 import '@shopify/polaris/build/esm/styles.css';
 import pkg from '../package.json';
 
@@ -11,6 +10,8 @@ import {className} from '../src/utils/various';
 import Frame from '../src/components/Frame';
 import '../src/styles/globals.scss';
 import ViewTransition from '../src/components/ViewTransition';
+import InterstitialModal from '../src/components/InterstitialModal';
+import {useSafeDarkMode} from '../src/hooks/useSafeDarkMode';
 
 const PUBLIC_GA_ID = 'UA-49178120-32';
 
@@ -31,7 +32,7 @@ const noflash = `!function(){var b="darkMode",g="dark-mode",j="light-mode";funct
 function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
   const isProd = process.env.NODE_ENV === 'production';
-  const darkMode = useDarkMode(false);
+  const darkMode = useSafeDarkMode(false);
 
   // We're using router.pathname here to check for a specific incoming route to render in a Fragment instead of
   // the Page component. This will work fine for statically generated assets / pages
@@ -144,6 +145,7 @@ function MyApp({Component, pageProps}: AppProps) {
           </Frame>
         )}
       </div>
+      <InterstitialModal />
     </>
   );
 }

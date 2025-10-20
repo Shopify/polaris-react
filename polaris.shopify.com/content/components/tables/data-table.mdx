@@ -2,6 +2,10 @@
 title: Data table
 shortDescription: Used to organize and display all information from a data set. Aimed to be as simple as possible for merchants.
 category: Tables
+webComponent:
+  name: s-table
+  url: https://shopify.dev/docs/api/app-home/polaris-web-components/structure/table
+  type: polaris
 keywords:
   - DataTable
   - data
@@ -56,6 +60,13 @@ previewImg: /images/components/tables/data-table.png
 Data tables are used to organize and display all information from a data set. While a data visualization represents part of data set, a data table lets merchants view details from the entire set. This helps merchants compare and analyze the data.
 
 </Lede>
+
+<WebComponentBanner
+  componentName={frontmatter.title}
+  webComponentName={frontmatter.webComponent.name}
+  webComponentUrl={frontmatter.webComponent.url}
+  type={frontmatter.webComponent.type}
+/>
 
 <Examples />
 

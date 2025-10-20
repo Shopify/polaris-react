@@ -17,12 +17,18 @@ import type {Status, FilteredTypes, SerializedMdx} from '../../../../src/types';
 import PropsTable from '../../../../src/components/PropsTable';
 import {getRelevantTypes} from '../../../../scripts/get-props/src/get-props';
 import allType from '../../../../.cache/props';
+import WebComponentBanner from '../../../../src/components/WebComponentBanner';
 
 type FrontMatter = {
   status?: Status;
   title: string;
   examples: ComponentExample[];
   seoDescription?: string;
+  webComponent?: {
+    name: string;
+    url?: string;
+    type?: 'polaris' | 'pattern' | 'app-bridge';
+  };
 };
 
 interface Props {
@@ -30,10 +36,6 @@ interface Props {
   seoDescription?: string;
   examples: ComponentExampleSerialized[];
   type: FilteredTypes;
-  editPageLinkPath: string;
-}
-
-interface Props {
   editPageLinkPath: string;
 }
 
@@ -51,6 +53,7 @@ const Components = ({
       <Markdown
         {...mdx}
         components={{
+          WebComponentBanner,
           Examples: () =>
             Boolean(examples.length) ? (
               <ComponentExamples
