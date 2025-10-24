@@ -113,7 +113,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.0",
-    "sass-loader": "^12.4.0",
+    "sass-loader": "^16.0.6",
     "serve": "^14.2.4",
     "storybook": "^8.6.4",
     "transitions-all-settled": "^0.4.0",
