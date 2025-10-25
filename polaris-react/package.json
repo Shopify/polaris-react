@@ -97,7 +97,7 @@
     "babel-loader": "^8.1.0",
     "change-case": "^3.1.0",
     "chromatic": "^6.5.4",
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.2.1",
     "globby": "^11.1.0",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
