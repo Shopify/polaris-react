@@ -96,7 +96,7 @@
     "lodash.set": "^4.3.2",
     "marked": "^4.0.16",
     "ora": "^5.4.1",
-    "patch-package": "^6.4.7",
+    "patch-package": "^8.0.1",
     "p-map": "^5.5.0",
     "playroom": "^0.28.0",
     "sass": "^1.89.2",
