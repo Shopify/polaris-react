@@ -592,4 +592,76 @@ describe('IndexFilters', () => {
       expect(onEditStart).toHaveBeenCalledWith(IndexFiltersMode.EditingColumns);
     });
   });
+
+  describe('tab actions', () => {
+    it('calls both onSelect and onAction when a tab is selected', () => {
+      const onSelect = jest.fn();
+      const onAction = jest.fn();
+      const tabs = [
+        {
+          id: 'tab1',
+          content: 'Tab 1',
+          onAction,
+        },
+      ];
+
+      const wrapper = mountWithApp(
+        <IndexFilters {...defaultProps} tabs={tabs} onSelect={onSelect} />,
+      );
+
+      wrapper.find(Tabs)!.trigger('onSelect', 0);
+
+      expect(onSelect).toHaveBeenCalledWith(0);
+      expect(onAction).toHaveBeenCalled();
+    });
+
+    it('calls onSelect but not onAction when selected tab has no onAction', () => {
+      const onSelect = jest.fn();
+      const tabs = [
+        {
+          id: 'tab1',
+          content: 'Tab 1',
+        },
+      ];
+
+      const wrapper = mountWithApp(
+        <IndexFilters {...defaultProps} tabs={tabs} onSelect={onSelect} />,
+      );
+
+      wrapper.find(Tabs)!.trigger('onSelect', 0);
+
+      expect(onSelect).toHaveBeenCalledWith(0);
+    });
+
+    it('calls the valid onAction when switching between tabs', () => {
+      const onAction1 = jest.fn();
+      const onAction2 = jest.fn();
+      const tabs = [
+        {
+          id: 'tab1',
+          content: 'Tab 1',
+          onAction: onAction1,
+        },
+        {
+          id: 'tab2',
+          content: 'Tab 2',
+          onAction: onAction2,
+        },
+      ];
+
+      const wrapper = mountWithApp(
+        <IndexFilters {...defaultProps} tabs={tabs} />,
+      );
+
+      // Select first tab
+      wrapper.find(Tabs)!.trigger('onSelect', 0);
+      expect(onAction1).toHaveBeenCalledTimes(1);
+      expect(onAction2).not.toHaveBeenCalled();
+
+      // Select second tab
+      wrapper.find(Tabs)!.trigger('onSelect', 1);
+      expect(onAction1).toHaveBeenCalledTimes(1);
+      expect(onAction2).toHaveBeenCalledTimes(1);
+    });
+  });
 });

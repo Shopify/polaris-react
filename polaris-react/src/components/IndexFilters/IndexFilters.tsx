@@ -350,6 +350,17 @@ export function IndexFilters({
     beginEdit(IndexFiltersMode.Filtering);
   }
 
+  const handleTabSelect = useCallback(
+    (selectedTabIndex: number) => {
+      onSelect?.(selectedTabIndex);
+      const selectedTab = tabs[selectedTabIndex];
+      if (selectedTab?.onAction) {
+        selectedTab.onAction();
+      }
+    },
+    [onSelect, tabs],
+  );
+
   return (
     <div
       className={styles.IndexFiltersWrapper}
@@ -399,7 +410,7 @@ export function IndexFilters({
                         <Tabs
                           tabs={tabs}
                           selected={selected}
-                          onSelect={onSelect}
+                          onSelect={handleTabSelect}
                           disabled={Boolean(
                             mode !== IndexFiltersMode.Default || disabled,
                           )}
