@@ -102,7 +102,7 @@
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
     "postcss": "^8.5.6",
-    "postcss-custom-media": "^10.0.1",
+    "postcss-custom-media": "^11.0.6",
     "postcss-discard-comments": "^6.0.1",
     "postcss-import": "^16.1.1",
     "postcss-loader": "^4.2.0",
