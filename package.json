@@ -30,7 +30,7 @@
     "@babel/preset-typescript": "^7.26.0",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.4",
-    "@changesets/get-release-plan": "^3.0.14",
+    "@changesets/get-release-plan": "^4.0.13",
     "@next/eslint-plugin-next": "^12.1.4",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-commonjs": "^24.0.1",

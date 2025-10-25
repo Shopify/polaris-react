@@ -69,7 +69,7 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@changesets/get-release-plan": "^3.0.13",
+    "@changesets/get-release-plan": "^4.0.13",
     "@csstools/postcss-global-data": "2.1.0",
     "@shopify/jest-dom-mocks": "^5.2.0",
     "@shopify/postcss-plugin": "^5.0.1",
