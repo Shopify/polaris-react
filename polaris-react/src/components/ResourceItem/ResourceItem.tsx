@@ -455,9 +455,25 @@ class BaseResourceItem extends Component<CombinedProps, State> {
     }
 
     if (url && anchor) {
-      anchor.click();
+      // PREVENT default navigation
+      event.preventDefault();
+      // Check savebar BEFORE navigating
+      this.handleNavigationWithSaveBarCheck(anchor);
     }
   };
+
+  private async handleNavigationWithSaveBarCheck(anchor: HTMLAnchorElement) {
+    try {
+      // Check if shopify saveBar is available and has active unsaved changes
+      if (typeof window !== 'undefined' && (window as any).shopify?.saveBar) {
+        await (window as any).shopify.saveBar.leaveConfirmation();
+      }
+      // Only navigate if confirmation succeeds
+      window.location.href = anchor.href;
+    } catch (error) {
+      // User cancelled - don't navigate
+    }
+  }
 
   // This fires onClick when there is a URL on the item
   private handleKeyUp = (event: React.KeyboardEvent<HTMLElement>) => {
