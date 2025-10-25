@@ -100,7 +100,7 @@
     "p-map": "^5.5.0",
     "playroom": "^0.28.0",
     "sass": "^1.89.2",
-    "satori": "^0.15.2",
+    "satori": "^0.18.3",
     "style-loader": "^3.3.1",
     "ts-node": "^10.7.0",
     "typescript": "^4.9.3",
