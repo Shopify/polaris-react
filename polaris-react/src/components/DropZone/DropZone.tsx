@@ -45,6 +45,8 @@ export interface DropZoneProps {
   labelHidden?: boolean;
   /** ID for file input */
   id?: string;
+  /** name for file input */
+  name?: string;
   /** Allowed file types */
   accept?: string;
   /**
@@ -117,6 +119,7 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
   label,
   labelAction,
   labelHidden,
+  name,
   children,
   disabled = false,
   outline = true,
@@ -228,8 +231,6 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
       onDropRejected && rejectedFiles.length && onDropRejected(rejectedFiles);
 
       if (!(event.target && 'value' in event.target)) return;
-
-      event.target.value = '';
     },
     [disabled, getValidatedFiles, onDrop, onDropAccepted, onDropRejected],
   );
@@ -437,6 +438,7 @@ export const DropZone: React.FunctionComponent<DropZoneProps> & {
               accept={accept}
               disabled={disabled}
               multiple={allowMultiple}
+              name={name}
               onChange={handleDrop}
               onFocus={handleFocus}
               onBlur={handleBlur}
