@@ -10,14 +10,14 @@
     },
     "ActionList": {
       "SearchField": {
-        "clearButtonLabel": "Καθαρισμός",
+        "clearButtonLabel": "Εκκαθάριση",
         "search": "Αναζήτηση",
         "placeholder": "Αναζήτηση ενεργειών"
       }
     },
     "Avatar": {
-      "label": "Εικονίδιο",
-      "labelWithInitials": "Εικονίδιο με αρχικά {initials}"
+      "label": "Avatar",
+      "labelWithInitials": "Avatar με αρχικά {initials}"
     },
     "Autocomplete": {
       "spinnerAccessibilityLabel": "Φόρτωση",
@@ -25,7 +25,7 @@
     },
     "Badge": {
       "PROGRESS_LABELS": {
-        "incomplete": "Ατελές",
+        "incomplete": "Μη ολοκληρωμένο",
         "partiallyComplete": "Μερικώς ολοκληρωμένο",
         "complete": "Ολοκληρωμένο"
       },
@@ -36,22 +36,22 @@
         "critical": "Κρίσιμο",
         "attention": "Προσοχή",
         "new": "Νέο",
-        "readOnly": "Μόνο ανάγνωση",
+        "readOnly": "Μόνο για ανάγνωση",
         "enabled": "Ενεργοποιημένο"
       },
       "progressAndTone": "{toneLabel} {progressLabel}"
     },
     "Banner": {
-      "dismissButton": "Απόρριψη ειδοποίησης"
+      "dismissButton": "Παράβλεψη ειδοποίησης"
     },
     "Button": {
       "spinnerAccessibilityLabel": "Φόρτωση"
     },
     "Common": {
-      "checkbox": "κουτάκι επιλογής",
+      "checkbox": "πλαίσιο ελέγχου",
       "undo": "Αναίρεση",
       "cancel": "Ακύρωση",
-      "clear": "Καθαρισμός",
+      "clear": "Εκκαθάριση",
       "close": "Κλείσιμο",
       "submit": "Υποβολή",
       "more": "Περισσότερα"
@@ -61,17 +61,17 @@
       "discard": "Απόρριψη"
     },
     "DataTable": {
-      "sortAccessibilityLabel": "ταξινόμηση κατά {direction}",
-      "navAccessibilityLabel": "Κύλιση πίνακα {direction} μία στήλη",
-      "totalsRowHeading": "Σύνολο",
+      "sortAccessibilityLabel": "ταξινόμηση {direction} κατά",
+      "navAccessibilityLabel": "Κύλιση πίνακα {direction} κατά μία στήλη",
+      "totalsRowHeading": "Σύνολα",
       "totalRowHeading": "Σύνολο"
     },
     "DatePicker": {
       "previousMonth": "Εμφάνιση προηγούμενου μήνα, {previousMonthName} {showPreviousYear}",
       "nextMonth": "Εμφάνιση επόμενου μήνα, {nextMonth} {nextYear}",
-      "today": "Σήμερα",
-      "start": "Αρχή εμβέλειας",
-      "end": "Τέλος εμβέλειας",
+      "today": "Σήμερα ",
+      "start": "Έναρξη εύρους",
+      "end": "Λήξη εύρους",
       "months": {
         "january": "Ιανουάριος",
         "february": "Φεβρουάριος",
@@ -107,35 +107,35 @@
     },
     "DiscardConfirmationModal": {
       "title": "Απόρριψη όλων των μη αποθηκευμένων αλλαγών",
-      "message": "Εάν απορρίψετε τις αλλαγές, θα διαγράψετε όλες τις επεξεργασίες που έχετε κάνει από την τελευταία αποθήκευση.",
+      "message": "Αν απορρίψετε τις αλλαγές, θα διαγράψετε τυχόν επεξεργασίες που κάνατε από την τελευταία φορά που αποθηκεύσατε.",
       "primaryAction": "Απόρριψη αλλαγών",
       "secondaryAction": "Συνέχεια επεξεργασίας"
     },
     "DropZone": {
       "single": {
-        "overlayTextFile": "Αποθέστε αρχείο για μεταφόρτωση",
-        "overlayTextImage": "Αποθέστε εικόνα για μεταφόρτωση",
-        "overlayTextVideo": "Αποθέστε βίντεο για μεταφόρτωση",
+        "overlayTextFile": "Σύρετε το αρχείο εδώ για μεταφόρτωση",
+        "overlayTextImage": "Σύρετε την εικόνα εδώ για μεταφόρτωση",
+        "overlayTextVideo": "Σύρετε το βίντεο εδώ για μεταφόρτωση",
         "actionTitleFile": "Προσθήκη αρχείου",
         "actionTitleImage": "Προσθήκη εικόνας",
         "actionTitleVideo": "Προσθήκη βίντεο",
-        "actionHintFile": "ή αποθέστε αρχείο για μεταφόρτωση",
-        "actionHintImage": "ή αποθέστε εικόνα για μεταφόρτωση",
-        "actionHintVideo": "ή αποθέστε βίντεο για μεταφόρτωση",
+        "actionHintFile": "ή σύρετε το αρχείο για μεταφόρτωση",
+        "actionHintImage": "ή σύρετε την εικόνα για μεταφόρτωση",
+        "actionHintVideo": "ή σύρετε το βίντεο για μεταφόρτωση",
         "labelFile": "Μεταφόρτωση αρχείου",
         "labelImage": "Μεταφόρτωση εικόνας",
         "labelVideo": "Μεταφόρτωση βίντεο"
       },
       "allowMultiple": {
-        "overlayTextFile": "Αποθέστε αρχεία για μεταφόρτωση",
-        "overlayTextImage": "Αποθέστε εικόνες για μεταφόρτωση",
-        "overlayTextVideo": "Αποθέστε βίντεο για μεταφόρτωση",
+        "overlayTextFile": "Σύρετε τα αρχεία εδώ για μεταφόρτωση",
+        "overlayTextImage": "Σύρετε τις εικόνες εδώ για μεταφόρτωση",
+        "overlayTextVideo": "Σύρετε τα βίντεο εδώ για μεταφόρτωση",
         "actionTitleFile": "Προσθήκη αρχείων",
         "actionTitleImage": "Προσθήκη εικόνων",
         "actionTitleVideo": "Προσθήκη βίντεο",
-        "actionHintFile": "ή αποθέστε αρχεία για μεταφόρτωση",
-        "actionHintImage": "ή αποθέστε εικόνες για μεταφόρτωση",
-        "actionHintVideo": "ή αποθέστε βίντεο για μεταφόρτωση",
+        "actionHintFile": "ή σύρετε τα αρχεία για μεταφόρτωση",
+        "actionHintImage": "ή σύρετε τις εικόνες για μεταφόρτωση",
+        "actionHintVideo": "ή σύρετε τα βίντεο για μεταφόρτωση",
         "labelFile": "Μεταφόρτωση αρχείων",
         "labelImage": "Μεταφόρτωση εικόνων",
         "labelVideo": "Μεταφόρτωση βίντεο"
@@ -156,35 +156,35 @@
     },
     "FullscreenBar": {
       "back": "Πίσω",
-      "accessibilityLabel": "Έξοδος από λειτουργία πλήρους οθόνης"
+      "accessibilityLabel": "Έξοδος από τη λειτουργία πλήρους οθόνης"
     },
     "Filters": {
       "moreFilters": "Περισσότερα φίλτρα",
       "moreFiltersWithCount": "Περισσότερα φίλτρα ({count})",
       "filter": "Φιλτράρισμα {resourceName}",
-      "noFiltersApplied": "Δεν εφαρμόζονται φίλτρα",
+      "noFiltersApplied": "Δεν έχουν εφαρμοστεί φίλτρα",
       "cancel": "Ακύρωση",
-      "done": "Έγινε",
-      "clearAllFilters": "Καθαρισμός όλων των φίλτρων",
-      "clear": "Καθαρισμός",
-      "clearLabel": "Καθαρισμός {filterName}",
+      "done": "Τέλος",
+      "clearAllFilters": "Εκκαθάριση όλων των φίλτρων",
+      "clear": "Εκκαθάριση",
+      "clearLabel": "Εκκαθάριση {filterName}",
       "addFilter": "Προσθήκη φίλτρου",
-      "clearFilters": "Καθαρισμός όλων",
+      "clearFilters": "Εκκαθάριση όλων",
       "searchInView": "σε:{viewName}"
     },
     "FilterPill": {
-      "clear": "Καθαρισμός",
+      "clear": "Εκκαθάριση",
       "unsavedChanges": "Μη αποθηκευμένες αλλαγές - {label}"
     },
     "IndexFilters": {
       "searchFilterTooltip": "Αναζήτηση και φιλτράρισμα",
       "searchFilterTooltipWithShortcut": "Αναζήτηση και φιλτράρισμα (F)",
       "searchFilterAccessibilityLabel": "Αναζήτηση και φιλτράρισμα αποτελεσμάτων",
-      "sort": "Ταξινόμηση αποτελεσμάτων",
+      "sort": "Ταξινομήστε τα αποτελέσματά σας",
       "addView": "Προσθήκη νέας προβολής",
       "newView": "Προσαρμοσμένη αναζήτηση",
       "SortButton": {
-        "ariaLabel": "Ταξινόμηση αποτελεσμάτων",
+        "ariaLabel": "Ταξινόμηση των αποτελεσμάτων",
         "tooltip": "Ταξινόμηση",
         "title": "Ταξινόμηση κατά",
         "sorting": {
@@ -206,7 +206,7 @@
         "modal": {
           "title": "Αποθήκευση προβολής ως",
           "label": "Όνομα",
-          "sameName": "Μια προβολή με αυτό το όνομα υπάρχει ήδη. Παρακαλώ επιλέξτε διαφορετικό όνομα.",
+          "sameName": "Υπάρχει ήδη μια προβολή με αυτό το όνομα. Επιλέξτε διαφορετικό όνομα.",
           "save": "Αποθήκευση",
           "cancel": "Ακύρωση"
         }
@@ -215,7 +215,7 @@
     "IndexProvider": {
       "defaultItemSingular": "Στοιχείο",
       "defaultItemPlural": "Στοιχεία",
-      "allItemsSelected": "Όλα τα {itemsLength}+ {resourceNamePlural} είναι επιλεγμένα",
+      "allItemsSelected": "Έχουν επιλεγεί όλα τα {itemsLength}+ {resourceNamePlural}",
       "selected": "{selectedItemsCount} επιλεγμένα",
       "a11yCheckboxDeselectAllSingle": "Αποεπιλογή {resourceNameSingular}",
       "a11yCheckboxSelectAllSingle": "Επιλογή {resourceNameSingular}",
@@ -233,14 +233,14 @@
       "selectAllItems": "Επιλογή όλων των {itemsLength}+ {resourceNamePlural}",
       "selectItem": "Επιλογή {resourceName}",
       "selectButtonText": "Επιλογή",
-      "sortAccessibilityLabel": "ταξινόμηση κατά {direction}"
+      "sortAccessibilityLabel": "ταξινόμηση {direction} κατά"
     },
     "Loading": {
-      "label": "Μπάρα φόρτωσης σελίδας"
+      "label": "Γραμμή φόρτωσης σελίδας"
     },
     "Modal": {
-      "iFrameTitle": "σήμανση σώματος",
-      "modalWarning": "Αυτές οι υποχρεωτικές ιδιότητες λείπουν από το Modal: {missingProps}"
+      "iFrameTitle": "σήμανση body",
+      "modalWarning": "Αυτές οι απαιτούμενες ιδιότητες λείπουν από το παράθυρο διαλόγου: {missingProps}"
     },
     "Page": {
       "Header": {
@@ -254,8 +254,8 @@
       "pagination": "Σελιδοποίηση"
     },
     "ProgressBar": {
-      "negativeWarningMessage": "Οι τιμές που περνάνε στο progress prop δεν πρέπει να είναι αρνητικές. Επαναφορά {progress} στο 0.",
-      "exceedWarningMessage": "Οι τιμές που περνάνε στο progress prop δεν πρέπει να υπερβαίνουν το 100. Ορισμός {progress} στο 100."
+      "negativeWarningMessage": "Οι τιμές που μεταβιβάζονται στην ιδιότητα progress δεν πρέπει να είναι αρνητικές. Επαναφορά του {progress} στο 0.",
+      "exceedWarningMessage": "Οι τιμές που μεταβιβάζονται στην ιδιότητα progress δεν πρέπει να υπερβαίνουν το 100. Ορισμός του {progress} σε 100."
     },
     "ResourceList": {
       "sortingLabel": "Ταξινόμηση κατά",
@@ -265,8 +265,8 @@
       "showingTotalCount": "Εμφάνιση {itemsCount} από {totalItemsCount} {resource}",
       "loading": "Φόρτωση {resource}",
       "selected": "{selectedItemsCount} επιλεγμένα",
-      "allItemsSelected": "Όλα τα {itemsLength}+ {resourceNamePlural} στο κατάστημά σας είναι επιλεγμένα",
-      "allFilteredItemsSelected": "Όλα τα {itemsLength}+ {resourceNamePlural} σε αυτό το φίλτρο είναι επιλεγμένα",
+      "allItemsSelected": "Έχουν επιλεγεί όλα τα {itemsLength}+ {resourceNamePlural} στο κατάστημά σας",
+      "allFilteredItemsSelected": "Έχουν επιλεγεί όλα τα {itemsLength}+ {resourceNamePlural} σε αυτό το φίλτρο",
       "selectAllItems": "Επιλογή όλων των {itemsLength}+ {resourceNamePlural} στο κατάστημά σας",
       "selectAllFilteredItems": "Επιλογή όλων των {itemsLength}+ {resourceNamePlural} σε αυτό το φίλτρο",
       "emptySearchResultTitle": "Δεν βρέθηκαν {resourceNamePlural}",
@@ -278,7 +278,7 @@
       "a11yCheckboxSelectAllMultiple": "Επιλογή όλων των {itemsLength} {resourceNamePlural}",
       "Item": {
         "actionsDropdownLabel": "Ενέργειες για {accessibilityLabel}",
-        "actionsDropdown": "Αναδυόμενο μενού ενεργειών",
+        "actionsDropdown": "Αναπτυσσόμενο μενού ενεργειών",
         "viewItem": "Προβολή λεπτομερειών για {itemName}"
       },
       "BulkActions": {
@@ -295,14 +295,14 @@
       "toggleTabsLabel": "Περισσότερες προβολές",
       "Tab": {
         "rename": "Μετονομασία προβολής",
-        "duplicate": "Διπλασιασμός προβολής",
+        "duplicate": "Δημιουργία αντιγράφου προβολής",
         "edit": "Επεξεργασία προβολής",
         "editColumns": "Επεξεργασία στηλών",
         "delete": "Διαγραφή προβολής",
         "copy": "Αντίγραφο του {name}",
         "deleteModal": {
           "title": "Διαγραφή προβολής;",
-          "description": "Αυτό δεν μπορεί να αναιρεθεί. Η προβολή {viewName} δεν θα είναι πλέον διαθέσιμη στην διαχείριση σας.",
+          "description": "Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Η προβολή {viewName} δεν θα είναι πλέον διαθέσιμη στη διαχείρισή σας.",
           "cancel": "Ακύρωση",
           "delete": "Διαγραφή προβολής"
         }
@@ -313,16 +313,16 @@
         "cancel": "Ακύρωση",
         "create": "Αποθήκευση",
         "errors": {
-          "sameName": "Μια προβολή με αυτό το όνομα υπάρχει ήδη. Παρακαλώ επιλέξτε διαφορετικό όνομα."
+          "sameName": "Υπάρχει ήδη μια προβολή με αυτό το όνομα. Επιλέξτε διαφορετικό όνομα."
         }
       },
       "DuplicateModal": {
-        "title": "Διπλασιασμός προβολής",
+        "title": "Δημιουργία αντιγράφου προβολής",
         "label": "Όνομα",
         "cancel": "Ακύρωση",
         "create": "Δημιουργία προβολής",
         "errors": {
-          "sameName": "Μια προβολή με αυτό το όνομα υπάρχει ήδη. Παρακαλώ επιλέξτε διαφορετικό όνομα."
+          "sameName": "Υπάρχει ήδη μια προβολή με αυτό το όνομα. Επιλέξτε διαφορετικό όνομα."
         }
       },
       "CreateViewModal": {
@@ -331,35 +331,35 @@
         "cancel": "Ακύρωση",
         "create": "Δημιουργία προβολής",
         "errors": {
-          "sameName": "Μια προβολή με αυτό το όνομα υπάρχει ήδη. Παρακαλώ επιλέξτε διαφορετικό όνομα."
+          "sameName": "Υπάρχει ήδη μια προβολή με αυτό το όνομα. Επιλέξτε διαφορετικό όνομα."
         }
       }
     },
     "Tag": {
-      "ariaLabel": "Αφαίρεση {children}"
+      "ariaLabel": "Κατάργηση {children}"
     },
     "TextField": {
       "characterCount": "{count} χαρακτήρες",
-      "characterCountWithMaxLength": "{count} από {limit} χαρακτήρες χρησιμοποιούνται"
+      "characterCountWithMaxLength": "Χρησιμοποιήθηκαν {count} από {limit} χαρακτήρες"
     },
     "TooltipOverlay": {
-      "accessibilityLabel": "Συμβουλή: {label}"
+      "accessibilityLabel": "Επεξήγηση: {label}"
     },
     "TopBar": {
       "toggleMenuLabel": "Εναλλαγή μενού",
       "SearchField": {
-        "clearButtonLabel": "Καθαρισμός",
+        "clearButtonLabel": "Εκκαθάριση",
         "search": "Αναζήτηση"
       }
     },
     "MediaCard": {
-      "dismissButton": "Απόρριψη",
+      "dismissButton": "Παράβλεψη",
       "popoverButton": "Ενέργειες"
     },
     "VideoThumbnail": {
       "playButtonA11yLabel": {
         "default": "Αναπαραγωγή βίντεο",
-        "defaultWithDuration": "Αναπαραγωγή βίντεο με διάρκεια {duration}",
+        "defaultWithDuration": "Αναπαραγωγή βίντεο διάρκειας {duration}",
         "duration": {
           "hours": {
             "other": {
