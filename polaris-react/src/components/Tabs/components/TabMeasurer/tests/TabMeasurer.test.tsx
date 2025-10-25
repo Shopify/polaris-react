@@ -144,6 +144,25 @@ describe('<TabMeasurer />', () => {
 
       expect(tabMeasurer).toContainReactComponentTimes(Tab, 2);
     });
+
+    it('passes badge to Tab', () => {
+      const tabs = [
+        {
+          id: 'repeat-customers',
+          content: 'repeat-customers',
+          badge: '10+',
+        },
+      ];
+      const tabMeasurer = mountWithApp(
+        <TabMeasurer {...mockProps} tabs={tabs} />,
+      );
+
+      expect(tabMeasurer).toContainReactComponent(Tab, {
+        id: 'repeat-customersMeasurer',
+        content: 'repeat-customers',
+        badge: '10+',
+      });
+    });
   });
 });
 
