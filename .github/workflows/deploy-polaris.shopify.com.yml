@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - 'polaris.shopify.com/**'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy from'
+        required: true
+        default: 'main'
 
 jobs:
   trigger-deploy:
@@ -21,5 +27,5 @@ jobs:
               owner: "shopify",
               repo: "polaris-site-prod-kit",
               workflow_id: "build-and-deploy.yml",
-              ref: "main",
+              ref: "{{ inputs.branch }}",
             });
