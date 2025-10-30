@@ -51,7 +51,7 @@
   "devDependencies": {
     "@types/is-git-clean": "^1.1.0",
     "@types/jscodeshift": "^0.11.5",
-    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-babel": "^6.1.0",
     "@rollup/plugin-commonjs": "^22.0.2",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
