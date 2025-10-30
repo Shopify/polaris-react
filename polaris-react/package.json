@@ -85,7 +85,7 @@
     "@storybook/react": "^8.6.4",
     "@storybook/react-vite": "^8.6.4",
     "@storybook/test": "^8.6.14",
-    "@storybook/test-runner": "^0.23.0",
+    "@storybook/test-runner": "^0.24.1",
     "@storybook/theming": "^8.6.14",
     "@types/js-yaml": "^4.0.5",
     "@types/node": "^20.10.0",
