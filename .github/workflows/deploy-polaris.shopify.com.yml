@@ -27,5 +27,5 @@ jobs:
               owner: "shopify",
               repo: "polaris-site-prod-kit",
               workflow_id: "build-and-deploy.yml",
-              ref: "{{ inputs.branch }}",
+              ref: "${{ inputs.branch || 'main' }}",
             });
