@@ -175,6 +175,7 @@ Polaris12Icon.displayName = 'Polaris12Icon';
 
 export default function InterstitialModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const modalRef = React.useRef<HTMLDivElement>(null);
 
   // Generate stars once with useMemo
   const stars = React.useMemo(
@@ -240,6 +241,31 @@ export default function InterstitialModal() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, handleDismiss]);
 
+  // Prevent body scrolling when modal is open
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+
+    // Prevent iOS Safari bounce scrolling
+    const preventScroll = (e: TouchEvent) => {
+      if (e.target instanceof Element && modalRef.current) {
+        if (!modalRef.current.contains(e.target)) {
+          e.preventDefault();
+        }
+      }
+    };
+
+    document.addEventListener('touchmove', preventScroll, {passive: false});
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.removeEventListener('touchmove', preventScroll);
+    };
+  }, [isOpen]);
+
   if (!isOpen) {
     return null;
   }
@@ -269,7 +295,7 @@ export default function InterstitialModal() {
         ))}
         <ShootingStarsBackground />
       </div>
-      <div className={styles.Modal}>
+      <div ref={modalRef} className={styles.Modal}>
         <div className={styles.Content}>
           <div className={styles.StarIconContainer} aria-hidden="true">
             <div className={styles.BackgroundStarBottom}>
