@@ -11,7 +11,7 @@
   z-index: 10000;
   padding: 2rem;
   animation: fadeIn 0.4s ease-in-out;
-  overflow-y: auto;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 1rem;
@@ -86,7 +86,7 @@
   left: var(--star-left);
   width: var(--star-size);
   height: var(--star-size);
-  background: var(--surface);
+  background: #ffffff;
   border-radius: 50%;
   pointer-events: none;
   animation: twinkle var(--star-duration) ease-in-out var(--star-delay) infinite;
@@ -124,6 +124,7 @@
 .Modal {
   max-width: 900px;
   width: 100%;
+  max-height: 100vh;
   animation: slideUp 0.5s ease-out;
   position: relative;
   z-index: 3;
@@ -328,7 +329,7 @@
 .Title {
   font-size: var(--font-size-1000);
   font-weight: var(--font-weight-700);
-  color: var(--surface);
+  color: #ffffff;
   margin: 0 0 1.5rem 0;
   line-height: 1.3;
 
@@ -345,7 +346,7 @@
 
 .Description {
   font-size: var(--font-size-700);
-  color: var(--surface);
+  color: #ffffff;
   margin: 0 0 2.5rem 0;
   line-height: 1.6;
   opacity: 0.95;
@@ -379,13 +380,9 @@
   padding: 1rem 2rem !important;
   font-size: var(--font-size-600) !important;
   font-weight: var(--font-weight-600) !important;
-  background: var(--p-color-bg-fill) !important;
-  color: var(--p-color-text-on-color) !important;
+  background: #ffffff !important;
+  color: #303030 !important;
   border-radius: var(--p-border-radius-200) !important;
-  box-shadow: none !important;
-  box-sizing: border-box !important;
-  border: none !important;
-  transition: all var(--duration-200) var(--ease-in-out) !important;
 
   @media (max-width: 480px) {
     padding: 0.875rem 1.5rem !important;
@@ -393,37 +390,18 @@
   }
 
   &:hover {
-    background: var(--p-color-bg-fill-hover) !important;
-    transform: translateY(-1px);
-    box-shadow: none !important;
-
-    @media (prefers-reduced-motion: reduce) {
-      transform: none;
-    }
+    background: #f0f0f0 !important;
   }
 
   &:active {
-    background: var(--p-color-bg-fill-active) !important;
-    transform: translateY(0);
-
-    @media (prefers-reduced-motion: reduce) {
-      transform: none;
-    }
-  }
-
-  &:focus,
-  &:focus-visible {
-    outline: 2px solid var(--p-color-border-focus) !important;
-    outline-offset: 2px !important;
-    box-shadow: none !important;
-    border: none !important;
+    background: #e0e0e0 !important;
   }
 }
 
 .SecondaryLink {
   background: none;
   border: none;
-  color: var(--surface);
+  color: #ffffff;
   cursor: pointer;
   font-size: var(--font-size-400);
   text-decoration: underline;
@@ -441,7 +419,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--surface);
+    outline: 2px solid #ffffff;
     outline-offset: 4px;
     border-radius: var(--border-radius-300);
   }
