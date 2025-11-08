@@ -5,7 +5,7 @@
         "moreActions": "Ещё действия"
       },
       "RollupActions": {
-        "rollupButton": "Просмотр действий"
+        "rollupButton": "Просмотреть действия"
       }
     },
     "ActionList": {
@@ -42,7 +42,7 @@
       "progressAndTone": "{toneLabel} {progressLabel}"
     },
     "Banner": {
-      "dismissButton": "Отклонить уведомление"
+      "dismissButton": "Скрыть уведомление"
     },
     "Button": {
       "spinnerAccessibilityLabel": "Загрузка"
@@ -58,18 +58,18 @@
     },
     "ContextualSaveBar": {
       "save": "Сохранить",
-      "discard": "Отклонить"
+      "discard": "Сбросить"
     },
     "DataTable": {
-      "sortAccessibilityLabel": "сортировка по {direction}",
-      "navAccessibilityLabel": "Прокрутка таблицы {direction} на один столбец",
-      "totalsRowHeading": "Итого",
+      "sortAccessibilityLabel": "сортировать {direction} по",
+      "navAccessibilityLabel": "Прокрутить таблицу {direction} на один столбец",
+      "totalsRowHeading": "Итоги",
       "totalRowHeading": "Итого"
     },
     "DatePicker": {
       "previousMonth": "Показать предыдущий месяц, {previousMonthName} {showPreviousYear}",
       "nextMonth": "Показать следующий месяц, {nextMonth} {nextYear}",
-      "today": "Сегодня",
+      "today": "Сегодня ",
       "start": "Начало диапазона",
       "end": "Конец диапазона",
       "months": {
@@ -106,9 +106,9 @@
       }
     },
     "DiscardConfirmationModal": {
-      "title": "Отклонить все несохранённые изменения",
-      "message": "Если вы отклоните изменения, вы удалите все правки, сделанные с момента последнего сохранения.",
-      "primaryAction": "Отклонить изменения",
+      "title": "Сбросить все несохранённые изменения",
+      "message": "Если вы сбросите изменения, все правки, внесённые с момента последнего сохранения, будут удалены.",
+      "primaryAction": "Сбросить изменения",
       "secondaryAction": "Продолжить редактирование"
     },
     "DropZone": {
@@ -140,9 +140,9 @@
         "labelImage": "Загрузить изображения",
         "labelVideo": "Загрузить видео"
       },
-      "errorOverlayTextFile": "Тип файла недействителен",
-      "errorOverlayTextImage": "Тип изображения недействителен",
-      "errorOverlayTextVideo": "Тип видео недействителен"
+      "errorOverlayTextFile": "Недопустимый тип файла",
+      "errorOverlayTextImage": "Недопустимый тип изображения",
+      "errorOverlayTextVideo": "Недопустимый тип видео"
     },
     "EmptySearchResult": {
       "altText": "Пустые результаты поиска"
@@ -167,7 +167,7 @@
       "done": "Готово",
       "clearAllFilters": "Очистить все фильтры",
       "clear": "Очистить",
-      "clearLabel": "Очистить {filterName}",
+      "clearLabel": "Очистить «{filterName}»",
       "addFilter": "Добавить фильтр",
       "clearFilters": "Очистить все",
       "searchInView": "в:{viewName}"
@@ -180,13 +180,13 @@
       "searchFilterTooltip": "Поиск и фильтрация",
       "searchFilterTooltipWithShortcut": "Поиск и фильтрация (F)",
       "searchFilterAccessibilityLabel": "Поиск и фильтрация результатов",
-      "sort": "Сортировка результатов",
+      "sort": "Сортировка",
       "addView": "Добавить новый вид",
       "newView": "Пользовательский поиск",
       "SortButton": {
-        "ariaLabel": "Сортировка результатов",
+        "ariaLabel": "Сортировать результаты",
         "tooltip": "Сортировка",
-        "title": "Сортировка по",
+        "title": "Сортировать по",
         "sorting": {
           "asc": "По возрастанию",
           "desc": "По убыванию",
@@ -195,8 +195,8 @@
         }
       },
       "EditColumnsButton": {
-        "tooltip": "Редактировать столбцы",
-        "accessibilityLabel": "Настройка порядка и видимости столбцов таблицы"
+        "tooltip": "Изменить столбцы",
+        "accessibilityLabel": "Настроить порядок и видимость столбцов таблицы"
       },
       "UpdateButtons": {
         "cancel": "Отмена",
@@ -205,8 +205,8 @@
         "saveAs": "Сохранить как",
         "modal": {
           "title": "Сохранить вид как",
-          "label": "Имя",
-          "sameName": "Вид с таким именем уже существует. Выберите другое имя.",
+          "label": "Название",
+          "sameName": "Вид с таким названием уже существует. Выберите другое название.",
           "save": "Сохранить",
           "cancel": "Отмена"
         }
@@ -215,75 +215,75 @@
     "IndexProvider": {
       "defaultItemSingular": "Элемент",
       "defaultItemPlural": "Элементы",
-      "allItemsSelected": "Все {itemsLength}+ {resourceNamePlural} выбраны",
-      "selected": "{selectedItemsCount} выбрано",
-      "a11yCheckboxDeselectAllSingle": "Снять выбор с {resourceNameSingular}",
+      "allItemsSelected": "Выбраны все ({itemsLength}+) {resourceNamePlural}",
+      "selected": "Выбрано: {selectedItemsCount}",
+      "a11yCheckboxDeselectAllSingle": "Отменить выбор {resourceNameSingular}",
       "a11yCheckboxSelectAllSingle": "Выбрать {resourceNameSingular}",
-      "a11yCheckboxDeselectAllMultiple": "Снять выбор со всех {itemsLength} {resourceNamePlural}",
+      "a11yCheckboxDeselectAllMultiple": "Отменить выбор всех {itemsLength} {resourceNamePlural}",
       "a11yCheckboxSelectAllMultiple": "Выбрать все {itemsLength} {resourceNamePlural}"
     },
     "IndexTable": {
       "emptySearchTitle": "{resourceNamePlural} не найдены",
-      "emptySearchDescription": "Попробуйте изменить фильтры или поисковый запрос",
+      "emptySearchDescription": "Попробуйте изменить фильтры или поисковый запрос.",
       "onboardingBadgeText": "Новое",
       "resourceLoadingAccessibilityLabel": "Загрузка {resourceNamePlural}…",
       "selectAllLabel": "Выбрать все {resourceNamePlural}",
-      "selected": "{selectedItemsCount} выбрано",
+      "selected": "Выбрано: {selectedItemsCount}",
       "undo": "Отменить",
-      "selectAllItems": "Выбрать все {itemsLength}+ {resourceNamePlural}",
+      "selectAllItems": "Выбрать все ({itemsLength}+) {resourceNamePlural}",
       "selectItem": "Выбрать {resourceName}",
       "selectButtonText": "Выбрать",
-      "sortAccessibilityLabel": "сортировка по {direction}"
+      "sortAccessibilityLabel": "сортировка ({direction}) по"
     },
     "Loading": {
-      "label": "Полоса загрузки страницы"
+      "label": "Индикатор загрузки страницы"
     },
     "Modal": {
-      "iFrameTitle": "разметка тела",
-      "modalWarning": "Эти обязательные свойства отсутствуют в Modal: {missingProps}"
+      "iFrameTitle": "разметка содержимого",
+      "modalWarning": "В модальном окне отсутствуют следующие обязательные свойства: {missingProps}"
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Просмотр действий для {title}",
-        "pageReadyAccessibilityLabel": "{title}. Эта страница готова"
+        "rollupActionsLabel": "Посмотреть действия для «{title}»",
+        "pageReadyAccessibilityLabel": "{title}. Страница готова."
       }
     },
     "Pagination": {
-      "previous": "Предыдущий",
-      "next": "Следующий",
+      "previous": "Назад",
+      "next": "Вперед",
       "pagination": "Пагинация"
     },
     "ProgressBar": {
-      "negativeWarningMessage": "Значения, переданные в progress prop, не должны быть отрицательными. Сброс {progress} на 0.",
-      "exceedWarningMessage": "Значения, переданные в progress prop, не должны превышать 100. Установка {progress} на 100."
+      "negativeWarningMessage": "Значения, передаваемые в свойство progress, не должны быть отрицательными. Сброс значения {progress} на 0.",
+      "exceedWarningMessage": "Значения, передаваемые в свойство progress, не должны превышать 100. Установка значения {progress} на 100."
     },
     "ResourceList": {
-      "sortingLabel": "Сортировка по",
+      "sortingLabel": "Сортировать по",
       "defaultItemSingular": "элемент",
       "defaultItemPlural": "элементы",
       "showing": "Показано {itemsCount} {resource}",
       "showingTotalCount": "Показано {itemsCount} из {totalItemsCount} {resource}",
-      "loading": "Загрузка {resource}",
-      "selected": "{selectedItemsCount} выбрано",
-      "allItemsSelected": "Все {itemsLength}+ {resourceNamePlural} в вашем магазине выбраны",
-      "allFilteredItemsSelected": "Все {itemsLength}+ {resourceNamePlural} в этом фильтре выбраны",
-      "selectAllItems": "Выбрать все {itemsLength}+ {resourceNamePlural} в вашем магазине",
-      "selectAllFilteredItems": "Выбрать все {itemsLength}+ {resourceNamePlural} в этом фильтре",
+      "loading": "Загрузка {resource}…",
+      "selected": "Выбрано: {selectedItemsCount}",
+      "allItemsSelected": "Выбраны все ({itemsLength}+) {resourceNamePlural} в вашем магазине",
+      "allFilteredItemsSelected": "Выбраны все ({itemsLength}+) {resourceNamePlural} в этом фильтре",
+      "selectAllItems": "Выбрать все ({itemsLength}+) {resourceNamePlural} в вашем магазине",
+      "selectAllFilteredItems": "Выбрать все ({itemsLength}+) {resourceNamePlural} в этом фильтре",
       "emptySearchResultTitle": "{resourceNamePlural} не найдены",
-      "emptySearchResultDescription": "Попробуйте изменить фильтры или поисковый запрос",
+      "emptySearchResultDescription": "Попробуйте изменить фильтры или поисковый запрос.",
       "selectButtonText": "Выбрать",
-      "a11yCheckboxDeselectAllSingle": "Снять выбор с {resourceNameSingular}",
+      "a11yCheckboxDeselectAllSingle": "Отменить выбор {resourceNameSingular}",
       "a11yCheckboxSelectAllSingle": "Выбрать {resourceNameSingular}",
-      "a11yCheckboxDeselectAllMultiple": "Снять выбор со всех {itemsLength} {resourceNamePlural}",
+      "a11yCheckboxDeselectAllMultiple": "Отменить выбор всех {itemsLength} {resourceNamePlural}",
       "a11yCheckboxSelectAllMultiple": "Выбрать все {itemsLength} {resourceNamePlural}",
       "Item": {
         "actionsDropdownLabel": "Действия для {accessibilityLabel}",
-        "actionsDropdown": "Выпадающее меню действий",
-        "viewItem": "Просмотр подробностей для {itemName}"
+        "actionsDropdown": "Раскрывающееся меню действий",
+        "viewItem": "Посмотреть сведения о «{itemName}»"
       },
       "BulkActions": {
         "actionsActivatorLabel": "Действия",
-        "moreActionsActivatorLabel": "Ещё действия"
+        "moreActionsActivatorLabel": "Другие действия"
       }
     },
     "SkeletonPage": {
@@ -292,46 +292,46 @@
     "Tabs": {
       "newViewAccessibilityLabel": "Создать новый вид",
       "newViewTooltip": "Создать вид",
-      "toggleTabsLabel": "Ещё виды",
+      "toggleTabsLabel": "Другие виды",
       "Tab": {
         "rename": "Переименовать вид",
         "duplicate": "Дублировать вид",
-        "edit": "Редактировать вид",
-        "editColumns": "Редактировать столбцы",
+        "edit": "Изменить вид",
+        "editColumns": "Изменить столбцы",
         "delete": "Удалить вид",
-        "copy": "Копия {name}",
+        "copy": "Копия: {name}",
         "deleteModal": {
           "title": "Удалить вид?",
-          "description": "Это нельзя отменить. Вид {viewName} больше не будет доступен в админке.",
+          "description": "Это действие нельзя отменить. Вид «{viewName}» больше не будет доступен в панели администратора.",
           "cancel": "Отмена",
           "delete": "Удалить вид"
         }
       },
       "RenameModal": {
         "title": "Переименовать вид",
-        "label": "Имя",
+        "label": "Название",
         "cancel": "Отмена",
         "create": "Сохранить",
         "errors": {
-          "sameName": "Вид с таким именем уже существует. Выберите другое имя."
+          "sameName": "Вид с таким названием уже существует. Выберите другое название."
         }
       },
       "DuplicateModal": {
         "title": "Дублировать вид",
-        "label": "Имя",
+        "label": "Название",
         "cancel": "Отмена",
         "create": "Создать вид",
         "errors": {
-          "sameName": "Вид с таким именем уже существует. Выберите другое имя."
+          "sameName": "Вид с таким названием уже существует. Выберите другое название."
         }
       },
       "CreateViewModal": {
         "title": "Создать новый вид",
-        "label": "Имя",
+        "label": "Название",
         "cancel": "Отмена",
         "create": "Создать вид",
         "errors": {
-          "sameName": "Вид с таким именем уже существует. Выберите другое имя."
+          "sameName": "Вид с таким названием уже существует. Выберите другое название."
         }
       }
     },
@@ -339,21 +339,21 @@
       "ariaLabel": "Удалить {children}"
     },
     "TextField": {
-      "characterCount": "{count} символов",
+      "characterCount": "Символов: {count}",
       "characterCountWithMaxLength": "Использовано {count} из {limit} символов"
     },
     "TooltipOverlay": {
       "accessibilityLabel": "Подсказка: {label}"
     },
     "TopBar": {
-      "toggleMenuLabel": "Переключить меню",
+      "toggleMenuLabel": "Открыть/закрыть меню",
       "SearchField": {
         "clearButtonLabel": "Очистить",
         "search": "Поиск"
       }
     },
     "MediaCard": {
-      "dismissButton": "Отклонить",
+      "dismissButton": "Скрыть",
       "popoverButton": "Действия"
     },
     "VideoThumbnail": {
@@ -399,7 +399,9 @@
           },
           "seconds": {
             "other": "{secondCount} секунд",
-            "one": "{secondCount} секунда"
+            "one": "{secondCount} секунда",
+            "few": "{secondCount} секунд",
+            "many": "{secondCount} секунд"
           }
         }
       }
