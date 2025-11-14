@@ -57,10 +57,10 @@
   },
   "homepage": "https://polaris.shopify.com/icons",
   "devDependencies": {
-    "@svgr/core": "^4.3.3",
+    "@svgr/core": "^8.1.0",
     "globby": "^11.1.0",
     "hast-util-select": "^3.0.0",
-    "js-yaml": "^4.0.0",
+    "js-yaml": "^4.1.1",
     "rehype-parse": "^7.0.1",
     "svgo": "^2.8.0",
     "unified": "^9.2.1"
