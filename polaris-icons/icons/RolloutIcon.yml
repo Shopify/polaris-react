@@ -1,0 +1,11 @@
+name: Rollout
+description: Used to represent a rollout, experiment or gradual release.
+keywords:
+  - rollout
+  - launch
+  - experiment
+authors:
+  - James Findlater
+date_added: 2025-11-24
+date_modified: 2025-11-24
+
