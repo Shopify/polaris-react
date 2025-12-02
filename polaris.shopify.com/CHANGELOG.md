@@ -1,5 +1,11 @@
 # polaris.shopify.com
 
+## 1.1.7
+
+### Patch Changes
+
+- [#14251](https://github.com/Shopify/polaris-react/pull/14251) [`524a375`](https://github.com/Shopify/polaris-react/commit/524a375a36065bbbe5a82e346c6181abcf5085a1) Thanks [@kyledurand](https://github.com/kyledurand)! - Remove confusing illustrations banner
+
 ## 1.1.6
 
 ### Patch Changes
