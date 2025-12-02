@@ -106,7 +106,7 @@
     "postcss-discard-comments": "^6.0.1",
     "postcss-import": "^16.1.1",
     "postcss-loader": "^4.2.0",
-    "postcss-mixins": "^9.0.4",
+    "postcss-mixins": "^12.1.2",
     "postcss-modules": "^4.2.2",
     "postcss-nesting": "^12.0.2",
     "postcss-pxtorem": "^6.0.0",
