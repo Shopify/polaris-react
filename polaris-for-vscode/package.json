@@ -44,7 +44,7 @@
     "vscode-languageserver-textdocument": "^1.0.12"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
+    "@types/node": "^24.2.1",
     "@types/vscode": "^1.101.0",
     "globby": "^11.1.0",
     "vsce": "^2.15.0"
