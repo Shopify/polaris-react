@@ -84,7 +84,7 @@
     "concurrently": "^8.2.2",
     "css-loader": "^5.2.7",
     "eslint": "8.10.0",
-    "eslint-config-next": "^13.0.0",
+    "eslint-config-next": "^15.4.6",
     "execa": "^6.1.0",
     "frontmatter": "^0.0.3",
     "generact": "^0.4.0",
