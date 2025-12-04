@@ -35,7 +35,7 @@
     "clean": "rm -rf .turbo node_modules dist"
   },
   "dependencies": {
-    "stylelint-scss": "^4.4.0",
+    "stylelint-scss": "^6.13.0",
     "postcss-scss": "^4.0.9",
     "postcss-value-parser": "^4.2.0",
     "postcss-media-query-parser": "^0.2.3",
