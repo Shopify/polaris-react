@@ -10,6 +10,7 @@
   align-items: center;
   color: var(--p-color-text);
   cursor: text;
+  font-size: var(--p-font-size-300);
 
   svg {
     fill: var(--p-color-icon-secondary);
