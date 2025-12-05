@@ -310,8 +310,8 @@ importers:
         specifier: ^8.6.4
         version: 8.6.4(storybook@8.6.4)
       '@storybook/addon-viewport':
-        specifier: ^8.6.4
-        version: 8.6.4(storybook@8.6.4)
+        specifier: ^9.0.8
+        version: 9.0.8
       '@storybook/blocks':
         specifier: ^8.6.14
         version: 8.6.14(react-dom@18.2.0)(react@18.2.0)(storybook@8.6.4)
@@ -6948,13 +6948,8 @@ packages:
       storybook: 8.6.4(prettier@2.8.8)
     dev: true
 
-  /@storybook/addon-viewport@8.6.4(storybook@8.6.4):
-    resolution: {integrity: sha512-O5Ij+SRVg6grY6JOL5lOpsFyopZxuZEl2GHfh2SUf9hfowNS0QAgFpJupqXkwZzRSrlf9uKrLkjB6ulLgN2gOQ==}
-    peerDependencies:
-      storybook: ^8.6.4
-    dependencies:
-      memoizerific: 1.11.3
-      storybook: 8.6.4(prettier@2.8.8)
+  /@storybook/addon-viewport@9.0.8:
+    resolution: {integrity: sha512-HgIFDzNXvMx0zQBM5mhwBoAJlrF9KRlxNCZnJbqrFLCJO4Ps2PMtB0HRGHcg0gm3RLcqyps0DpiF7wll3udb7Q==}
     dev: true
 
   /@storybook/blocks@8.6.14(react-dom@18.2.0)(react@18.2.0)(storybook@8.6.4):
@@ -17345,10 +17340,6 @@ packages:
     resolution: {integrity: sha512-hdN1wVrZbb29eBGiGjJbeP8JbKjq1urkHJ/LIP/NY48MZ1QVXUsQBV1G1zvYFHn1XE06cwjBsOI2K3Ulnj1YXQ==}
     engines: {node: '>=8'}
 
-  /map-or-similar@1.5.0:
-    resolution: {integrity: sha512-0aF7ZmVon1igznGI4VS30yugpduQW3y3GkcgGJOp7d8x8QrizhigUxjI/m2UojsXXto+jLAH3KSz+xOJTiORjg==}
-    dev: true
-
   /map-stream@0.1.0:
     resolution: {integrity: sha512-CkYQrPYZfWnu/DAmVCpTSX/xHpKZ80eKh2lAkyA6AJTef6bW+6JpbQZN5rofum7da+SyN1bi5ctTm+lTfcCW3g==}
     dev: false
@@ -17646,12 +17637,6 @@ packages:
     engines: {node: '>= 4.0.0'}
     dependencies:
       fs-monkey: 1.0.3
-    dev: true
-
-  /memoizerific@1.11.3:
-    resolution: {integrity: sha512-/EuHYwAPdLtXwAwSZkh/Gutery6pD2KYd44oQLhAvQp/50mpyduZh8Q7PYHXTCJ+wuXxt7oij2LXyIJOOYFPog==}
-    dependencies:
-      map-or-similar: 1.5.0
     dev: true
 
   /memory-fs@0.4.1:
