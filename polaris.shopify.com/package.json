@@ -38,7 +38,7 @@
     "codesandbox": "^2.2.3",
     "endent": "^2.1.0",
     "framer-motion": "^6.5.1",
-    "fuse.js": "^6.5.3",
+    "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
     "lodash.get": "^4.4.2",
     "lodash.mapvalues": "^4.6.0",
