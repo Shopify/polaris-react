@@ -39,7 +39,7 @@
     "@shopify/polaris-tokens": "^9.4.2",
     "@shopify/stylelint-polaris": "^16.0.7",
     "chalk": "^4.1.0",
-    "globby": "11.0.1",
+    "globby": "16.0.0",
     "is-git-clean": "^1.1.0",
     "jscodeshift": "^0.13.1",
     "meow": "^9.0.0",
