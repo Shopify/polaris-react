@@ -91,7 +91,7 @@
     "get-site-urls": "3.0.0-alpha.1",
     "globby": "^11.1.0",
     "inter-ui": "3.19.3",
-    "is-ci": "^3.0.1",
+    "is-ci": "^4.1.0",
     "js-yaml": "^4.1.0",
     "lodash.set": "^4.3.2",
     "marked": "^4.0.16",
