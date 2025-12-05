@@ -55,7 +55,7 @@
     "rehype-slug": "^5.1.0",
     "remark-definition-list": "^1.2.0",
     "remark-gfm": "^3.0.1",
-    "remark-slug": "^7.0.1",
+    "remark-slug": "^8.0.0",
     "remark-unwrap-images": "^3.0.1",
     "terminate": "^2.8.0",
     "use-dark-mode": "^2.3.1",
