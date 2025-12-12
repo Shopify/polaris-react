@@ -31,7 +31,7 @@
   "exports": "./index.js",
   "scripts": {
     "lint": "TIMING=1 eslint --cache .",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "clean": "rm -rf .turbo node_modules dist"
   },
   "dependencies": {
