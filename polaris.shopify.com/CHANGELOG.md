@@ -1,5 +1,11 @@
 # polaris.shopify.com
 
+## 1.1.8
+
+### Patch Changes
+
+- [#14336](https://github.com/Shopify/polaris-react/pull/14336) [`2b1ea88`](https://github.com/Shopify/polaris-react/commit/2b1ea88625e0613853ca8577c9acd1980a90f382) Thanks [@seanify-24](https://github.com/seanify-24)! - Updating dux package to 5.0.1
+
 ## 1.1.7
 
 ### Patch Changes
