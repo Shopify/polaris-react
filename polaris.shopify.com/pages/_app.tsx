@@ -93,7 +93,7 @@ function MyApp({Component, pageProps}: AppProps) {
                 return promise;
               }
               // example loading from CDN
-              loadScript('https://cdn.shopify.com/shopifycloud/dux/dux-portal-4.4.0.min.js').then(() => {
+              loadScript('https://cdn.shopify.com/shopifycloud/dux/dux-portal-5.0.1.min.js').then(() => {
                 Dux.init({
                   eventHandlerEndpoint: 'https://www.shopify.com/__dux',
                   mode: 'production',
