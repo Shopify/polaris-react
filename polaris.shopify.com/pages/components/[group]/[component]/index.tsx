@@ -94,7 +94,7 @@ export const getStaticProps: GetStaticProps<
   const relativeMdPath = `content/components/${groupSlug}/${componentSlug}.mdx`;
 
   const mdFilePath = path.resolve(process.cwd(), relativeMdPath);
-  const editPageLinkPath = `polaris.shopify.com/${relativeMdPath}`;
+  const editPageLinkPath = `/polaris.shopify.com/${relativeMdPath}`;
 
   if (fs.existsSync(mdFilePath)) {
     const [mdx, data] = await serializeMdx<FrontMatter>(mdFilePath, {load});
