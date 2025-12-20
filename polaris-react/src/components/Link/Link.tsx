@@ -18,6 +18,8 @@ export interface LinkProps {
    * @deprecated use `target` set to `_blank` instead
    */
   external?: boolean;
+  /** The relationship of the linked URL as space-separated link types. */
+  rel?: string;
   /** Where to display the url */
   target?: Target;
   /** Makes the link color the same as the current text color and adds an underline */
@@ -37,6 +39,7 @@ export function Link({
   children,
   onClick,
   external,
+  rel,
   target,
   id,
   monochrome,
@@ -60,6 +63,7 @@ export function Link({
             onClick={onClick}
             className={className}
             url={url}
+            rel={rel}
             external={external}
             target={target}
             id={id}

@@ -36,9 +36,9 @@ export const UnstyledLink = memo(
     return (
       <a
         target={target}
+        rel={rel}
         {...rest}
         href={url}
-        rel={rel}
         {...unstyled.props}
         ref={_ref}
       />
