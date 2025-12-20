@@ -2,17 +2,17 @@
   "Polaris": {
     "ActionMenu": {
       "Actions": {
-        "moreActions": "Aksi lainnya"
+        "moreActions": "Tindakan lainnya"
       },
       "RollupActions": {
-        "rollupButton": "Lihat aksi"
+        "rollupButton": "Lihat tindakan"
       }
     },
     "ActionList": {
       "SearchField": {
         "clearButtonLabel": "Hapus",
         "search": "Cari",
-        "placeholder": "Cari aksi"
+        "placeholder": "Cari tindakan"
       }
     },
     "Avatar": {
@@ -26,11 +26,11 @@
     "Badge": {
       "PROGRESS_LABELS": {
         "incomplete": "Belum selesai",
-        "partiallyComplete": "Sebagian selesai",
+        "partiallyComplete": "Selesai sebagian",
         "complete": "Selesai"
       },
       "TONE_LABELS": {
-        "info": "Informasi",
+        "info": "Info",
         "success": "Berhasil",
         "warning": "Peringatan",
         "critical": "Kritis",
@@ -49,7 +49,7 @@
     },
     "Common": {
       "checkbox": "kotak centang",
-      "undo": "Batal",
+      "undo": "Urungkan",
       "cancel": "Batal",
       "clear": "Hapus",
       "close": "Tutup",
@@ -61,7 +61,7 @@
       "discard": "Buang"
     },
     "DataTable": {
-      "sortAccessibilityLabel": "urutkan berdasarkan {direction}",
+      "sortAccessibilityLabel": "urutkan {direction} berdasarkan",
       "navAccessibilityLabel": "Gulir tabel {direction} satu kolom",
       "totalsRowHeading": "Total",
       "totalRowHeading": "Total"
@@ -69,7 +69,7 @@
     "DatePicker": {
       "previousMonth": "Tampilkan bulan sebelumnya, {previousMonthName} {showPreviousYear}",
       "nextMonth": "Tampilkan bulan berikutnya, {nextMonth} {nextYear}",
-      "today": "Hari ini",
+      "today": "Hari ini ",
       "start": "Awal rentang",
       "end": "Akhir rentang",
       "months": {
@@ -96,46 +96,46 @@
         "sunday": "Minggu"
       },
       "daysAbbreviated": {
-        "monday": "Sen",
-        "tuesday": "Sel",
-        "wednesday": "Rab",
-        "thursday": "Kam",
-        "friday": "Jum",
-        "saturday": "Sab",
-        "sunday": "Min"
+        "monday": "Se",
+        "tuesday": "Sl",
+        "wednesday": "Ra",
+        "thursday": "Ka",
+        "friday": "Ju",
+        "saturday": "Sa",
+        "sunday": "Mi"
       }
     },
     "DiscardConfirmationModal": {
       "title": "Buang semua perubahan yang belum disimpan",
-      "message": "Jika Anda membuang perubahan, Anda akan menghapus semua suntingan yang telah Anda buat sejak terakhir kali menyimpan.",
+      "message": "Jika Anda membuang perubahan, Anda akan menghapus semua editan yang dibuat sejak terakhir kali Anda menyimpan.",
       "primaryAction": "Buang perubahan",
       "secondaryAction": "Lanjutkan mengedit"
     },
     "DropZone": {
       "single": {
-        "overlayTextFile": "Jatuhkan file untuk mengunggah",
-        "overlayTextImage": "Jatuhkan gambar untuk mengunggah",
-        "overlayTextVideo": "Jatuhkan video untuk mengunggah",
+        "overlayTextFile": "Letakkan file untuk mengunggah",
+        "overlayTextImage": "Letakkan gambar untuk mengunggah",
+        "overlayTextVideo": "Letakkan video untuk mengunggah",
         "actionTitleFile": "Tambahkan file",
         "actionTitleImage": "Tambahkan gambar",
         "actionTitleVideo": "Tambahkan video",
-        "actionHintFile": "atau jatuhkan file untuk mengunggah",
-        "actionHintImage": "atau jatuhkan gambar untuk mengunggah",
-        "actionHintVideo": "atau jatuhkan video untuk mengunggah",
+        "actionHintFile": "atau letakkan file untuk mengunggah",
+        "actionHintImage": "atau letakkan gambar untuk mengunggah",
+        "actionHintVideo": "atau letakkan video untuk mengunggah",
         "labelFile": "Unggah file",
         "labelImage": "Unggah gambar",
         "labelVideo": "Unggah video"
       },
       "allowMultiple": {
-        "overlayTextFile": "Jatuhkan file untuk mengunggah",
-        "overlayTextImage": "Jatuhkan gambar untuk mengunggah",
-        "overlayTextVideo": "Jatuhkan video untuk mengunggah",
+        "overlayTextFile": "Letakkan file untuk diunggah",
+        "overlayTextImage": "Letakkan gambar untuk diunggah",
+        "overlayTextVideo": "Letakkan video untuk diunggah",
         "actionTitleFile": "Tambahkan file",
         "actionTitleImage": "Tambahkan gambar",
         "actionTitleVideo": "Tambahkan video",
-        "actionHintFile": "atau jatuhkan file untuk mengunggah",
-        "actionHintImage": "atau jatuhkan gambar untuk mengunggah",
-        "actionHintVideo": "atau jatuhkan video untuk mengunggah",
+        "actionHintFile": "atau letakkan file untuk diunggah",
+        "actionHintImage": "atau letakkan gambar untuk diunggah",
+        "actionHintVideo": "atau letakkan video untuk diunggah",
         "labelFile": "Unggah file",
         "labelImage": "Unggah gambar",
         "labelVideo": "Unggah video"
@@ -174,7 +174,7 @@
     },
     "FilterPill": {
       "clear": "Hapus",
-      "unsavedChanges": "Perubahan yang belum disimpan - {label}"
+      "unsavedChanges": "Perubahan belum disimpan - {label}"
     },
     "IndexFilters": {
       "searchFilterTooltip": "Cari dan filter",
@@ -186,10 +186,10 @@
       "SortButton": {
         "ariaLabel": "Urutkan hasil",
         "tooltip": "Urutkan",
-        "title": "Urutkan berdasarkan",
+        "title": "Urutkan menurut",
         "sorting": {
-          "asc": "Menaik",
-          "desc": "Menurun",
+          "asc": "Naik",
+          "desc": "Turun",
           "az": "A-Z",
           "za": "Z-A"
         }
@@ -206,7 +206,7 @@
         "modal": {
           "title": "Simpan tampilan sebagai",
           "label": "Nama",
-          "sameName": "Tampilan dengan nama ini sudah ada. Silakan pilih nama yang berbeda.",
+          "sameName": "Tampilan dengan nama ini sudah ada. Harap pilih nama lain.",
           "save": "Simpan",
           "cancel": "Batal"
         }
@@ -217,48 +217,48 @@
       "defaultItemPlural": "Item",
       "allItemsSelected": "Semua {itemsLength}+ {resourceNamePlural} dipilih",
       "selected": "{selectedItemsCount} dipilih",
-      "a11yCheckboxDeselectAllSingle": "Batalkan pilihan {resourceNameSingular}",
+      "a11yCheckboxDeselectAllSingle": "Batal pilih {resourceNameSingular}",
       "a11yCheckboxSelectAllSingle": "Pilih {resourceNameSingular}",
-      "a11yCheckboxDeselectAllMultiple": "Batalkan pilihan semua {itemsLength} {resourceNamePlural}",
+      "a11yCheckboxDeselectAllMultiple": "Batal pilih semua {itemsLength} {resourceNamePlural}",
       "a11yCheckboxSelectAllMultiple": "Pilih semua {itemsLength} {resourceNamePlural}"
     },
     "IndexTable": {
-      "emptySearchTitle": "Tidak ada {resourceNamePlural} ditemukan",
+      "emptySearchTitle": "{resourceNamePlural} tidak ditemukan",
       "emptySearchDescription": "Coba ubah filter atau istilah pencarian",
       "onboardingBadgeText": "Baru",
       "resourceLoadingAccessibilityLabel": "Memuat {resourceNamePlural}…",
       "selectAllLabel": "Pilih semua {resourceNamePlural}",
       "selected": "{selectedItemsCount} dipilih",
-      "undo": "Batal",
+      "undo": "Urungkan",
       "selectAllItems": "Pilih semua {itemsLength}+ {resourceNamePlural}",
       "selectItem": "Pilih {resourceName}",
       "selectButtonText": "Pilih",
-      "sortAccessibilityLabel": "urutkan berdasarkan {direction}"
+      "sortAccessibilityLabel": "urutkan {direction} menurut"
     },
     "Loading": {
       "label": "Bilah pemuatan halaman"
     },
     "Modal": {
-      "iFrameTitle": "markup tubuh",
-      "modalWarning": "Properti wajib ini hilang dari Modal: {missingProps}"
+      "iFrameTitle": "markup isi",
+      "modalWarning": "Properti wajib ini tidak ada di Modal: {missingProps}"
     },
     "Page": {
       "Header": {
-        "rollupActionsLabel": "Lihat aksi untuk {title}",
+        "rollupActionsLabel": "Lihat tindakan untuk {title}",
         "pageReadyAccessibilityLabel": "{title}. Halaman ini siap"
       }
     },
     "Pagination": {
       "previous": "Sebelumnya",
-      "next": "Selanjutnya",
-      "pagination": "Halaman"
+      "next": "Berikutnya",
+      "pagination": "Paginasi"
     },
     "ProgressBar": {
-      "negativeWarningMessage": "Nilai yang diteruskan ke progress prop tidak boleh negatif. Mengatur ulang {progress} ke 0.",
-      "exceedWarningMessage": "Nilai yang diteruskan ke progress prop tidak boleh melebihi 100. Mengatur {progress} ke 100."
+      "negativeWarningMessage": "Nilai yang diteruskan ke prop progres tidak boleh negatif. Mengatur ulang {progress} ke 0.",
+      "exceedWarningMessage": "Nilai yang diteruskan ke prop progres tidak boleh melebihi 100. Menetapkan {progress} ke 100."
     },
     "ResourceList": {
-      "sortingLabel": "Urutkan berdasarkan",
+      "sortingLabel": "Urutkan menurut",
       "defaultItemSingular": "item",
       "defaultItemPlural": "item",
       "showing": "Menampilkan {itemsCount} {resource}",
@@ -266,28 +266,28 @@
       "loading": "Memuat {resource}",
       "selected": "{selectedItemsCount} dipilih",
       "allItemsSelected": "Semua {itemsLength}+ {resourceNamePlural} di toko Anda dipilih",
-      "allFilteredItemsSelected": "Semua {itemsLength}+ {resourceNamePlural} dalam filter ini dipilih",
+      "allFilteredItemsSelected": "Semua {itemsLength}+ {resourceNamePlural} di filter ini dipilih",
       "selectAllItems": "Pilih semua {itemsLength}+ {resourceNamePlural} di toko Anda",
-      "selectAllFilteredItems": "Pilih semua {itemsLength}+ {resourceNamePlural} dalam filter ini",
-      "emptySearchResultTitle": "Tidak ada {resourceNamePlural} ditemukan",
+      "selectAllFilteredItems": "Pilih semua {itemsLength}+ {resourceNamePlural} di filter ini",
+      "emptySearchResultTitle": "{resourceNamePlural} tidak ditemukan",
       "emptySearchResultDescription": "Coba ubah filter atau istilah pencarian",
       "selectButtonText": "Pilih",
-      "a11yCheckboxDeselectAllSingle": "Batalkan pilihan {resourceNameSingular}",
+      "a11yCheckboxDeselectAllSingle": "Batal pilih {resourceNameSingular}",
       "a11yCheckboxSelectAllSingle": "Pilih {resourceNameSingular}",
-      "a11yCheckboxDeselectAllMultiple": "Batalkan pilihan semua {itemsLength} {resourceNamePlural}",
+      "a11yCheckboxDeselectAllMultiple": "Batal pilih semua {itemsLength} {resourceNamePlural}",
       "a11yCheckboxSelectAllMultiple": "Pilih semua {itemsLength} {resourceNamePlural}",
       "Item": {
-        "actionsDropdownLabel": "Aksi untuk {accessibilityLabel}",
-        "actionsDropdown": "Menu dropdown aksi",
+        "actionsDropdownLabel": "Tindakan untuk {accessibilityLabel}",
+        "actionsDropdown": "Dropdown tindakan",
         "viewItem": "Lihat detail untuk {itemName}"
       },
       "BulkActions": {
-        "actionsActivatorLabel": "Aksi",
-        "moreActionsActivatorLabel": "Aksi lainnya"
+        "actionsActivatorLabel": "Tindakan",
+        "moreActionsActivatorLabel": "Tindakan lainnya"
       }
     },
     "SkeletonPage": {
-      "loadingLabel": "Memuat halaman"
+      "loadingLabel": "Pemuatan halaman"
     },
     "Tabs": {
       "newViewAccessibilityLabel": "Buat tampilan baru",
@@ -295,14 +295,14 @@
       "toggleTabsLabel": "Tampilan lainnya",
       "Tab": {
         "rename": "Ubah nama tampilan",
-        "duplicate": "Duplikat tampilan",
+        "duplicate": "Duplikasikan tampilan",
         "edit": "Edit tampilan",
         "editColumns": "Edit kolom",
         "delete": "Hapus tampilan",
         "copy": "Salinan {name}",
         "deleteModal": {
           "title": "Hapus tampilan?",
-          "description": "Ini tidak dapat dibatalkan. Tampilan {viewName} tidak akan lagi tersedia di admin Anda.",
+          "description": "Tindakan ini tidak dapat diurungkan. Tampilan {viewName} tidak akan lagi tersedia di admin Anda.",
           "cancel": "Batal",
           "delete": "Hapus tampilan"
         }
@@ -313,16 +313,16 @@
         "cancel": "Batal",
         "create": "Simpan",
         "errors": {
-          "sameName": "Tampilan dengan nama ini sudah ada. Silakan pilih nama yang berbeda."
+          "sameName": "Tampilan dengan nama ini sudah ada. Harap pilih nama lain."
         }
       },
       "DuplicateModal": {
-        "title": "Duplikat tampilan",
+        "title": "Duplikasikan tampilan",
         "label": "Nama",
         "cancel": "Batal",
         "create": "Buat tampilan",
         "errors": {
-          "sameName": "Tampilan dengan nama ini sudah ada. Silakan pilih nama yang berbeda."
+          "sameName": "Tampilan dengan nama ini sudah ada. Harap pilih nama lain."
         }
       },
       "CreateViewModal": {
@@ -331,7 +331,7 @@
         "cancel": "Batal",
         "create": "Buat tampilan",
         "errors": {
-          "sameName": "Tampilan dengan nama ini sudah ada. Silakan pilih nama yang berbeda."
+          "sameName": "Tampilan dengan nama ini sudah ada. Harap pilih nama lain."
         }
       }
     },
@@ -343,10 +343,10 @@
       "characterCountWithMaxLength": "{count} dari {limit} karakter digunakan"
     },
     "TooltipOverlay": {
-      "accessibilityLabel": "Tip: {label}"
+      "accessibilityLabel": "Tooltip: {label}"
     },
     "TopBar": {
-      "toggleMenuLabel": "Beralih menu",
+      "toggleMenuLabel": "Alihkan menu",
       "SearchField": {
         "clearButtonLabel": "Hapus",
         "search": "Cari"
@@ -354,12 +354,12 @@
     },
     "MediaCard": {
       "dismissButton": "Tutup",
-      "popoverButton": "Aksi"
+      "popoverButton": "Tindakan"
     },
     "VideoThumbnail": {
       "playButtonA11yLabel": {
         "default": "Putar video",
-        "defaultWithDuration": "Putar video dengan durasi {duration}",
+        "defaultWithDuration": "Putar video berdurasi {duration}",
         "duration": {
           "hours": {
             "other": {

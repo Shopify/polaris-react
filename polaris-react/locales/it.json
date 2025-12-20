@@ -27,7 +27,7 @@
       "progressAndTone": "{toneLabel} {progressLabel}"
     },
     "Banner": {
-      "dismissButton": "Elimina notifica"
+      "dismissButton": "Ignora notifica"
     },
     "Button": {
       "spinnerAccessibilityLabel": "Caricamento in corso"
