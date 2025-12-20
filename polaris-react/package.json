@@ -60,9 +60,9 @@
     "@shopify/polaris-tokens": "^9.4.2",
     "@types/react": "*",
     "@types/react-dom": "*",
-    "@types/react-transition-group": "^4.4.2",
+    "@types/react-transition-group": "^4.4.12",
     "react-fast-compare": "^3.2.0",
-    "react-transition-group": "^4.4.2"
+    "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
     "react": "^18.0.0",
@@ -91,7 +91,7 @@
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "@types/react-transition-group": "^4.4.2",
+    "@types/react-transition-group": "^4.4.12",
     "axe-playwright": "^2.1.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-loader": "^8.1.0",
