@@ -62,7 +62,7 @@
     "hast-util-select": "^3.0.0",
     "js-yaml": "^4.0.0",
     "rehype-parse": "^7.0.1",
-    "svgo": "^2.8.0",
+    "svgo": "^4.0.0",
     "unified": "^9.2.1"
   },
   "peerDependencies": {
