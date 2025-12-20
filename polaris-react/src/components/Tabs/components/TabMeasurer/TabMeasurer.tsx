@@ -78,6 +78,7 @@ export const TabMeasurer = memo(function TabMeasurer({
         content={tab.content}
         onTogglePopover={noop}
         onToggleModal={noop}
+        badge={tab.badge}
       />
     );
   });
