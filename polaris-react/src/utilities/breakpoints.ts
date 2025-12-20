@@ -63,14 +63,22 @@ const breakpointsQueryEntries = getBreakpointsQueryEntries(
   themeDefault.breakpoints,
 );
 
+// Centralized MediaQueryList objects to avoid creating new ones for each component
+const mediaQueryLists = new Map<string, MediaQueryList>();
+// Cached matches to avoid calling .matches on each getLiveMatches call to avoid safari performance issues
+let cachedMatches: BreakpointsMatches | null = null;
+
 if (!isServer) {
   breakpointsQueryEntries.forEach(([breakpointAlias, query]) => {
     const eventListener = (event: {matches: boolean}) => {
+      // Invalidate cache when media query changes
+      cachedMatches = null;
       for (const hookCallback of hookCallbacks) {
         hookCallback(breakpointAlias, event.matches);
       }
     };
     const mql = window.matchMedia(query);
+    mediaQueryLists.set(breakpointAlias, mql);
     if (mql.addListener) {
       mql.addListener(eventListener);
     } else {
@@ -91,12 +99,19 @@ function getDefaultMatches(defaults?: UseBreakpointsOptions['defaults']) {
 }
 
 function getLiveMatches() {
-  return Object.fromEntries(
-    breakpointsQueryEntries.map(([directionAlias, query]) => [
+  // Return cached matches if available, otherwise compute and cache them
+  if (cachedMatches) {
+    return cachedMatches;
+  }
+
+  cachedMatches = Object.fromEntries(
+    breakpointsQueryEntries.map(([directionAlias]) => [
       directionAlias,
-      window.matchMedia(query).matches,
+      mediaQueryLists.get(directionAlias)?.matches ?? false,
     ]),
   ) as BreakpointsMatches;
+
+  return cachedMatches;
 }
 
 export interface UseBreakpointsOptions {
