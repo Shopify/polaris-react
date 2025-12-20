@@ -8,6 +8,7 @@ import React from 'react';
 
 import {useBreakpoints} from '../../utilities/breakpoints';
 import type {ResponsiveProp} from '../../utilities/css';
+import type {BoxProps} from '../Box';
 import {Box} from '../Box';
 import {ShadowBevel} from '../ShadowBevel';
 import {WithinContentContext} from '../../utilities/within-content-context';
@@ -31,6 +32,14 @@ export interface CardProps {
    * @default 'sm'
    */
   roundedAbove?: BreakpointsAlias;
+  /** Clip or scroll horizontal overflow of children content
+   * @default 'clip'
+   */
+  overflowX?: BoxProps['overflowX'];
+  /** Clip or scroll vertical overflow of children content
+   * @default 'clip'
+   */
+  overflowY?: BoxProps['overflowY'];
 }
 
 export const Card = ({
@@ -38,6 +47,8 @@ export const Card = ({
   background = 'bg-surface',
   padding = {xs: '400'},
   roundedAbove = 'sm',
+  overflowX = 'clip',
+  overflowY = 'clip',
 }: CardProps) => {
   const breakpoints = useBreakpoints();
   const defaultBorderRadius: BorderRadiusAliasOrScale = '300';
@@ -53,8 +64,8 @@ export const Card = ({
         <Box
           background={background}
           padding={padding}
-          overflowX="clip"
-          overflowY="clip"
+          overflowX={overflowX}
+          overflowY={overflowY}
           minHeight="100%"
         >
           {children}
