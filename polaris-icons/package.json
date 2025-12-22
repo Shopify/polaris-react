@@ -58,7 +58,7 @@
   "homepage": "https://polaris.shopify.com/icons",
   "devDependencies": {
     "@svgr/core": "^4.3.3",
-    "globby": "^11.1.0",
+    "globby": "^16.1.0",
     "hast-util-select": "^3.0.0",
     "js-yaml": "^4.0.0",
     "rehype-parse": "^7.0.1",
