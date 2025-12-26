@@ -475,8 +475,8 @@ importers:
         specifier: ^6.5.1
         version: 6.5.1(react-dom@18.2.0)(react@18.2.0)
       fuse.js:
-        specifier: ^6.5.3
-        version: 6.5.3
+        specifier: ^7.1.0
+        version: 7.1.0
       gray-matter:
         specifier: ^4.0.3
         version: 4.0.3
@@ -13717,8 +13717,8 @@ packages:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
     dev: true
 
-  /fuse.js@6.5.3:
-    resolution: {integrity: sha512-sA5etGE7yD/pOqivZRBvUBd/NaL2sjAu6QuSaFoe1H2BrJSkH/T/UXAJ8CdXdw7DvY3Hs8CXKYkDWX7RiP5KOg==}
+  /fuse.js@7.1.0:
+    resolution: {integrity: sha512-trLf4SzuuUxfusZADLINj+dE8clK1frKdmqiJNb1Es75fmI5oY6X2mxLVUciLLjxqw/xr72Dhy+lER6dGd02FQ==}
     engines: {node: '>=10'}
     dev: false
 
